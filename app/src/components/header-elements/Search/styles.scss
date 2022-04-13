@@ -1,0 +1,35 @@
+#search {
+  & .mini-product-list {
+    overflow: scroll;
+    height: calc(100% - 100px);
+    & li {
+      padding: 0;
+    }
+    & li:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+      padding: 0 0 20px;
+      margin: 0 0 20px;
+    }
+  }
+  & .sidebar-content__input {
+    margin-bottom: 20px;
+    & input {
+      width: 100%;
+      margin: 0;
+      padding: 15px 15px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    & svg {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(-15px, -50%);
+      transition: all 0.3s ease-in-out;
+    }
+    & input:not(.emptyInput):focus + svg,
+    & input:not(.emptyInput):hover + svg {
+      display: none;
+    }
+  }
+}

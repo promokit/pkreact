@@ -1,0 +1,23 @@
+.main-menu {
+  background: #333;
+  color: #f1f1f1;
+  padding: 15px 0;
+  & .menu-menu__bar {
+    cursor: pointer;
+  }
+  & .menu-menu__bar-close + nav {
+    display: none;
+  }
+}
+#menu-nav-root {
+  & .root-item ul.parent {
+    margin: 0;
+    padding: 0 15px;
+  }
+  & .menu-item__span a {
+    flex-grow: 1;
+  }
+  & .collapsed > .parent {
+    display: none;
+  }
+}

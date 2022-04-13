@@ -1,0 +1,17 @@
+li {
+  color: inherit;
+  list-style: none;
+  padding: 7px 0;
+  margin: 0;
+  & a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.15s linear;
+  }
+  & a:hover {
+    color: #ccc;
+  }
+  & .main-menu__trigger {
+    cursor: pointer;
+  }
+}

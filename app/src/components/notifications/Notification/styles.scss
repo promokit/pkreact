@@ -1,0 +1,14 @@
+.alert {
+  padding: 15px 20px;
+  color: #fff;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+.alert-error {
+  background: rgb(255, 133, 133);
+  border-left: 3px solid rgb(255, 73, 73);
+}
+.alert-info {
+  background: rgb(144, 181, 255);
+  border-left: 3px solid rgb(113, 143, 254);
+}

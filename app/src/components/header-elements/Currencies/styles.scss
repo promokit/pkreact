@@ -1,0 +1,20 @@
+.currencies-list {
+  & li {
+    align-items: center;
+  }
+  & li strong {
+    display: inline-block;
+    background: #38313152;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 12px 0 0;
+    overflow: hidden;
+  }
+  & li span {
+    pointer-events: none;
+  }
+}

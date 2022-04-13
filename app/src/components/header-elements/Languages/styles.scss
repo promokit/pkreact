@@ -1,0 +1,25 @@
+.languages-list {
+  & li {
+    cursor: pointer;
+  }
+  & li span {
+    pointer-events: none;
+  }
+  & li strong {
+    background: #38313152;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 12px 0 0;
+    overflow: hidden;
+  }
+  & li strong img {
+    margin: auto;
+    width: auto;
+    height: 100%;
+    transform: translateX(-15%);
+  }
+}
