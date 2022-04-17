@@ -9,7 +9,7 @@ const INITIAL_STATE: any = {
   isLoaded: false,
   productListingPage: 1
 };
-
+// TODO: make order with types
 const contextReducer = (state: any = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case ContextActionTypes.SET_LOADED_STATE:
@@ -46,6 +46,14 @@ const contextReducer = (state: any = INITIAL_STATE, action: any) => {
         details: {
           ...state.details,
           currency: action.payload
+        }
+      };
+    case ContextActionTypes.SET_CART_STATE:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          cart: action.payload
         }
       };
     default:

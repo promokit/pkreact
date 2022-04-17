@@ -1,11 +1,17 @@
-import { ContextInterface, CurrencyInterface, LanguageInterface } from '../../model/interfaces';
+import {
+  CartInterface,
+  ContextInterface,
+  CurrencyInterface,
+  LanguageInterface
+} from '../../model/interfaces';
 import {
   LoaderAction,
   LanguageAction,
   CurrencyAction,
   ErrorAction,
   ContextAction,
-  ListingPageAction
+  ListingPageAction,
+  CartAction
 } from './context.types';
 import { ContextActionTypes } from './context.types';
 
@@ -26,6 +32,11 @@ export const setProductListingPage = (state: number): ListingPageAction => ({
 
 export const setContextState = (state: ContextInterface): ContextAction => ({
   type: ContextActionTypes.SET_CONTEXT,
+  payload: state
+});
+
+export const setCartState = (state: CartInterface): CartAction => ({
+  type: ContextActionTypes.SET_CART_STATE,
   payload: state
 });
 

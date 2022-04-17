@@ -61,7 +61,7 @@ interface ContextCustomerInterface {
 }
 
 export interface ContextDetailsInterface {
-  cart: ContextCartInterface;
+  cart: CartInterface;
   cookie: object;
   currency: ContextCurrencyInterface;
   customer: ContextCustomerInterface;
@@ -169,6 +169,28 @@ export interface ProductInterface {
   cover: ImageInterface;
   name: string;
   price: string;
+}
+
+export interface ProductPageInterface {
+  category_name: string;
+  cover_image: string;
+  customization_fields: object;
+  description: string;
+  description_short: string;
+  discount_percentage: string;
+  discount_price: string;
+  groups: [];
+  id_product: number;
+  images: [];
+  manufacturer_name: string;
+  minimal_quantity: string;
+  name: string;
+  new_products: string;
+  price: string;
+  product_url: string;
+  quantity: number;
+  reference: string;
+  show_price: string;
 }
 
 export interface HomepageInterface {

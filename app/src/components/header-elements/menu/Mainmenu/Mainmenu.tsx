@@ -18,7 +18,6 @@ interface ComponentInterface {
 const Mainmenu: React.FC = (): JSX.Element => {
   const componentId: string = 'menu';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
-
   const {
     header: { menuItems }
   } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);

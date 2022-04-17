@@ -1,45 +1,32 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SidebarStates } from '../../../model/enums';
-import { CartTotalInterface, ProductInterface } from '../../../model/interfaces';
+import { ContextInterface } from '../../../model/interfaces';
 import { NotificationType } from '../../../model/enums';
-import { getRestCart } from '../../../rest/rest';
+import { AppState } from '../../../providers/store';
 
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
+import MiniProductList from '../../product-listing/MiniProductList/MiniProductList';
 import Notification from '../../notifications/Notification/Notification';
 import Sidebar from '../../Sidebar/Sidebar';
 import SvgIcon from '../../SvgIcon/SvgIcon';
-import MiniProductList from '../../product-listing/MiniProductList/MiniProductList';
 import CartFooter from '../CartFooter/CartFooter';
+import Indicator from '../Indicator/Indicator';
 
 import './styles.scss';
 
 const Cart: React.FC = (): JSX.Element => {
   const componentId: string = 'cart';
-  const cartTotalDefault: CartTotalInterface = {
-    amount: 0,
-    label: 'Total',
-    type: '',
-    value: '0'
-  };
-  const [loader, setLoader] = useState<boolean>(false);
-  const [cartTotal, setCartTotal] = useState<CartTotalInterface>(cartTotalDefault);
-  const [cartProducts, setCartProducts] = useState<ProductInterface[]>([]);
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
-
-  const openSidebar = async () => {
-    setLoader(true);
-    setSidebarState(SidebarStates.Open);
-
-    const cart = await getRestCart();
-    setCartTotal(cart.psdata.totals.total);
-    setCartProducts(cart.psdata.products);
-    setLoader(false);
-  };
+  const { details } = useSelector<AppState, ContextInterface>((state) => state.context);
 
   return (
     <>
-      <button className={componentId} onClick={openSidebar}>
+      <button
+        className={`${componentId} relative`}
+        onClick={() => setSidebarState(SidebarStates.Open)}
+      >
         <SvgIcon href={componentId} />
+        {details && <Indicator numb={details.cart.products_count} />}
       </button>
       <Sidebar
         id={componentId}
@@ -47,12 +34,12 @@ const Cart: React.FC = (): JSX.Element => {
         sidebarState={sidebarState}
         setSidebarState={setSidebarState}
       >
-        {loader ? (
-          <ComponentLoader />
-        ) : cartProducts.length > 0 ? (
+        {!details ? (
+          <Notification type={NotificationType.Info} message="Cart is not loaded" />
+        ) : details.cart.products_count > 0 ? (
           <>
-            <MiniProductList products={cartProducts} />
-            <CartFooter total={cartTotal} />
+            <MiniProductList products={details.cart.products} />
+            <CartFooter total={details.cart.totals.total} />
           </>
         ) : (
           <Notification type={NotificationType.Info} message="No products" />

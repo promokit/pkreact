@@ -1,5 +1,6 @@
 import {
   ActionInterface,
+  CartInterface,
   ContextInterface,
   CurrencyInterface,
   LanguageInterface
@@ -9,6 +10,7 @@ export const ContextActionTypes = {
   SET_PRODUCT_LISTING_PAGE: 'SET_PRODUCT_LISTING_PAGE',
   SET_LOADED_STATE: 'SET_LOADED_STATE',
   SET_ERROR_STATE: 'SET_ERROR_STATE',
+  SET_CART_STATE: 'SET_CART_STATE',
   SET_LANGUAGE: 'SET_LANGUAGE',
   SET_CURRENCY: 'SET_CURRENCY',
   SET_CONTEXT: 'SET_CONTEXT'
@@ -24,6 +26,10 @@ export interface ErrorAction extends ActionInterface {
 
 export interface ContextAction extends ActionInterface {
   payload: ContextInterface;
+}
+
+export interface CartAction extends ActionInterface {
+  payload: CartInterface;
 }
 
 export interface LanguageAction extends ActionInterface {

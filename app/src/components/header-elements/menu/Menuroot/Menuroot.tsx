@@ -4,7 +4,7 @@ import { MenuInterface } from '../../../../model/interfaces';
 interface ComponentInterface {
   menuItems: MenuInterface[];
   isRoot?: boolean;
-  setSidebarState?: any;
+  setSidebarState: Function;
 }
 
 const MenuRoot: React.FC<ComponentInterface> = ({

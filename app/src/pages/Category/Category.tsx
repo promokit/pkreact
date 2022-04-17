@@ -3,7 +3,7 @@ import { NotificationType } from '../../model/enums';
 import { useFetchCategoryProducts } from '../../hooks/hooks';
 
 import NormalProductList from '../../components/product-listing/NormalProductList/NormalProductList';
-import CategoryDetails from '../../components/category/CategoryDetails/CategoryDetails';
+import CategoryDetails from '../../components/product-listing/CategoryDetails/CategoryDetails';
 import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
 import Notifications from '../../components/notifications/Notifications/Notifications';
 import Notification from '../../components/notifications/Notification/Notification';

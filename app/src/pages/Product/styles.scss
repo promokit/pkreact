@@ -1,0 +1,15 @@
+.product {
+  margin: 0;
+  & .main-img {
+    margin-bottom: 30px;
+  }
+  & .add-to-cart {
+    margin-top: 20px;
+  }
+  & .product-brand span {
+    color: #aaa;
+  }
+  & .product-price del {
+    color: #999;
+  }
+}

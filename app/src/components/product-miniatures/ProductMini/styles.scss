@@ -1,11 +1,10 @@
 .product-mini {
   width: 100%;
-}
-.product-mini img {
-  margin: 0 15px 0 0;
-  max-width: 25%;
-  width: 25%;
-}
-.product-mini__title {
-  margin-bottom: 10px;
+  grid-template-columns: 1fr 2fr;
+  & .product-mini__img {
+    margin: 0 15px 0 0;
+  }
+  & .product-mini__title {
+    margin-bottom: 10px;
+  }
 }

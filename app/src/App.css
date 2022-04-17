@@ -19,7 +19,7 @@ body {
   flex-direction: column;
 }
 main {
-  padding: 20px 0;
+  padding: 20px 0 40px;
   flex-grow: 1;
 }
 .relative {
@@ -35,6 +35,9 @@ main {
 }
 .w100 {
   width: 100%;
+}
+.grid {
+  display: grid;
 }
 .flex {
   display: flex;

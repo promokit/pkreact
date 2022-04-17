@@ -1,0 +1,21 @@
+.add-to-cart {
+  & .add-to-cart__btn {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 20px 45px;
+    cursor: pointer;
+    & span {
+      white-space: nowrap;
+    }
+    & .component-loader {
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      & .spin {
+        width: 15px;
+        height: 15px;
+        color: #fff;
+      }
+    }
+  }
+}

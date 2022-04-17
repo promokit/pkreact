@@ -1,4 +1,5 @@
 import { BASE_URL } from '../constants/constants';
+import { AddToCartAction } from '../model/enums';
 import {
   CartInterface,
   CategoryInterface,
@@ -7,6 +8,8 @@ import {
   HeaderInterface,
   HomepageInterface,
   LanguageInterface,
+  ProductInterface,
+  ProductPageInterface,
   RestResponse,
   SearchResultsInterface
 } from '../model/interfaces';
@@ -34,6 +37,13 @@ export const getRestCategoryPage = async (
   return await psFetch<RestResponse<CategoryInterface>>(query);
 };
 
+export const getRestProductPage = async (
+  id: number
+): Promise<RestResponse<ProductPageInterface>> => {
+  const query: string = `rest/productdetail?product_id=${id}`;
+  return await psFetch<RestResponse<ProductPageInterface>>(query);
+};
+
 export const getRestHeader = async (): Promise<RestResponse<HeaderInterface>> => {
   const query: string = 'rest/header';
   return await psFetch<RestResponse<HeaderInterface>>(query);
@@ -41,6 +51,15 @@ export const getRestHeader = async (): Promise<RestResponse<HeaderInterface>> =>
 
 export const getRestCart = async (): Promise<RestResponse<CartInterface>> => {
   const query: string = 'rest/cart';
+  return await psFetch<RestResponse<CartInterface>>(query);
+};
+
+export const getRestCartUpdate = async (
+  id: number,
+  qty: number,
+  op: AddToCartAction
+): Promise<RestResponse<CartInterface>> => {
+  const query: string = `rest/cart?update=1&id_product=${id}&op=${op}&action=update&image_size=medium_default&qty=${qty}`;
   return await psFetch<RestResponse<CartInterface>>(query);
 };
 

@@ -1,10 +1,15 @@
 export enum SidebarStates {
   Open = 1,
-  Close = 0,
+  Close = 0
 }
 
 export enum NotificationType {
   Error = 'error',
   Info = 'info',
-  Warning = 'warning',
+  Warning = 'warning'
+}
+
+export enum AddToCartAction {
+  Up = 'up',
+  Down = 'down'
 }

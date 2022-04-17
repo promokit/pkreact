@@ -8,15 +8,15 @@
     position: relative;
     height: 50px;
     width: 50px;
+    color: #333;
     &::before {
       animation: 1.5s linear infinite spinner;
       animation-play-state: inherit;
       border: solid 2px transparent;
-      border-bottom-color: #333;
-      border-left-color: #333;
-      border-top-color: #333;
+      border-bottom-color: currentColor;
+      border-left-color: currentColor;
+      border-top-color: currentColor;
       border-radius: 50%;
-      content: '';
       height: 99%;
       width: 99%;
       position: absolute;
@@ -24,6 +24,8 @@
       left: 50%;
       transform: translate3d(-50%, -50%, 0);
       will-change: transform;
+      box-sizing: border-box;
+      content: '';
     }
   }
 }
