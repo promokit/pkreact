@@ -1,18 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
-import Category from '../../../pages/Category/Category';
-import Error404 from '../../../pages/Error404/Error404';
-import Home from '../../../pages/Home/Home';
+import { useRoutes } from 'react-router-dom';
+import routesCollection from '../../../model/routes';
 
 const Main = () => {
+  const routes = useRoutes(routesCollection);
   return (
     <main>
-      <div className="page-width">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/category/:id" element={<Category />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </div>
+      <div className="page-width">{routes}</div>
     </main>
   );
 };

@@ -5,10 +5,8 @@ interface ComponentInterface {
   product: ProductInterface;
 }
 
-const ProductNormal: React.FC<ComponentInterface> = ({
-  product,
-}): JSX.Element => (
-  <div className="product-normal">
+const ProductNormal: React.FC<ComponentInterface> = ({ product }): JSX.Element => (
+  <div className="product-normal" data-id={product.id_product}>
     <img
       className="img"
       src={product.cover.url}

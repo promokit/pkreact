@@ -4,7 +4,8 @@ import {
   LanguageAction,
   CurrencyAction,
   ErrorAction,
-  ContextAction
+  ContextAction,
+  ListingPageAction
 } from './context.types';
 import { ContextActionTypes } from './context.types';
 
@@ -15,6 +16,11 @@ export const setLoadedState = (state: boolean): LoaderAction => ({
 
 export const setErrorState = (state: boolean): ErrorAction => ({
   type: ContextActionTypes.SET_ERROR_STATE,
+  payload: state
+});
+
+export const setProductListingPage = (state: number): ListingPageAction => ({
+  type: ContextActionTypes.SET_PRODUCT_LISTING_PAGE,
   payload: state
 });
 

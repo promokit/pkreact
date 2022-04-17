@@ -26,8 +26,11 @@ export const getRestHomePage = async (): Promise<RestResponse<HomepageInterface>
   return await psFetch<RestResponse<HomepageInterface>>(query);
 };
 
-export const getRestCategoryPage = async (id: number): Promise<RestResponse<CategoryInterface>> => {
-  const query: string = `rest/categoryProducts?id_category=${id}&page=1&resultsPerPage=4`;
+export const getRestCategoryPage = async (
+  id: number,
+  page: number
+): Promise<RestResponse<CategoryInterface>> => {
+  const query: string = `rest/categoryProducts?id_category=${id}&page=${page}&resultsPerPage=4`;
   return await psFetch<RestResponse<CategoryInterface>>(query);
 };
 

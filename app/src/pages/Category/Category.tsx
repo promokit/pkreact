@@ -1,59 +1,40 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getRestCategoryPage } from '../../rest/rest';
-import { CategoryInterface, NotificationInterface, ProductInterface } from '../../model/interfaces';
+import { NotificationType } from '../../model/enums';
+import { useFetchCategoryProducts } from '../../hooks/hooks';
+
 import NormalProductList from '../../components/product-listing/NormalProductList/NormalProductList';
+import CategoryDetails from '../../components/category/CategoryDetails/CategoryDetails';
 import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
-import Notifications, {
-  defaultMessages
-} from '../../components/notifications/Notifications/Notifications';
+import Notifications from '../../components/notifications/Notifications/Notifications';
+import Notification from '../../components/notifications/Notification/Notification';
+import LoadMore from '../../components/product-listing/LoadMore/LoadMore';
 
 import './styles.scss';
 
-const Category: React.FC = () => {
+const Category: React.FC = (): JSX.Element => {
   const { id } = useParams();
-  const [loader, setLoader] = useState<boolean>(false);
-  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
-  const [categoryProducts, setCategoryProducts] = useState<ProductInterface[]>([]);
-  const [category, setCategory] = useState<CategoryInterface>();
+  const { isLoading, msg, category, productListingPage } = useFetchCategoryProducts(
+    Number(id) || 0
+  );
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoader(true);
-        const { success, psdata } = await getRestCategoryPage(Number(id));
-        setCategory(psdata);
-        success
-          ? setCategoryProducts(psdata.products)
-          : setMessage((msg) => ({ ...msg, info: 'Search request is not succeeded' }));
-        psdata.products.length === 0
-          ? setMessage((msg) => ({ ...msg, info: 'No products...' }))
-          : setMessage((msg) => ({ ...msg, info: '' }));
-      } catch (error) {
-        setMessage((msg) => ({ ...msg, error: 'Server error' }));
-      } finally {
-        setLoader(false);
-      }
-    })();
-  }, [id]);
+  if (isLoading && productListingPage === 1) {
+    return <ComponentLoader />;
+  }
 
-  if (loader) return <ComponentLoader />;
+  if (msg.error) {
+    return <Notifications message={msg} />;
+  }
+
+  if (!category) {
+    return <Notification type={NotificationType.Error} message="Category doesn't loaded" />;
+  }
 
   return (
     <>
-      <div className="category-block">
-        <img
-          src={category?.images.medium.url}
-          width={category?.images.medium.width}
-          height={category?.images.medium.height}
-          alt={category?.label}
-          className="img"
-        />
-        <h2>{category?.label}</h2>
-        <p>{category?.description}</p>
-      </div>
-      <Notifications message={msg} />
-      <NormalProductList products={categoryProducts} />
+      <CategoryDetails category={category} />
+      <NormalProductList products={category.products} />
+      {isLoading && <ComponentLoader />}
+      <LoadMore pagination={category.pagination} />
     </>
   );
 };

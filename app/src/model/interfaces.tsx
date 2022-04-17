@@ -1,3 +1,7 @@
+export interface ActionInterface {
+  type: string;
+}
+
 interface ContextCartInterface {
   checkedTos: boolean;
   delivery_option: null;
@@ -67,6 +71,7 @@ export interface ContextDetailsInterface {
 
 export interface ContextInterface {
   details: ContextDetailsInterface;
+  productListingPage: number;
   isLoaded: boolean;
   isError: boolean;
 }
@@ -222,6 +227,7 @@ export interface NotificationInterface {
 }
 
 export interface CategoryInterface {
+  id_category: number;
   active: string;
   description: string;
   facets: [];

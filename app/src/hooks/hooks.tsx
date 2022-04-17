@@ -1,14 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContextInterface } from '../model/interfaces';
+import {
+  CategoryInterface,
+  ContextInterface,
+  NotificationInterface,
+  RestResponse
+} from '../model/interfaces';
 import { AppDispatch, AppState } from '../providers/store';
-import { getRestContext, getRestHeader, getRestHomePage } from '../rest/rest';
+import { getRestCategoryPage, getRestContext, getRestHeader, getRestHomePage } from '../rest/rest';
 import { setHeader, setHomePage } from '../providers/bootstrap/bootstrap.actions';
 import {
   setContextState,
   setErrorState,
-  setLoadedState
+  setLoadedState,
+  setProductListingPage
 } from '../providers/context/context.actions';
+//import { setCategoryProducts } from '../providers/products/category/category.actions';
+import { defaultMessages } from '../components/notifications/Notifications/Notifications';
 
 // TODO: Optimize hooks
 export const useFetchContext = (): ContextInterface => {
@@ -70,4 +78,60 @@ export const useFetchHeader = () => {
   }, [dispatch]);
 
   return useSelector<AppState, ContextInterface>((state) => state.context);
+};
+
+export const useFetchCategoryProducts = (category_id: number) => {
+  const dispatch: AppDispatch = useDispatch();
+  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
+  const [isLoading, setLoader] = useState<boolean>(false);
+  const [category, setCategory] = useState<CategoryInterface>();
+  const { productListingPage } = useSelector<AppState, ContextInterface>((state) => state.context);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoader(true);
+        const {
+          success,
+          message = '',
+          psdata
+        }: RestResponse<CategoryInterface> = await getRestCategoryPage(
+          category_id,
+          productListingPage
+        );
+
+        const setStates = (data: CategoryInterface) => {
+          setCategory((current) => {
+            if (!current) return { ...data };
+
+            // TODO: improve resetting product listing page function. Currently causing a warning
+            if (current.id_category !== data.id_category) {
+              dispatch(setProductListingPage(1));
+              return { ...data };
+            }
+
+            return {
+              ...current,
+              products: [...current.products, ...data.products],
+              pagination: { ...data.pagination },
+              facets: { ...data.facets }
+            };
+          });
+        };
+
+        success
+          ? setStates(psdata)
+          : setMessage((msg) => ({
+              ...msg,
+              error: message
+            }));
+      } catch (error) {
+        setMessage((msg) => ({ ...msg, error: 'Server error...' }));
+      } finally {
+        setLoader(false);
+      }
+    })();
+  }, [category_id, productListingPage]);
+
+  return { isLoading, msg, category, productListingPage };
 };

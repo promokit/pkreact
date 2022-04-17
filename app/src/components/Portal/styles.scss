@@ -28,7 +28,7 @@
     transform: translateX(100%);
     & .sidebar-content {
       height: 95%;
-      overflow: auto;
+      overflow: hidden;
     }
     & .sidebar-title {
       align-items: flex-start;

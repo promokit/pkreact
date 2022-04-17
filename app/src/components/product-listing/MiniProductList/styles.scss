@@ -1,4 +1,6 @@
 .mini-products-list {
+  height: 100%;
+  overflow: auto;
   & li {
     padding: 0;
   }

@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SidebarStates } from '../../../model/enums';
 import { setCurrency } from '../../../rest/rest';
 import { CurrencyInterface, HeaderInterface } from '../../../model/interfaces';
-import {
-  setCurrencyState,
-  setLoadedState,
-} from '../../../providers/context/context.actions';
+import { setCurrencyState, setLoadedState } from '../../../providers/context/context.actions';
 import { AppDispatch, AppState } from '../../../providers/store';
 import Sidebar from '../../Sidebar/Sidebar';
 import SvgIcon from '../../SvgIcon/SvgIcon';
@@ -19,35 +16,28 @@ interface ComponentInterface {
 
 const Currencies: React.FC = (): JSX.Element => {
   const componentId: string = 'currencies';
+  const dispatch: AppDispatch = useDispatch();
   const {
     header: {
       currencies: {
         currencies,
-        current_currency: { id: currentId },
-      },
-    },
+        current_currency: { id: currentId }
+      }
+    }
   } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
 
-  const [sidebarState, setSidebarState] = useState<SidebarStates>(
-    SidebarStates.Close
-  );
-
-  const dispatch: AppDispatch = useDispatch();
+  const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
 
   const changeCurrency = async (event: any) => {
-    const currency: CurrencyInterface = await setCurrency(
-      event.target.getAttribute('data-id')
-    );
+    const currency: CurrencyInterface = await setCurrency(event.target.getAttribute('data-id'));
     dispatch(setLoadedState(false));
     dispatch(setCurrencyState(currency));
+    setSidebarState(SidebarStates.Close);
   };
 
   return (
     <>
-      <button
-        className={componentId}
-        onClick={() => setSidebarState(SidebarStates.Open)}
-      >
+      <button className={componentId} onClick={() => setSidebarState(SidebarStates.Open)}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar

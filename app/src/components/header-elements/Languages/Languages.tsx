@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SidebarStates } from '../../../model/enums';
 import { setLanguage } from '../../../rest/rest';
 import { LanguageInterface, HeaderInterface } from '../../../model/interfaces';
-import {
-  setLanguageState,
-  setLoadedState,
-} from '../../../providers/context/context.actions';
+import { setLanguageState, setLoadedState } from '../../../providers/context/context.actions';
 import { AppDispatch, AppState } from '../../../providers/store';
+import { BASE_URL } from '../../../constants/constants';
 import Sidebar from '../../Sidebar/Sidebar';
 import SvgIcon from '../../SvgIcon/SvgIcon';
-import { BASE_URL } from '../../../constants/constants';
 
 import './styles.scss';
 
@@ -20,35 +17,28 @@ interface ComponentInterface {
 
 const Languages: React.FC = (): JSX.Element => {
   const componentId: string = 'languages';
+  const dispatch: AppDispatch = useDispatch();
   const {
     header: {
       languages: {
         languages,
-        current_language: { id_lang: currentIdLang },
-      },
-    },
+        current_language: { id_lang: currentIdLang }
+      }
+    }
   } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
 
-  const dispatch: AppDispatch = useDispatch();
-
-  const [sidebarState, setSidebarState] = useState<SidebarStates>(
-    SidebarStates.Close
-  );
+  const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
 
   const changeLanguage = async (e: any) => {
-    const lang: LanguageInterface = await setLanguage(
-      e.target.getAttribute('data-iso')
-    );
-    dispatch(setLoadedState(false));
+    const lang: LanguageInterface = await setLanguage(e.target.getAttribute('data-iso'));
     dispatch(setLanguageState(lang));
+    dispatch(setLoadedState(false));
+    setSidebarState(SidebarStates.Close);
   };
 
   return (
     <>
-      <button
-        className={componentId}
-        onClick={() => setSidebarState(SidebarStates.Open)}
-      >
+      <button className={componentId} onClick={() => setSidebarState(SidebarStates.Open)}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar

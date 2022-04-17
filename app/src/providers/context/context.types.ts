@@ -1,6 +1,12 @@
-import { ContextInterface, CurrencyInterface, LanguageInterface } from '../../model/interfaces';
+import {
+  ActionInterface,
+  ContextInterface,
+  CurrencyInterface,
+  LanguageInterface
+} from '../../model/interfaces';
 
 export const ContextActionTypes = {
+  SET_PRODUCT_LISTING_PAGE: 'SET_PRODUCT_LISTING_PAGE',
   SET_LOADED_STATE: 'SET_LOADED_STATE',
   SET_ERROR_STATE: 'SET_ERROR_STATE',
   SET_LANGUAGE: 'SET_LANGUAGE',
@@ -8,26 +14,26 @@ export const ContextActionTypes = {
   SET_CONTEXT: 'SET_CONTEXT'
 };
 
-interface Actions {
-  type: string;
-}
-
-export interface LoaderAction extends Actions {
+export interface LoaderAction extends ActionInterface {
   payload: boolean;
 }
 
-export interface ErrorAction extends Actions {
+export interface ErrorAction extends ActionInterface {
   payload: boolean;
 }
 
-export interface ContextAction extends Actions {
+export interface ContextAction extends ActionInterface {
   payload: ContextInterface;
 }
 
-export interface LanguageAction extends Actions {
+export interface LanguageAction extends ActionInterface {
   payload: LanguageInterface;
 }
 
-export interface CurrencyAction extends Actions {
+export interface CurrencyAction extends ActionInterface {
   payload: CurrencyInterface;
+}
+
+export interface ListingPageAction extends ActionInterface {
+  payload: number;
 }
