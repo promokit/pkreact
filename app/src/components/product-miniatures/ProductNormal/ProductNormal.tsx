@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ProductInterface } from '../../../model/interfaces';
+import ProductImage from '../ProductImage/ProductImage';
+import ProductPrice from '../ProductPrice/ProductPrice';
 
 import './styles.scss';
 
@@ -9,21 +11,11 @@ interface ComponentInterface {
 
 const ProductNormal: React.FC<ComponentInterface> = ({ product }): JSX.Element => (
   <div className="product-normal" data-id={product.id_product}>
-    <Link to={`/product/${product.id_product}`}>
-      <img
-        className="img"
-        src={product.cover.url}
-        width={product.cover.width}
-        height={product.cover.height}
-        alt="product-miniature"
-      />
-    </Link>
+    <ProductImage id_product={product.id_product} cover={product.cover.large} />
     <Link to={`/product/${product.id_product}`} className="product-normal__title">
       {product.name}
     </Link>
-    <div className="product-normal__price">
-      <strong>{product.price}</strong>
-    </div>
+    <ProductPrice product={product} />
   </div>
 );
 

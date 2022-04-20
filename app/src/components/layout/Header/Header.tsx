@@ -1,18 +1,18 @@
+import { NotificationType } from '../../../model/enums';
+import { useFetchHeader } from '../../../hooks/hooks';
 import Logo from '../../header-elements/Logo/Logo';
-import Mainmenu from '../../header-elements/menu/Mainmenu/Mainmenu';
-import Languages from '../../header-elements/Languages/Languages';
-import Currencies from '../../header-elements/Currencies/Currencies';
 import Cart from '../../header-elements/Cart/Cart';
 import Search from '../../header-elements/Search/Search';
+import Languages from '../../header-elements/Languages/Languages';
+import Mainmenu from '../../header-elements/menu/Mainmenu/Mainmenu';
+import Currencies from '../../header-elements/Currencies/Currencies';
+import Notification from '../../notifications/Notification/Notification';
 
 import './styles.scss';
-import { useFetchHeader } from '../../../hooks/hooks';
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
-import Notification from '../../notifications/Notification/Notification';
-import { NotificationType } from '../../../model/enums';
 
 const Header: React.FC = (): JSX.Element => {
   const { isError } = useFetchHeader();
+
   if (isError)
     return <Notification type={NotificationType.Error} message="Unable to load header" />;
 

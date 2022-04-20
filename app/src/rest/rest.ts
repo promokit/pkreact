@@ -59,7 +59,7 @@ export const getRestCartUpdate = async (
   qty: number,
   op: AddToCartAction
 ): Promise<RestResponse<CartInterface>> => {
-  const query: string = `rest/cart?update=1&id_product=${id}&op=${op}&action=update&image_size=medium_default&qty=${qty}`;
+  const query: string = `rest/cart?id_product=${id}&op=${op}&qty=${qty}&update=1&action=update&image_size=medium_default`;
   return await psFetch<RestResponse<CartInterface>>(query);
 };
 

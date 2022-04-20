@@ -145,10 +145,25 @@ export interface MenuInterface {
   url: string;
 }
 
-interface ImageInterface {
+export interface ImageInterface {
   url: string;
   width: string;
   height: string;
+}
+
+export interface CoverInterface {
+  bySize: {
+    cart_default: ImageInterface;
+    home_default: ImageInterface;
+    large_default: ImageInterface;
+    medium_default: ImageInterface;
+    small_default: ImageInterface;
+  };
+  legend: string;
+  id_image: string;
+  large: ImageInterface;
+  medium: ImageInterface;
+  small: ImageInterface;
 }
 
 export interface HeaderInterface {
@@ -166,12 +181,17 @@ export interface BannerInterface {
 
 export interface ProductInterface {
   id_product: number;
-  cover: ImageInterface;
+  cover: CoverInterface;
   name: string;
   price: string;
+  cart_quantity?: string;
+  discount_price: string;
+  regular_price: string;
+  discount_amount: number;
 }
 
 export interface ProductPageInterface {
+  cover: Array<CoverInterface>;
   category_name: string;
   cover_image: string;
   customization_fields: object;
@@ -179,9 +199,21 @@ export interface ProductPageInterface {
   description_short: string;
   discount_percentage: string;
   discount_price: string;
-  groups: [];
+  groups: Array<{
+    attributes: Array<{
+      html_color_code: string;
+      name: string;
+      selected: boolean;
+      texture: string;
+    }>;
+    attributes_quantity: {};
+    default: number;
+    group_name: string;
+    group_type: string;
+    name: string;
+  }>;
   id_product: number;
-  images: [];
+  images: Array<ImageInterface>;
   manufacturer_name: string;
   minimal_quantity: string;
   name: string;
@@ -191,6 +223,9 @@ export interface ProductPageInterface {
   quantity: number;
   reference: string;
   show_price: string;
+  cart_quantity: string;
+  regular_price: string;
+  discount_amount: string;
 }
 
 export interface HomepageInterface {
@@ -253,10 +288,7 @@ export interface CategoryInterface {
   active: string;
   description: string;
   facets: [];
-  images: {
-    medium: ImageInterface;
-    large: ImageInterface;
-  };
+  images: CoverInterface;
   label: string;
   pagination: {
     current_page: number;

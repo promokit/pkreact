@@ -1,10 +1,11 @@
 .product-mini {
   width: 100%;
   grid-template-columns: 1fr 2fr;
-  & .product-mini__img {
+  & .product-image {
     margin: 0 15px 0 0;
   }
   & .product-mini__title {
     margin-bottom: 10px;
+    display: block;
   }
 }
