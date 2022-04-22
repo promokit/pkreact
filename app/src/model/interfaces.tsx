@@ -194,6 +194,14 @@ export interface ProductPageInterface {
   cover: Array<CoverInterface>;
   category_name: string;
   cover_image: string;
+  combinations: Array<{
+    combination_code: string;
+    float_price: number;
+    id_product_attribute: number;
+    minimal_quantity: number;
+    price: string;
+    quantity: number;
+  }>;
   customization_fields: object;
   description: string;
   description_short: string;
@@ -220,6 +228,10 @@ export interface ProductPageInterface {
   new_products: string;
   price: string;
   product_url: string;
+  product_info: Array<{
+    name: string;
+    value: string;
+  }>;
   quantity: number;
   reference: string;
   show_price: string;
@@ -302,4 +314,12 @@ export interface CategoryInterface {
   products: Array<ProductInterface>;
   sort_orders?: [];
   sort_selected?: string;
+}
+
+export interface AddToCartFormInterface {
+  id_product: number;
+  id_product_attribute: number;
+  id_customization: number;
+  qty: number;
+  [key: string]: string | number;
 }

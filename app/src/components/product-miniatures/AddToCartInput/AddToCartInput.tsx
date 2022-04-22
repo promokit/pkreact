@@ -6,7 +6,8 @@ interface ComponentInterface {
 }
 
 const AddToCartInput: React.FC<ComponentInterface> = ({ qty = 1, setQty }): JSX.Element => {
-  const cartClickHandler = (act: AddToCartAction) => {
+  const cartClickHandler = (event: React.MouseEvent<HTMLButtonElement>, act: AddToCartAction) => {
+    event.preventDefault();
     act === AddToCartAction.Up && setQty(qty + 1);
     act === AddToCartAction.Down && setQty(qty > 1 ? qty - 1 : 1);
   };
@@ -18,11 +19,11 @@ const AddToCartInput: React.FC<ComponentInterface> = ({ qty = 1, setQty }): JSX.
 
   return (
     <div className="add-to-cart__qty flex">
-      <button className="button" onClick={() => cartClickHandler(AddToCartAction.Up)}>
+      <button className="button" onClick={(e) => cartClickHandler(e, AddToCartAction.Up)}>
         +
       </button>
       <input type="number" value={qty.toString()} onChange={changeHandler} />
-      <button className="button" onClick={() => cartClickHandler(AddToCartAction.Down)}>
+      <button className="button" onClick={(e) => cartClickHandler(e, AddToCartAction.Down)}>
         –
       </button>
     </div>

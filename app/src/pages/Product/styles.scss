@@ -14,10 +14,34 @@
   }
   & .product-description {
     margin-top: 20px;
+    & .product-info {
+      & dt {
+        float: left;
+        clear: left;
+        width: 100px;
+        text-align: right;
+        font-weight: bold;
+        color: #333;
+      }
+      & dt::after {
+        content: ':';
+      }
+      & dd {
+        margin: 0 0 0 110px;
+        padding: 0 0 0.5em 0;
+      }
+    }
     & summary {
       margin-bottom: 15px;
       font-size: 1.2rem;
       font-weight: 600;
+    }
+  }
+  & .attributes {
+    margin-bottom: 20px;
+    & select {
+      width: 150px;
+      padding: 5px;
     }
   }
 }

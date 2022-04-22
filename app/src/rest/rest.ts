@@ -8,7 +8,6 @@ import {
   HeaderInterface,
   HomepageInterface,
   LanguageInterface,
-  ProductInterface,
   ProductPageInterface,
   RestResponse,
   SearchResultsInterface
@@ -55,11 +54,12 @@ export const getRestCart = async (): Promise<RestResponse<CartInterface>> => {
 };
 
 export const getRestCartUpdate = async (
-  id: number,
+  id_product: number,
+  id_product_attribute: number,
   qty: number,
   op: AddToCartAction
 ): Promise<RestResponse<CartInterface>> => {
-  const query: string = `rest/cart?id_product=${id}&op=${op}&qty=${qty}&update=1&action=update&image_size=medium_default`;
+  const query: string = `rest/cart?id_product=${id_product}&id_product_attribute=${id_product_attribute}&op=${op}&qty=${qty}&update=1&action=update&image_size=medium_default`;
   return await psFetch<RestResponse<CartInterface>>(query);
 };
 
