@@ -15,4 +15,11 @@ header {
       cursor: pointer;
     }
   }
+  & .component-loader {
+    margin-top: 20px;
+    & .spin {
+      width: 25px;
+      height: 25px;
+    }
+  }
 }

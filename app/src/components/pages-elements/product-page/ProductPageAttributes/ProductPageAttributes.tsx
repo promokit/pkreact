@@ -20,9 +20,9 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
   onFormChangeHandler
 }): JSX.Element => {
   return (
-    <>
+    <div className="attributes">
       {Object.entries(product.groups).map(([id_attr_group, group]) => (
-        <div key={id_attr_group}>
+        <div className="attributes__group" key={id_attr_group}>
           <h5>{group.name}</h5>
           {group.group_type === 'select' && (
             <select
@@ -78,7 +78,7 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

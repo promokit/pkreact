@@ -21,7 +21,7 @@ const LoadMore: React.FC<ComponentInterface> = ({
       {current_page < pages_count && (
         <button
           className="button load-more-btn"
-          onClick={dispatch(setProductListingPage(current_page + 1))}
+          onClick={() => dispatch(setProductListingPage(current_page + 1))}
         >
           Load More
         </button>

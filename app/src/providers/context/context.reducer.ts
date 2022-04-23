@@ -1,10 +1,5 @@
 import { ContextActionTypes } from './context.types';
 
-interface States {
-  isLoaded: boolean;
-  productListingPage: number;
-}
-
 const INITIAL_STATE: any = {
   isLoaded: false,
   productListingPage: 1

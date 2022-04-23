@@ -10,11 +10,10 @@ import {
 import {
   setContextState,
   setErrorState,
-  setLoadedState,
   setProductListingPage
 } from '../providers/context/context.actions';
 import { AppDispatch, AppState } from '../providers/store';
-import { setHeader, setHomePage } from '../providers/bootstrap/bootstrap.actions';
+import { setHeader, setHeaderLoader, setHomePage } from '../providers/bootstrap/bootstrap.actions';
 import {
   getRestCategoryPage,
   getRestContext,
@@ -24,6 +23,7 @@ import {
 } from '../rest/rest';
 //import { setCategoryProducts } from '../providers/products/category/category.actions';
 import { defaultMessages } from '../components/notifications/Notifications/Notifications';
+import { setProductPage } from '../providers/pages/product/product.actions';
 
 // TODO: Optimize hooks
 export const useFetchContext = (): ContextInterface => {
@@ -45,51 +45,58 @@ export const useFetchContext = (): ContextInterface => {
 
 export const useFetchHome = () => {
   const dispatch: AppDispatch = useDispatch();
+  const [isLoading, setLoader] = useState<boolean>(true);
+  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
 
   useEffect(() => {
     (async () => {
-      dispatch(setLoadedState(false));
-      dispatch(setErrorState(false));
+      setLoader(true);
 
       try {
-        const home = await getRestHomePage();
-        home.success ? dispatch(setHomePage(home.psdata)) : dispatch(setErrorState(true));
+        const { success, psdata } = await getRestHomePage();
+        success
+          ? dispatch(setHomePage(psdata))
+          : setMessage((msg) => ({ ...msg, error: 'Unable to fetch home page' }));
       } catch (error) {
-        dispatch(setErrorState(true));
+        setMessage((msg) => ({ ...msg, error: 'Server error...' }));
       } finally {
-        dispatch(setLoadedState(true));
+        setLoader(false);
       }
     })();
   }, [dispatch]);
 
-  return useSelector<AppState, ContextInterface>((state) => state.context);
+  return { isLoading, msg };
 };
 
 export const useFetchHeader = () => {
   const dispatch: AppDispatch = useDispatch();
+  const [isLoading, setLoader] = useState<boolean>(true);
+  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
 
   useEffect(() => {
     (async () => {
-      dispatch(setLoadedState(false));
-      dispatch(setErrorState(false));
-
+      setLoader(true);
+      dispatch(setHeaderLoader(true));
       try {
-        const header = await getRestHeader();
-        header.success ? dispatch(setHeader(header.psdata)) : dispatch(setErrorState(true));
+        const { success, psdata } = await getRestHeader();
+        success
+          ? dispatch(setHeader(psdata))
+          : setMessage((msg) => ({ ...msg, error: 'Unable to fetch header' }));
       } catch (error) {
-        dispatch(setErrorState(true));
+        setMessage((msg) => ({ ...msg, error: 'Server error...' }));
       } finally {
-        dispatch(setLoadedState(true));
+        setLoader(false);
+        dispatch(setHeaderLoader(false));
       }
     })();
   }, [dispatch]);
 
-  return useSelector<AppState, ContextInterface>((state) => state.context);
+  return { isLoading, msg };
 };
 
 export const useFetchCategoryProducts = (category_id: number) => {
   const dispatch: AppDispatch = useDispatch();
-  const [isLoading, setLoader] = useState<boolean>(false);
+  const [isLoading, setLoader] = useState<boolean>(true);
   const [category, setCategory] = useState<CategoryInterface>();
   const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
   const { productListingPage } = useSelector<AppState, ContextInterface>((state) => state.context);
@@ -138,15 +145,17 @@ export const useFetchCategoryProducts = (category_id: number) => {
         setLoader(false);
       }
     })();
-  }, [category_id, productListingPage]);
+  }, [category_id, dispatch, productListingPage]);
 
   return { isLoading, msg, category, productListingPage };
 };
 
-export const useFetchProduct = (product_id: number) => {
-  const [isLoading, setLoader] = useState<boolean>(false);
+export const useFetchProduct = (productId: number) => {
+  const dispatch: AppDispatch = useDispatch();
+  const [isLoading, setLoader] = useState<boolean>(true);
   const [product, setProduct] = useState<ProductPageInterface>();
   const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
+
   useEffect(() => {
     (async () => {
       try {
@@ -155,7 +164,7 @@ export const useFetchProduct = (product_id: number) => {
           success,
           message = '',
           psdata
-        }: RestResponse<ProductPageInterface> = await getRestProductPage(product_id);
+        }: RestResponse<ProductPageInterface> = await getRestProductPage(productId);
         success
           ? setProduct(psdata)
           : setMessage((msg) => ({
@@ -168,6 +177,12 @@ export const useFetchProduct = (product_id: number) => {
         setLoader(false);
       }
     })();
-  }, [product_id]);
+  }, [productId]);
+
+  useEffect(() => {
+    if (!product) return;
+    dispatch(setProductPage(product));
+  }, [product, dispatch]);
+
   return { isLoading, msg, product };
 };

@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import { NotificationType } from '../../model/enums';
 import { useFetchCategoryProducts } from '../../hooks/hooks';
 
-import NormalProductList from '../../components/product-listing/NormalProductList/NormalProductList';
-import CategoryDetails from '../../components/product-listing/CategoryDetails/CategoryDetails';
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
-import Notifications from '../../components/notifications/Notifications/Notifications';
-import Notification from '../../components/notifications/Notification/Notification';
 import LoadMore from '../../components/product-listing/LoadMore/LoadMore';
+import Notification from '../../components/notifications/Notification/Notification';
+import Notifications from '../../components/notifications/Notifications/Notifications';
+import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import CategoryDetails from '../../components/product-listing/CategoryDetails/CategoryDetails';
+import NormalProductList from '../../components/product-listing/NormalProductList/NormalProductList';
 
 import './styles.scss';
 
@@ -17,12 +17,12 @@ const Category: React.FC = (): JSX.Element => {
     Number(id) || 0
   );
 
-  if (isLoading && productListingPage === 1) {
-    return <ComponentLoader />;
-  }
-
   if (msg.error) {
     return <Notifications message={msg} />;
+  }
+
+  if (isLoading && productListingPage === 1) {
+    return <ComponentLoader />;
   }
 
   if (!category) {

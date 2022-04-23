@@ -72,7 +72,7 @@ export interface ContextDetailsInterface {
 export interface ContextInterface {
   details: ContextDetailsInterface;
   productListingPage: number;
-  isLoaded: boolean;
+  isLoading: boolean;
   isError: boolean;
 }
 
@@ -171,6 +171,7 @@ export interface HeaderInterface {
   currencies: CurrencyRestResponse;
   languages: LanguageRestResponse;
   logo: ImageInterface;
+  isLoading: boolean;
 }
 
 export interface BannerInterface {

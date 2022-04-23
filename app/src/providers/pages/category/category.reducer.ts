@@ -8,7 +8,7 @@ const categoryReducer = (state = INITIAL_STATE, action: Action) => {
     case CategoryActionTypes.SET_CATEGORY_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload
       };
     default:
       return state;

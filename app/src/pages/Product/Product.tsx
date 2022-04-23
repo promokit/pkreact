@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchProduct } from '../../hooks/hooks';
 import { NotificationType } from '../../model/enums';
@@ -80,12 +80,12 @@ const Product: React.FC = (): JSX.Element => {
     });
   };
 
-  if (isLoading) {
-    return <ComponentLoader />;
-  }
-
   if (msg.error) {
     return <Notifications message={msg} />;
+  }
+
+  if (isLoading) {
+    return <ComponentLoader />;
   }
 
   if (!product) {
@@ -100,7 +100,7 @@ const Product: React.FC = (): JSX.Element => {
       </div>
       <h2>{product.name}</h2>
       <p className="product-desc">{product.description_short}</p>
-      <form className="attributes">
+      <form className="product__add-to-cart">
         <ProductPageAttributes
           product={product}
           formData={formData}

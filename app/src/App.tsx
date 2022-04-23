@@ -1,7 +1,7 @@
 import { NotificationType } from './model/enums';
 import { useFetchContext } from './hooks/hooks';
-import Notification from './components/notifications/Notification/Notification';
 import Page from './components/layout/Page/Page';
+import Notification from './components/notifications/Notification/Notification';
 
 import './App.css';
 

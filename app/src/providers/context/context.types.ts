@@ -8,6 +8,7 @@ import {
 
 export const ContextActionTypes = {
   SET_PRODUCT_LISTING_PAGE: 'SET_PRODUCT_LISTING_PAGE',
+  SET_HEADER_LOADED_STATE: 'SET_HEADER_LOADED_STATE',
   SET_LOADED_STATE: 'SET_LOADED_STATE',
   SET_ERROR_STATE: 'SET_ERROR_STATE',
   SET_CART_STATE: 'SET_CART_STATE',
@@ -28,16 +29,16 @@ export interface ContextAction extends ActionInterface {
   payload: ContextInterface;
 }
 
+export interface CurrencyAction extends ActionInterface {
+  payload: CurrencyInterface;
+}
+
 export interface CartAction extends ActionInterface {
   payload: CartInterface;
 }
 
 export interface LanguageAction extends ActionInterface {
   payload: LanguageInterface;
-}
-
-export interface CurrencyAction extends ActionInterface {
-  payload: CurrencyInterface;
 }
 
 export interface ListingPageAction extends ActionInterface {

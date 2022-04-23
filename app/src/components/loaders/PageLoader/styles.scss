@@ -4,6 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  background: #fff;
+  z-index: 99;
   & .spin {
     position: relative;
     height: 50px;
