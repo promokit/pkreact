@@ -1,4 +1,6 @@
-import { ProductPageInterface } from '../../../../model/interfaces';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../providers/store';
+import { ProductPageComponentInterface, ProductPageInterface } from '../../../../model/interfaces';
 
 interface AddToCartFormInterface {
   id_product: number;
@@ -9,19 +11,22 @@ interface AddToCartFormInterface {
 }
 
 interface ComponentInterface {
-  product: ProductPageInterface;
   onFormChangeHandler: Function;
   formData: AddToCartFormInterface;
 }
 
 const ProductPageAttributes: React.FC<ComponentInterface> = ({
-  product,
   formData,
   onFormChangeHandler
 }): JSX.Element => {
+  const {
+    product: {
+      details: { groups }
+    }
+  } = useSelector<AppState, ProductPageComponentInterface>((state) => state.pages);
   return (
     <div className="attributes">
-      {Object.entries(product.groups).map(([id_attr_group, group]) => (
+      {Object.entries(groups).map(([id_attr_group, group]) => (
         <div className="attributes__group" key={id_attr_group}>
           <h5>{group.name}</h5>
           {group.group_type === 'select' && (

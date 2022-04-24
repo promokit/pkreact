@@ -1,18 +1,22 @@
 import { Fragment } from 'react';
-import { ProductPageInterface } from '../../../../model/interfaces';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../providers/store';
+import { ProductPageComponentInterface } from '../../../../model/interfaces';
+import ProductPageDescription from '../ProductPageDescription/ProductPageDescription';
 
-interface ComponentInterface {
-  product: ProductPageInterface;
-}
-
-const ProductPageDetails: React.FC<ComponentInterface> = ({ product }): JSX.Element => {
+const ProductPageDetails: React.FC = (): JSX.Element => {
+  const {
+    product: {
+      details: { product_info }
+    }
+  } = useSelector<AppState, ProductPageComponentInterface>((state) => state.pages);
   return (
     <div className="product-description">
       <h4>Description</h4>
-      <p>{product.description}</p>
+      <ProductPageDescription short={false} full={true} />
       <h4>Parameters</h4>
       <dl className="product-info">
-        {product.product_info.map(({ name, value }) => (
+        {product_info.map(({ name, value }) => (
           <Fragment key={name}>
             <dt>{name}</dt>
             <dd>{value}</dd>

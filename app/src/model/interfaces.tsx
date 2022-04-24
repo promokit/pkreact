@@ -76,6 +76,15 @@ export interface ContextInterface {
   isError: boolean;
 }
 
+export interface PagesInterface {
+  product: {
+    details: ProductPageInterface;
+  };
+  category: {
+    details: CategoryInterface;
+  };
+}
+
 export interface RestResponse<T> {
   message?: string;
   success: string;
@@ -239,6 +248,12 @@ export interface ProductPageInterface {
   cart_quantity: string;
   regular_price: string;
   discount_amount: string;
+}
+
+export interface ProductPageComponentInterface {
+  product: {
+    details: ProductPageInterface;
+  };
 }
 
 export interface HomepageInterface {
