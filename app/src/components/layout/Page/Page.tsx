@@ -1,22 +1,17 @@
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../providers/store';
-import { HeaderInterface } from '../../../model/interfaces';
+import { StatusType } from '../../../model/enums';
+import { statusSelector } from '../../../providers/header/selector';
 
+import PageLoader from '../../loaders/PageLoader/PageLoader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
-import PageLoader from '../../loaders/PageLoader/PageLoader';
-
-interface ComponentInterface {
-  header: HeaderInterface;
-}
 
 const Page: React.FC = (): JSX.Element => {
-  const { header } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
-
+  const status = useSelector(statusSelector);
   return (
     <>
-      {header.isLoading && <PageLoader />}
+      {status === StatusType.Loading && <PageLoader />}
       <Header />
       <Main />
       <Footer />

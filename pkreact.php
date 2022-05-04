@@ -184,7 +184,37 @@ class Pkreact extends Module
                     'fc' => 'module',
                     'module' => $this->name,
                 ],
-            ]
+            ],
+            // Category
+            'module-'.$this->name.'-category' => array(
+                'controller' => 'home',
+                'rule' => $slug.'/category/{id}',
+                'keywords' => [
+                    'id' => [
+                        'regexp' => '[0-9]+',
+                        'param' => 'id'
+                    ],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => $this->name,
+                ],
+            ),
+            // Product
+            'module-'.$this->name.'-product' => array(
+                'controller' => 'home',
+                'rule' => $slug.'/product/{id}',
+                'keywords' => [
+                    'id' => [
+                        'regexp' => '[0-9]+',
+                        'param' => 'id'
+                    ],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => $this->name,
+                ],
+            ),
         ];
     }    
 }

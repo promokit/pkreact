@@ -1,23 +1,15 @@
-import { useSelector } from 'react-redux';
-import { HeaderInterface } from '../../../model/interfaces';
-import { AppState } from '../../../providers/store';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { PREFIX_URL } from '../../../constants/constants';
+import { logoSelector } from '../../../providers/header/selector';
 
 import './styles.scss';
 
-interface ComponentInterface {
-  header: HeaderInterface;
-}
-
 const Logo: React.FC = (): JSX.Element => {
-  const {
-    header: {
-      logo: { url, width, height },
-    },
-  } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
+  const { width, height, url } = useSelector(logoSelector);
   return (
-    <Link to="/">
-      <img src={url} width={width} height={height} alt="alt" className="logo" />
+    <Link to={`${PREFIX_URL}`}>
+      <img src={url} width={width} height={height} alt="webpage logo" className="logo" />
     </Link>
   );
 };

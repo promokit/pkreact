@@ -1,40 +1,41 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetchProduct } from '../../hooks/hooks';
-import { NotificationType } from '../../model/enums';
+import { useProductPage } from '../../hooks/useProductPage';
+import { NotificationType, StatusType } from '../../model/enums';
 
-import ProductPageAddToCartForm from '../../components/pages-elements/product-page/ProductPageAddToCartForm/ProductPageAddToCartForm';
-import ProductPageDescription from '../../components/pages-elements/product-page/ProductPageDescription/ProductPageDescription';
-import ProductPageDetails from '../../components/pages-elements/product-page/ProductPageDetails/ProductPageDetails';
+import Notification from '../../components/notifications/Notification/Notification';
+import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import ProductPageName from '../../components/pages-elements/product-page/ProductPageName/ProductPageName';
 import ProductPageImage from '../../components/pages-elements/product-page/ProductPageImage/ProductPageImage';
 import ProductPageBrand from '../../components/pages-elements/product-page/ProductPageBrand/ProductPageBrand';
-import ProductPageName from '../../components/pages-elements/product-page/ProductPageName/ProductPageName';
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
-import Notifications from '../../components/notifications/Notifications/Notifications';
-import Notification from '../../components/notifications/Notification/Notification';
+import ProductPageDetails from '../../components/pages-elements/product-page/ProductPageDetails/ProductPageDetails';
+import ProductPageDescription from '../../components/pages-elements/product-page/ProductPageDescription/ProductPageDescription';
+import ProductPageAddToCartForm from '../../components/pages-elements/product-page/ProductPageAddToCartForm/ProductPageAddToCartForm';
 
 import './styles.scss';
 
 const Product: React.FC = (): JSX.Element => {
   const { id } = useParams();
-  const { isLoading, msg, product } = useFetchProduct(Number(id) || 0);
+  const { fetchProductPage, status, product } = useProductPage();
+  const productId = Number(id);
 
-  if (msg.error) {
-    return <Notifications message={msg} />;
-  }
+  useEffect(() => {
+    fetchProductPage({ productId });
+  }, [productId, fetchProductPage]);
 
-  if (isLoading) {
+  if (status === StatusType.Loading) {
     return <ComponentLoader />;
   }
 
-  if (!product) {
-    return <Notification type={NotificationType.Error} message="Product doesn't loaded" />;
+  if (status === StatusType.Error || !product) {
+    return <Notification type={NotificationType.Error} message="Unable to load product" />;
   }
 
   return (
     <div className="product">
       <ProductPageImage />
-      <ProductPageBrand />
       <ProductPageName />
+      <ProductPageBrand />
       <ProductPageDescription />
       <ProductPageAddToCartForm />
       <ProductPageDetails />

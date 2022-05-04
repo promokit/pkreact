@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import bootstrapReducer from './bootstrap/bootstrap.reducer';
-import contextReducer from './context/context.reducer';
 import pagesReducer from './pages/pages-reducer';
+import contextReducer from './context/reducers';
+import headerReducer from './header/reducers';
 
 const rootReducer = combineReducers({
-  bootstrap: bootstrapReducer,
   context: contextReducer,
+  header: headerReducer,
   pages: pagesReducer
 });
 

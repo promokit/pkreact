@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { SidebarStates } from '../../../model/enums';
-import { NotificationInterface, ProductInterface } from '../../../model/interfaces';
 import { getRestSearch } from '../../../rest/rest';
+import { NotificationInterface, ProductInterface } from '../../../model/interfaces';
+
 import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
 import Notifications, { defaultMessages } from '../../notifications/Notifications/Notifications';
 import MiniProductList from '../../product-listing/MiniProductList/MiniProductList';
@@ -17,8 +18,8 @@ const Search: React.FC = (): JSX.Element => {
     minSymbolsNumber: 3
   };
 
-  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
   const [loader, setLoader] = useState<boolean>(false);
+  const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
   const [searchResults, setSearchResults] = useState<ProductInterface[]>([]);
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
 

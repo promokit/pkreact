@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../providers/store';
-import { ProductPageComponentInterface, ProductPageInterface } from '../../../../model/interfaces';
+import { productSelector } from '../../../../providers/pages/product/selectors';
+
+import './styles.scss';
 
 interface AddToCartFormInterface {
-  id_product: number;
-  id_product_attribute: number;
-  id_customization: number;
   qty: number;
+  id_product: number;
+  id_customization: number;
+  id_product_attribute: number;
   [key: string]: string | number;
 }
 
@@ -19,13 +20,13 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
   formData,
   onFormChangeHandler
 }): JSX.Element => {
-  const {
-    product: {
-      details: { groups }
-    }
-  } = useSelector<AppState, ProductPageComponentInterface>((state) => state.pages);
+  const { groups } = useSelector(productSelector);
+
+  if (!Object.keys(groups).length) return <></>;
+
   return (
     <div className="attributes">
+      <h4>Variations</h4>
       {Object.entries(groups).map(([id_attr_group, group]) => (
         <div className="attributes__group" key={id_attr_group}>
           <h5>{group.name}</h5>
@@ -37,7 +38,7 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
             >
               {Object.entries(group.attributes).map(([key, attr]) => (
                 <option key={attr.name} value={key}>
-                  {attr.name} ({key})
+                  {attr.name}
                 </option>
               ))}
             </select>
@@ -57,7 +58,7 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
                         (formData[`group[${id_attr_group}]`] || group.default) === Number(key)
                       }
                     />
-                    {attr.name} ({key})
+                    {attr.name}
                   </label>
                 </li>
               ))}
@@ -75,7 +76,7 @@ const ProductPageAttributes: React.FC<ComponentInterface> = ({
                         (formData[`group[${id_attr_group}]`] || group.default) === Number(key)
                       }
                     />
-                    {attr.name} ({key})
+                    {attr.name}
                   </label>
                 </li>
               ))}

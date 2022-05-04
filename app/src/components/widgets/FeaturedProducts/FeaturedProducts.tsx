@@ -1,23 +1,16 @@
+import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../providers/store';
-import { HomepageInterface } from '../../../model/interfaces';
+import { homePageFeaturedSelector } from '../../../providers/pages/home/selectors';
+
 import ProductNormal from '../../product-miniatures/ProductNormal/ProductNormal';
 import WidgetTitle from '../WidgetTitle/WidgetTitle';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-interface ComponentInterface {
-  homepage: HomepageInterface;
-}
-
 const FeaturedProducts = (): JSX.Element => {
-  const {
-    homepage: { featuredProductsList }
-  } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
-
+  const featuredProductsList = useSelector(homePageFeaturedSelector);
   return (
     <>
       <WidgetTitle title="Featured Products" />

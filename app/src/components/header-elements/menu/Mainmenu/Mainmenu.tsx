@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../providers/store';
-import { HeaderInterface } from '../../../../model/interfaces';
+import { menuSelector } from '../../../../providers/header/selector';
 import { NotificationType, SidebarStates } from '../../../../model/enums';
 
 import MenuRoot from '../Menuroot/Menuroot';
@@ -11,16 +10,10 @@ import Notification from '../../../notifications/Notification/Notification';
 
 import './styles.scss';
 
-interface ComponentInterface {
-  header: HeaderInterface;
-}
-
 const Mainmenu: React.FC = (): JSX.Element => {
   const componentId: string = 'menu';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
-  const {
-    header: { menuItems }
-  } = useSelector<AppState, ComponentInterface>((state) => state.bootstrap);
+  const menu = useSelector(menuSelector);
 
   return (
     <div className="main-menu w100">
@@ -35,9 +28,9 @@ const Mainmenu: React.FC = (): JSX.Element => {
           sidebarState={sidebarState}
           setSidebarState={setSidebarState}
         >
-          {menuItems.length > 0 ? (
+          {menu.length > 0 ? (
             <nav id="menu-nav-root">
-              <MenuRoot menuItems={menuItems} isRoot={true} setSidebarState={setSidebarState} />
+              <MenuRoot menuItems={menu} isRoot={true} setSidebarState={setSidebarState} />
             </nav>
           ) : (
             <Notification type={NotificationType.Info} message="No menu items yet" />

@@ -20,14 +20,14 @@ const Portal: React.FC<ComponentInterface> = ({ id, state, children }): JSX.Elem
     setTimeout(() => {
       sidebar.classList.add('active');
       document.body.classList.add('sidebar-open');
-    }, 0);
+    }, 50);
   };
 
   const closeSidebar = (sidebar: HTMLDivElement) => {
     setTimeout(() => {
       sidebar.classList.remove('active');
       document.body.classList.remove('sidebar-open');
-    }, 0);
+    }, 50);
   };
 
   useEffect(() => {

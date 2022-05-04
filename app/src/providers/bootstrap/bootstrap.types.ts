@@ -1,5 +1,0 @@
-export const BootstrapActionTypes = {
-  SET_HEADER_LOADED_STATE: 'SET_HEADER_LOADED_STATE',
-  SET_HOMEPAGE: 'SET_HOMEPAGE',
-  SET_HEADER: 'SET_HEADER'
-};

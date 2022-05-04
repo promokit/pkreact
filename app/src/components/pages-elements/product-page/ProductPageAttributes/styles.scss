@@ -1,0 +1,15 @@
+.attributes {
+  margin-bottom: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  & .attributes__group {
+    margin-bottom: 30px;
+    & h5 {
+      margin: 0 0 10px;
+    }
+  }
+  & select {
+    width: 150px;
+    padding: 5px;
+  }
+}

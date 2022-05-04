@@ -1,8 +1,11 @@
 .products-list-normal {
   justify-content: space-between;
   flex-wrap: wrap;
-}
-.products-list-normal > div {
-  margin-bottom: 20px;
-  width: 46%;
+  & > div {
+    margin-bottom: 20px;
+    width: 46%;
+  }
+  & + .component-loader {
+    height: auto;
+  }
 }

@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState, FC, MouseEvent } from 'react';
+import { useSelector } from 'react-redux';
 import { getRestCartUpdate } from '../../../rest/rest';
-import { setCartState } from '../../../providers/context/context.actions';
-import { AppDispatch } from '../../../providers/store';
 import { AddToCartAction } from '../../../model/enums';
-import { AddToCartFormInterface, NotificationInterface } from '../../../model/interfaces';
+import { usePsContext } from '../../../hooks/usePsContext';
+import { contextCartSelector } from '../../../providers/context/selectors';
+import {
+  AddToCartFormInterface,
+  CartInterface,
+  NotificationInterface
+} from '../../../model/interfaces';
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
 import Notifications, { defaultMessages } from '../../notifications/Notifications/Notifications';
@@ -17,21 +21,27 @@ interface ComponentInterface {
   showInput?: boolean;
 }
 
-const AddToCartButton: React.FC<ComponentInterface> = ({
+const AddToCartButton: FC<ComponentInterface> = ({
   formData,
   onQtyChangeHandler,
   showInput = true
 }): JSX.Element => {
-  const dispatch: AppDispatch = useDispatch();
+  const { setCart } = usePsContext();
+  const contextCart = useSelector(contextCartSelector);
   const [qty, setQty] = useState<number>(1);
   const [loader, setLoader] = useState<boolean>(false);
+  const [cart, setCartState] = useState<CartInterface>(contextCart);
   const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
 
   useEffect(() => {
     onQtyChangeHandler(qty);
   }, [qty, onQtyChangeHandler]);
 
-  const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  useEffect(() => {
+    setCart(cart);
+  }, [cart, setCart]);
+
+  const addToCart = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       setLoader(true);
@@ -42,10 +52,11 @@ const AddToCartButton: React.FC<ComponentInterface> = ({
         qty,
         AddToCartAction.Up
       );
-      if (success) {
-        setMessage((msg) => ({ ...msg, info: 'Product added to your cart' }));
-        dispatch(setCartState(psdata));
-      }
+
+      if (!success) throw new Error();
+
+      setCartState(psdata);
+      setMessage((msg) => ({ ...msg, info: 'Product added to your cart' }));
     } catch (error) {
       setMessage((msg) => ({ ...msg, error: 'Unable to Add to Cart' }));
     } finally {
@@ -55,11 +66,13 @@ const AddToCartButton: React.FC<ComponentInterface> = ({
 
   return (
     <div className="add-to-cart">
-      {showInput && <AddToCartInput qty={qty} setQty={setQty} />}
-      <button className="add-to-cart__btn button flex" onClick={addToCart}>
-        <span>Add to Cart</span>
-        {loader && <ComponentLoader />}
-      </button>
+      <div className="flex">
+        {showInput && <AddToCartInput qty={qty} setQty={setQty} />}
+        <button className="add-to-cart__btn button flex flex-grow" onClick={addToCart}>
+          <span>Add to Cart</span>
+          {loader && <ComponentLoader />}
+        </button>
+      </div>
       {!loader && <Notifications message={msg} />}
     </div>
   );

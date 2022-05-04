@@ -2,9 +2,6 @@
   & li {
     cursor: pointer;
   }
-  & li span {
-    pointer-events: none;
-  }
   & li strong {
     background: #38313152;
     color: #fff;
@@ -21,5 +18,8 @@
     width: auto;
     height: 100%;
     transform: translateX(-15%);
+  }
+  & li * {
+    pointer-events: none;
   }
 }

@@ -13,3 +13,9 @@ export enum AddToCartAction {
   Up = 'up',
   Down = 'down'
 }
+
+export enum StatusType {
+  Error = 'error',
+  Loading = 'loading',
+  Success = 'success'
+}

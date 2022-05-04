@@ -1,15 +1,10 @@
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../providers/store';
-import { ProductPageComponentInterface } from '../../../../model/interfaces';
+import { productSelector } from '../../../../providers/pages/product/selectors';
 
 import './styles.scss';
 
 const ProductPagePrice: React.FC = (): JSX.Element => {
-  const {
-    product: {
-      details: { price, regular_price, discount_amount, cart_quantity }
-    }
-  } = useSelector<AppState, ProductPageComponentInterface>((state) => state.pages);
+  const { price, regular_price, discount_amount, cart_quantity } = useSelector(productSelector);
   return (
     <div className="product-price">
       {cart_quantity && <span>{cart_quantity}✕</span>}

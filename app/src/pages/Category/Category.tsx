@@ -1,40 +1,47 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { NotificationType } from '../../model/enums';
-import { useFetchCategoryProducts } from '../../hooks/hooks';
+import { usePsContext } from '../../hooks/usePsContext';
+import { useCategoryPage } from '../../hooks/useCategoryPage';
+import { NotificationType, StatusType } from '../../model/enums';
 
-import LoadMore from '../../components/product-listing/LoadMore/LoadMore';
 import Notification from '../../components/notifications/Notification/Notification';
-import Notifications from '../../components/notifications/Notifications/Notifications';
 import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
-import CategoryDetails from '../../components/product-listing/CategoryDetails/CategoryDetails';
-import NormalProductList from '../../components/product-listing/NormalProductList/NormalProductList';
+import CategoryDetails from '../../components/pages-elements/category-page/CategoryDetails/CategoryDetails';
+import CategoryLoadMore from '../../components/pages-elements/category-page/CategoryLoadMore/CategoryLoadMore';
+import CategoryProducts from '../../components/pages-elements/category-page/CategoryProducts/CategoryProducts';
 
 import './styles.scss';
 
 const Category: React.FC = (): JSX.Element => {
   const { id } = useParams();
-  const { isLoading, msg, category, productListingPage } = useFetchCategoryProducts(
-    Number(id) || 0
-  );
+  const { setPage } = usePsContext();
+  const { fetchCategoryPage, status, category } = useCategoryPage();
+  const { productListingPage } = usePsContext();
+  const categoryId = Number(id);
 
-  if (msg.error) {
-    return <Notifications message={msg} />;
-  }
+  useEffect(() => {
+    if (!category) return;
 
-  if (isLoading && productListingPage === 1) {
+    // reset page number if category ID is changed
+    categoryId !== category.id_category && setPage(1);
+
+    fetchCategoryPage({ category, categoryId, productListingPage });
+  }, [setPage, fetchCategoryPage, categoryId, productListingPage]);
+
+  if (status === StatusType.Loading && productListingPage === 1) {
     return <ComponentLoader />;
   }
 
-  if (!category) {
-    return <Notification type={NotificationType.Error} message="Category doesn't loaded" />;
+  if (status === StatusType.Error || !category) {
+    return <Notification type={NotificationType.Error} message="Unable to load category" />;
   }
 
   return (
     <>
-      <CategoryDetails category={category} />
-      <NormalProductList products={category.products} />
-      {isLoading && <ComponentLoader />}
-      <LoadMore pagination={category.pagination} />
+      <CategoryDetails />
+      <CategoryProducts />
+      {status === StatusType.Loading && <ComponentLoader />}
+      <CategoryLoadMore />
     </>
   );
 };

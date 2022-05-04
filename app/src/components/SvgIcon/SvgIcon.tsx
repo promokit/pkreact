@@ -6,7 +6,7 @@ interface ComponentInterface {
 
 const SvgIcon: React.FC<ComponentInterface> = ({ href }) => (
   <svg className="svgic">
-    <use href={`${process.env.REACT_APP_MODULE_PATH}${Icon}#${href}`}></use>
+    <use href={`${process.env.REACT_APP_BUILD_PATH}${Icon}#${href}`}></use>
   </svg>
 );
 

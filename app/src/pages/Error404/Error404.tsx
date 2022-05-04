@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import Notification from '../../components/notifications/Notification/Notification';
 import { NotificationType } from '../../model/enums';
+
+import Notification from '../../components/notifications/Notification/Notification';
 import PageTitle from '../../components/pages-elements/PageTitle/PageTitle';
 
 const Error404: React.FC = (): JSX.Element => {

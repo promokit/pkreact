@@ -1,15 +1,10 @@
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../providers/store';
-import { ProductPageComponentInterface } from '../../../../model/interfaces';
+import { productSelector } from '../../../../providers/pages/product/selectors';
 
 const ProductPageBrand: React.FC = (): JSX.Element => {
-  const {
-    product: {
-      details: { manufacturer_name }
-    }
-  } = useSelector<AppState, ProductPageComponentInterface>((state) => state.pages);
+  const { manufacturer_name } = useSelector(productSelector);
   return (
-    <div className="product-brand">
+    <div className="product__brand">
       <span>Brand:</span> {manufacturer_name}
     </div>
   );

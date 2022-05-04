@@ -1,3 +1,5 @@
+import { StatusType } from './enums';
+
 export interface ActionInterface {
   type: string;
 }
@@ -67,22 +69,14 @@ export interface ContextDetailsInterface {
   customer: ContextCustomerInterface;
   language: ContextLanguageInterface;
   shop: ContextShopInterface;
+  productListingPage: number;
+  status: any;
 }
 
 export interface ContextInterface {
   details: ContextDetailsInterface;
   productListingPage: number;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-export interface PagesInterface {
-  product: {
-    details: ProductPageInterface;
-  };
-  category: {
-    details: CategoryInterface;
-  };
+  status: StatusType;
 }
 
 export interface RestResponse<T> {
@@ -125,7 +119,6 @@ export interface LanguageInterface {
   locale: string;
   name: string;
   name_simple: string;
-  shops: object;
 }
 
 export interface CurrentLanguageInterface {
@@ -141,11 +134,11 @@ export interface LanguageRestResponse {
 }
 
 export interface MenuInterface {
-  children: Array<MenuInterface>;
+  children: Array<MenuInterface> | null;
   current: boolean;
   depth: number;
   id: string;
-  image: object;
+  image?: object;
   image_urls: [];
   label: string;
   page_identifier: string;
@@ -180,7 +173,8 @@ export interface HeaderInterface {
   currencies: CurrencyRestResponse;
   languages: LanguageRestResponse;
   logo: ImageInterface;
-  isLoading: boolean;
+  isLoading?: boolean;
+  status?: StatusType;
 }
 
 export interface BannerInterface {
@@ -201,6 +195,7 @@ export interface ProductInterface {
 }
 
 export interface ProductPageInterface {
+  status: StatusType;
   cover: Array<CoverInterface>;
   category_name: string;
   cover_image: string;
@@ -256,11 +251,22 @@ export interface ProductPageComponentInterface {
   };
 }
 
-export interface HomepageInterface {
+export interface CategoryPageComponentInterface {
+  category: {
+    details: CategoryPageInterface;
+  };
+}
+export interface PagesInterface {
+  category: CategoryPageInterface;
+  home: HomePageInterface;
+  product: ProductPageInterface;
+}
+export interface HomePageInterface {
   banner: BannerInterface;
   featuredProductsList: Array<ProductInterface>;
   numberOfFeaturedProd: number;
   slides: [];
+  status: StatusType;
 }
 
 export interface SearchResultsInterface {
@@ -301,6 +307,8 @@ export interface CartInterface {
   summary_string: string;
   totals: {
     total: CartTotalInterface;
+    total_excluding_tax: CartTotalInterface;
+    total_including_tax: CartTotalInterface;
   };
   vouchers: {};
 }
@@ -311,7 +319,7 @@ export interface NotificationInterface {
   error: string;
 }
 
-export interface CategoryInterface {
+export interface CategoryPageInterface {
   id_category: number;
   active: string;
   description: string;
@@ -330,6 +338,7 @@ export interface CategoryInterface {
   products: Array<ProductInterface>;
   sort_orders?: [];
   sort_selected?: string;
+  status: StatusType;
 }
 
 export interface AddToCartFormInterface {
@@ -338,4 +347,10 @@ export interface AddToCartFormInterface {
   id_customization: number;
   qty: number;
   [key: string]: string | number;
+}
+
+export interface GlobalStateInterface {
+  global: {
+    context: ContextInterface;
+  };
 }
