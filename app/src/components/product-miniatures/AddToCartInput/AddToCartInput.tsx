@@ -5,7 +5,7 @@ interface ComponentInterface {
   setQty: Function;
 }
 
-const AddToCartInput: React.FC<ComponentInterface> = ({ qty = 1, setQty }): JSX.Element => {
+const AddToCartInput = ({ qty = 1, setQty }: ComponentInterface) => {
   const cartClickHandler = (event: React.MouseEvent<HTMLButtonElement>, act: AddToCartAction) => {
     event.preventDefault();
     act === AddToCartAction.Up && setQty(qty + 1);

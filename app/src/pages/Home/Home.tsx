@@ -9,7 +9,7 @@ import FeaturedProducts from '../../components/widgets/FeaturedProducts/Featured
 
 import './styles.scss';
 
-const Home: React.FC = (): JSX.Element => {
+const Home = () => {
   const { fetchHomePage, status } = useHomePage();
 
   useEffect(() => {

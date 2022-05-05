@@ -14,7 +14,7 @@ import ProductPageAddToCartForm from '../../components/pages-elements/product-pa
 
 import './styles.scss';
 
-const Product: React.FC = (): JSX.Element => {
+const Product = () => {
   const { id } = useParams();
   const { fetchProductPage, status, product } = useProductPage();
   const productId = Number(id);

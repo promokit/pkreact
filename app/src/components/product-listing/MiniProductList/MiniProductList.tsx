@@ -7,9 +7,7 @@ interface ComponentInterface {
   products: Array<ProductInterface>;
 }
 
-const MiniProductList: React.FC<ComponentInterface> = ({
-  products,
-}): JSX.Element => {
+const MiniProductList = ({ products }: ComponentInterface) => {
   return (
     <ul className="mini-products-list flex flex-column">
       {products.map((product) => (

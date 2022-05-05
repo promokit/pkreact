@@ -10,7 +10,7 @@ import SvgIcon from '../../SvgIcon/SvgIcon';
 
 import './styles.scss';
 
-const Currencies: React.FC = (): JSX.Element => {
+const Currencies = () => {
   const componentId: string = 'currencies';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
   const { currencies } = useSelector(currenciesSelector);

@@ -3,7 +3,7 @@ import { productSelector } from '../../../../providers/pages/product/selectors';
 
 import './styles.scss';
 
-const ProductPagePrice: React.FC = (): JSX.Element => {
+const ProductPagePrice = () => {
   const { price, regular_price, discount_amount, cart_quantity } = useSelector(productSelector);
   return (
     <div className="product-price">

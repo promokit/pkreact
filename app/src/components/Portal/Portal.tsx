@@ -10,11 +10,11 @@ interface ComponentInterface {
   children: React.ReactNode;
 }
 
-const Portal: React.FC<ComponentInterface> = ({ id, state, children }): JSX.Element => {
+const Portal = ({ id, state, children }: ComponentInterface) => {
   const portalRoot = document.getElementById('sidebars') as HTMLDivElement;
   const rootEl = document.createElement('div') as HTMLDivElement;
   rootEl.id = id;
-  const { current } = useRef(rootEl);
+  const { current } = useRef<HTMLDivElement>(rootEl);
 
   const openSidebar = (sidebar: HTMLDivElement) => {
     setTimeout(() => {

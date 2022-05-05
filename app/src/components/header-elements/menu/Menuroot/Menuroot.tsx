@@ -7,11 +7,7 @@ interface ComponentInterface {
   setSidebarState: Function;
 }
 
-const MenuRoot: React.FC<ComponentInterface> = ({
-  menuItems,
-  isRoot = false,
-  setSidebarState
-}): JSX.Element => (
+const MenuRoot = ({ menuItems, isRoot = false, setSidebarState }: ComponentInterface) => (
   <ul className={isRoot ? 'root-item' : 'parent'}>
     {menuItems.map((item) => (
       <MenuItem key={item.page_identifier} item={item} setSidebarState={setSidebarState} />

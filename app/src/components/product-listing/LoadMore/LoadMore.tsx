@@ -7,9 +7,7 @@ interface ComponentInterface {
   pagination: CategoryPageInterface['pagination'];
 }
 
-const LoadMore: React.FC<ComponentInterface> = ({
-  pagination: { current_page, pages_count }
-}): JSX.Element => {
+const LoadMore = ({ pagination: { current_page, pages_count } }: ComponentInterface) => {
   const { setPage } = usePsContext();
   const loadMore = () => setPage(current_page + 1);
 

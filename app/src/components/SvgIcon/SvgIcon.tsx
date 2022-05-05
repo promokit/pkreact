@@ -4,7 +4,7 @@ interface ComponentInterface {
   href: string;
 }
 
-const SvgIcon: React.FC<ComponentInterface> = ({ href }) => (
+const SvgIcon = ({ href }: ComponentInterface) => (
   <svg className="svgic">
     <use href={`${process.env.REACT_APP_BUILD_PATH}${Icon}#${href}`}></use>
   </svg>

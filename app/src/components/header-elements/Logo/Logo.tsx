@@ -5,7 +5,7 @@ import { logoSelector } from '../../../providers/header/selector';
 
 import './styles.scss';
 
-const Logo: React.FC = (): JSX.Element => {
+const Logo = () => {
   const { width, height, url } = useSelector(logoSelector);
   return (
     <Link to={`${PREFIX_URL}`}>

@@ -7,8 +7,8 @@ interface ComponentInterface {
   message: string;
 }
 
-const Notification: React.FC<ComponentInterface> = ({ type, message }): JSX.Element => {
-  return <div className={`alert alert-${type}`}>{message}</div>;
-};
+const Notification = ({ type, message }: ComponentInterface) => (
+  <div className={`alert alert-${type}`}>{message}</div>
+);
 
 export default Notification;

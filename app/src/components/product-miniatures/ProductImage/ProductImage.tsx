@@ -7,7 +7,7 @@ interface ComponentInterface {
   cover: ImageInterface;
 }
 
-const ProductImage: React.FC<ComponentInterface> = ({ id_product, cover }) => (
+const ProductImage = ({ id_product, cover }: ComponentInterface) => (
   <Link to={`${PREFIX_URL}/product/${id_product}`} className="product-image">
     <img
       loading="lazy"

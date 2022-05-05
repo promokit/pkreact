@@ -28,6 +28,11 @@ main {
 .hidden {
   display: none;
 }
+#root > .alert {
+  margin: 30px auto;
+  width: 400px;
+  max-width: 90%;
+}
 .page-width {
   width: 400px;
   max-width: 90%;
@@ -82,6 +87,7 @@ main {
   background: none;
   border: none;
   padding: 0;
+  color: #555;
 }
 .clear-list {
   margin: 0;

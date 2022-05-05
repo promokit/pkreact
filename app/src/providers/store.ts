@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './root-reducer';
 
-const middlewares = process.env.REACT_APP_DEBUG === '1' ? [logger, thunk] : [];
+const middlewares = process.env.REACT_APP_DEBUG === '1' ? [logger, thunk] : [thunk];
 
 export const store = configureStore({
   reducer: rootReducer,

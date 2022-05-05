@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { homePageBannerSelector } from '../../../providers/pages/home/selectors';
 
-const Banner: React.FC = (): JSX.Element => {
+const Banner = () => {
   const { image_url } = useSelector(homePageBannerSelector);
 
   return (

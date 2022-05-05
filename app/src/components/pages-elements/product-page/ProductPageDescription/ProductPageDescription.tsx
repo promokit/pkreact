@@ -6,10 +6,7 @@ interface ComponentInterface {
   full?: boolean;
 }
 
-const ProductPageDescription: React.FC<ComponentInterface> = ({
-  short = true,
-  full = false
-}): JSX.Element => {
+const ProductPageDescription = ({ short = true, full = false }: ComponentInterface) => {
   const { description_short, description } = useSelector(productSelector);
   return (
     <>

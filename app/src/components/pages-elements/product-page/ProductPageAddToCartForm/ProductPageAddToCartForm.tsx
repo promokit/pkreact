@@ -13,7 +13,7 @@ interface CombiInterface {
   [key: number]: number;
 }
 
-const ProductPageAddToCartForm: React.FC = (): JSX.Element => {
+const ProductPageAddToCartForm = () => {
   const { groups, combinations, id_product } = useSelector(productSelector);
 
   const formDefaults: AddToCartFormInterface = {

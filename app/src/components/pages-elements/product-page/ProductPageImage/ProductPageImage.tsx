@@ -6,7 +6,7 @@ import { imagesSelector } from '../../../../providers/pages/product/selectors';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-const ProductPageImage: React.FC = (): JSX.Element => {
+const ProductPageImage = () => {
   const images = useSelector(imagesSelector);
   return (
     <Swiper

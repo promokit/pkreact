@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { productSelector } from '../../../../providers/pages/product/selectors';
 
-const ProductPageBrand: React.FC = (): JSX.Element => {
+const ProductPageBrand = () => {
   const { manufacturer_name } = useSelector(productSelector);
   return (
     <div className="product__brand">

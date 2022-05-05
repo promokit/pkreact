@@ -6,9 +6,9 @@ interface ComponentInterface {
   product: ProductInterface | ProductPageInterface;
 }
 
-const ProductPrice: React.FC<ComponentInterface> = ({
+const ProductPrice = ({
   product: { price, regular_price, discount_amount, cart_quantity }
-}): JSX.Element => {
+}: ComponentInterface) => {
   return (
     <div className="product-price">
       {cart_quantity && <span>{cart_quantity}✕</span>}

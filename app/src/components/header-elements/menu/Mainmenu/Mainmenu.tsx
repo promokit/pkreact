@@ -10,7 +10,7 @@ import Notification from '../../../notifications/Notification/Notification';
 
 import './styles.scss';
 
-const Mainmenu: React.FC = (): JSX.Element => {
+const Mainmenu = () => {
   const componentId: string = 'menu';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
   const menu = useSelector(menuSelector);

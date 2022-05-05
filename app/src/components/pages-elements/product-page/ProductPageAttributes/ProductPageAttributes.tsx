@@ -16,10 +16,7 @@ interface ComponentInterface {
   formData: AddToCartFormInterface;
 }
 
-const ProductPageAttributes: React.FC<ComponentInterface> = ({
-  formData,
-  onFormChangeHandler
-}): JSX.Element => {
+const ProductPageAttributes = ({ formData, onFormChangeHandler }: ComponentInterface) => {
   const { groups } = useSelector(productSelector);
 
   if (!Object.keys(groups).length) return <></>;

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { categorySelector } from '../../../../providers/pages/category/selectors';
 
-const CategoryDetails: React.FC = (): JSX.Element => {
+const CategoryDetails = () => {
   const {
     images: { medium },
     label,

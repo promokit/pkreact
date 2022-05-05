@@ -12,7 +12,7 @@ import CategoryProducts from '../../components/pages-elements/category-page/Cate
 
 import './styles.scss';
 
-const Category: React.FC = (): JSX.Element => {
+const Category = () => {
   const { id } = useParams();
   const { setPage } = usePsContext();
   const { fetchCategoryPage, status, category } = useCategoryPage();

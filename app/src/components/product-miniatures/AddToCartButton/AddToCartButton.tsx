@@ -1,4 +1,4 @@
-import { useEffect, useState, FC, MouseEvent } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { getRestCartUpdate } from '../../../rest/rest';
 import { AddToCartAction } from '../../../model/enums';
@@ -21,11 +21,11 @@ interface ComponentInterface {
   showInput?: boolean;
 }
 
-const AddToCartButton: FC<ComponentInterface> = ({
+const AddToCartButton = ({
   formData,
   onQtyChangeHandler,
   showInput = true
-}): JSX.Element => {
+}: ComponentInterface) => {
   const { setCart } = usePsContext();
   const contextCart = useSelector(contextCartSelector);
   const [qty, setQty] = useState<number>(1);
@@ -68,7 +68,11 @@ const AddToCartButton: FC<ComponentInterface> = ({
     <div className="add-to-cart">
       <div className="flex">
         {showInput && <AddToCartInput qty={qty} setQty={setQty} />}
-        <button className="add-to-cart__btn button flex flex-grow" onClick={addToCart}>
+        <button
+          className="add-to-cart__btn button flex flex-grow"
+          onClick={addToCart}
+          name="addtocart"
+        >
           <span>Add to Cart</span>
           {loader && <ComponentLoader />}
         </button>

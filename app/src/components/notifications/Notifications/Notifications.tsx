@@ -12,7 +12,7 @@ export const defaultMessages: NotificationInterface = {
   error: ''
 };
 
-const Notifications: React.FC<ComponentInterface> = ({ message }): JSX.Element => {
+const Notifications = ({ message }: ComponentInterface) => {
   if (message.error) {
     return <Notification type={NotificationType.Error} message={message.error} />;
   }

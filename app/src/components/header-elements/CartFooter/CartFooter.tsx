@@ -6,7 +6,7 @@ interface ComponentInterface {
   total: CartTotalInterface;
 }
 
-const CartFooter: React.FC<ComponentInterface> = ({ total }): JSX.Element => {
+const CartFooter = ({ total }: ComponentInterface) => {
   return (
     <div className="cart-footer">
       <div className="flex">

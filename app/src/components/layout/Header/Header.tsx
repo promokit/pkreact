@@ -13,7 +13,7 @@ import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
 
 import './styles.scss';
 
-const Header: React.FC = (): JSX.Element => {
+const Header = () => {
   const { fetchHeader, status } = useHeader();
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import SvgIcon from '../../SvgIcon/SvgIcon';
 
 import './styles.scss';
 
-const Search: React.FC = (): JSX.Element => {
+const Search = () => {
   const componentId: string = 'search';
   const config = {
     inputId: 'search-input',
@@ -24,7 +24,7 @@ const Search: React.FC = (): JSX.Element => {
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
 
   const input = document.getElementById(config.inputId) as HTMLInputElement;
-  const inputRef = useRef(input);
+  const inputRef = useRef<HTMLInputElement>(input);
 
   useEffect(() => {
     inputRef.current.focus();

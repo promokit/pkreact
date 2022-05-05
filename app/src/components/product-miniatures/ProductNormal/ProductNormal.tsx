@@ -10,7 +10,7 @@ interface ComponentInterface {
   product: ProductInterface;
 }
 
-const ProductNormal: React.FC<ComponentInterface> = ({ product }): JSX.Element => (
+const ProductNormal = ({ product }: ComponentInterface) => (
   <div className="product-normal" data-id={product.id_product}>
     <ProductImage id_product={product.id_product} cover={product.cover.large} />
     <Link to={`${PREFIX_URL}/product/${product.id_product}`} className="product-normal__title">

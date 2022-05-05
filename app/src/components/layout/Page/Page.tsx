@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 
-const Page: React.FC = (): JSX.Element => {
+const Page = () => {
   const status = useSelector(statusSelector);
   return (
     <>

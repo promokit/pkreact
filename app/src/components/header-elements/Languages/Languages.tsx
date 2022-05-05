@@ -11,7 +11,7 @@ import SvgIcon from '../../SvgIcon/SvgIcon';
 
 import './styles.scss';
 
-const Languages: React.FC = (): JSX.Element => {
+const Languages = () => {
   const componentId: string = 'languages';
   const { setLanguage } = usePsContext();
   const { languages } = useSelector(languagesSelector);

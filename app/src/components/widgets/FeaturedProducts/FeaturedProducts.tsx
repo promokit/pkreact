@@ -9,7 +9,7 @@ import WidgetTitle from '../WidgetTitle/WidgetTitle';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-const FeaturedProducts = (): JSX.Element => {
+const FeaturedProducts = () => {
   const featuredProductsList = useSelector(homePageFeaturedSelector);
   return (
     <>

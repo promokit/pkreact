@@ -12,7 +12,7 @@ import SvgIcon from '../../SvgIcon/SvgIcon';
 
 import './styles.scss';
 
-const Cart: React.FC = (): JSX.Element => {
+const Cart = () => {
   const componentId: string = 'cart';
   const cart = useSelector(contextCartSelector);
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);

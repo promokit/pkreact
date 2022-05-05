@@ -9,7 +9,7 @@ interface ComponentInterface {
   products: Array<ProductInterface>;
 }
 
-const NormalProductList: React.FC<ComponentInterface> = ({ products }): JSX.Element => {
+const NormalProductList = ({ products }: ComponentInterface) => {
   if (!products) {
     return <Notification type={NotificationType.Info} message="No products" />;
   }

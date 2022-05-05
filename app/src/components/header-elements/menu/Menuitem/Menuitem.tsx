@@ -14,10 +14,7 @@ interface ComponentInterface {
   setSidebarState: Function;
 }
 
-const MenuItem: React.FC<ComponentInterface> = ({
-  item: { type, label, children, id },
-  setSidebarState
-}): JSX.Element => {
+const MenuItem = ({ item: { type, label, children, id }, setSidebarState }: ComponentInterface) => {
   const [menuItemState, setMenuItemState] = useState<boolean>(false);
   const classList =
     children && children.length > 0

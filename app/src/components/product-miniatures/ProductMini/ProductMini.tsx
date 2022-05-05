@@ -10,7 +10,7 @@ interface ComponentInterface {
   product: ProductInterface;
 }
 
-const ProductMini: React.FC<ComponentInterface> = ({ product }): JSX.Element => (
+const ProductMini = ({ product }: ComponentInterface) => (
   <div className="product-mini grid" data-id={product.id_product}>
     <ProductImage id_product={product.id_product} cover={product.cover.medium} />
     <div className="product-mini__details flex-grow">

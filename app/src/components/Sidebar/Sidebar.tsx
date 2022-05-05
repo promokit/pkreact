@@ -12,13 +12,13 @@ interface ComponentInterface {
   setSidebarState: any;
 }
 
-const Sidebar: React.FC<ComponentInterface> = ({
+const Sidebar = ({
   id,
   sidebarTitle,
   children,
   sidebarState,
-  setSidebarState,
-}): JSX.Element => {
+  setSidebarState
+}: ComponentInterface) => {
   const sidebarHeader: React.ReactNode = (
     <div className="sidebar-title flex">
       <h3 className="flex-grow">{sidebarTitle}</h3>

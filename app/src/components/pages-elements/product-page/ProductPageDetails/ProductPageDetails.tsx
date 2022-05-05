@@ -6,7 +6,7 @@ import ProductPageDescription from '../ProductPageDescription/ProductPageDescrip
 
 import './styles.scss';
 
-const ProductPageDetails: React.FC = (): JSX.Element => {
+const ProductPageDetails = () => {
   const { product_info } = useSelector(productSelector);
   return (
     <div className="product__description">

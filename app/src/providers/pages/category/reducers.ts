@@ -11,7 +11,7 @@ const categorypageReducer = createReducer(
       .addCase(fetchCategoryPageAction.pending, (state) => {
         state.status = StatusType.Loading;
       })
-      .addCase(fetchCategoryPageAction.fulfilled, (state, action) => {
+      .addCase(fetchCategoryPageAction.fulfilled, (_, action) => {
         return {
           ...action.payload,
           status: StatusType.Success
