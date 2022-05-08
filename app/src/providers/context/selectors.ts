@@ -28,3 +28,8 @@ export const statusSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.status
 );
+
+export const messageSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.message || ''
+);

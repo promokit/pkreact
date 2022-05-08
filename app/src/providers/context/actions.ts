@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AddToCartAction } from '../../model/enums';
 import { AddToCartFormInterface, ContextInterface, RestResponse } from '../../model/interfaces';
 import { getRestCartUpdate, getRestContext, setCurrency, setLanguage } from '../../rest/rest';
 
@@ -21,13 +20,13 @@ export const setCartAction = createAsyncThunk(
   'context/setCart',
   async (arg: AddToCartFormInterface, { rejectWithValue }) => {
     try {
-      const { success, psdata } = await getRestCartUpdate(arg);
+      const response = await getRestCartUpdate(arg);
 
-      if (!success) {
+      if (!response.success) {
         throw new Error('Unable to to update cart');
       }
 
-      return psdata;
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }

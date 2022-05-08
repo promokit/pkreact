@@ -44,7 +44,8 @@ const contextSlice = createSlice({
       .addCase(setCartAction.fulfilled, (state, action) => {
         // return an entirely new state
         state.status = StatusType.Success;
-        state.cart = action.payload;
+        state.message = action.payload.message;
+        state.cart = action.payload.psdata;
       })
       .addCase(setCartAction.rejected, (state) => {
         state.status = StatusType.Error;

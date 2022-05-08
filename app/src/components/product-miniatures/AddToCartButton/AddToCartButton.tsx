@@ -20,7 +20,7 @@ const AddToCartButton = ({
   onQtyChangeHandler,
   showInput = true
 }: ComponentInterface) => {
-  const { status, setCart } = usePsContext();
+  const { status, message, setCart } = usePsContext();
   const [qty, setQty] = useState<number>(1);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const AddToCartButton = ({
       {status === StatusType.Error && (
         <Notification type={NotificationType.Error} message="Unable to Add to Cart" />
       )}
+      {message && <Notification type={NotificationType.Info} message={message} />}
     </div>
   );
 };

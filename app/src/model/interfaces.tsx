@@ -43,7 +43,8 @@ export interface ContextDetailsInterface {
   language: ContextLanguageInterface;
   shop: ContextShopInterface;
   productListingPage: number;
-  status: any;
+  status: StatusType;
+  message?: string;
 }
 
 export interface ContextInterface {
