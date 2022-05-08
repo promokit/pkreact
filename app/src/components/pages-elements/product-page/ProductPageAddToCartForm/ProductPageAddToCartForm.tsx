@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AddToCartFormInterface } from '../../../../model/interfaces';
+import { addToCartFormDefaults } from '../../../../providers/context/state';
 import { productSelector } from '../../../../providers/pages/product/selectors';
 
 import ProductPagePrice from '../ProductPagePrice/ProductPagePrice';
@@ -16,16 +17,18 @@ interface CombiInterface {
 const ProductPageAddToCartForm = () => {
   const { groups, combinations, id_product } = useSelector(productSelector);
 
-  const formDefaults: AddToCartFormInterface = {
-    id_product: id_product,
-    id_product_attribute: 0,
-    id_customization: 0,
-    qty: 1
-  };
-
   const memoQtyChangeHandler = useCallback((qty) => onQtyChangeHandler(qty), []);
 
-  const [formData, updateFormData] = useState<AddToCartFormInterface>(formDefaults);
+  const [formData, updateFormData] = useState<AddToCartFormInterface>(addToCartFormDefaults);
+
+  useEffect(() => {
+    updateFormData(() => {
+      return {
+        ...formData,
+        id_product
+      };
+    });
+  }, []);
 
   const onFormChangeHandler = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     if (!groups) return;

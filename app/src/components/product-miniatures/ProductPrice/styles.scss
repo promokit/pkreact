@@ -1,6 +1,9 @@
 .product-price {
+  & span {
+    margin-right: 6px;
+  }
   & del {
     color: #999;
-    margin-right: 10px;
+    margin-right: 6px;
   }
 }

@@ -19,11 +19,19 @@ const AddToCartInput = ({ qty = 1, setQty }: ComponentInterface) => {
 
   return (
     <div className="add-to-cart__qty flex">
-      <button className="button" onClick={(e) => cartClickHandler(e, AddToCartAction.Up)}>
+      <button
+        className="button"
+        data-testid="inc"
+        onClick={(e) => cartClickHandler(e, AddToCartAction.Up)}
+      >
         +
       </button>
-      <input type="number" value={qty.toString()} onChange={changeHandler} />
-      <button className="button" onClick={(e) => cartClickHandler(e, AddToCartAction.Down)}>
+      <input type="number" data-testid="qty" value={qty.toString()} onChange={changeHandler} />
+      <button
+        className="button"
+        data-testid="dec"
+        onClick={(e) => cartClickHandler(e, AddToCartAction.Down)}
+      >
         –
       </button>
     </div>

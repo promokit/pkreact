@@ -1,5 +1,5 @@
 import { StatusType } from '../../model/enums';
-import { ContextDetailsInterface } from '../../model/interfaces';
+import { AddToCartFormInterface, ContextDetailsInterface } from '../../model/interfaces';
 
 export const initialState: ContextDetailsInterface = {
   status: StatusType.Loading,
@@ -60,4 +60,12 @@ export const initialState: ContextDetailsInterface = {
     theme_name: 'alysum',
     virtual_uri: ''
   }
+};
+
+export const addToCartFormDefaults: AddToCartFormInterface = {
+  id_product: 0,
+  id_product_attribute: 0,
+  id_customization: 0,
+  toDelete: 0,
+  qty: 1
 };

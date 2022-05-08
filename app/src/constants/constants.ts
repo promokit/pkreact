@@ -1,3 +1,3 @@
-export const SLUG = 'react';
-export const BASE_URL = `${process.env.REACT_APP_PATH}/`;
-export const PREFIX_URL = `${BASE_URL}${SLUG}`;
+const { REACT_APP_DIR, REACT_APP_SUBDIR, REACT_APP_SLUG } = process.env;
+export const APP_DIR = `${REACT_APP_DIR}${REACT_APP_SUBDIR}`;
+export const APP_URL = `${REACT_APP_SUBDIR}${REACT_APP_SLUG}`;

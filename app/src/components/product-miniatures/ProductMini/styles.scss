@@ -1,11 +1,27 @@
 .product-mini {
   width: 100%;
   grid-template-columns: 1fr 2fr;
+  position: relative;
   & .product-image {
     margin: 0 15px 0 0;
   }
   & .product-mini__title {
     margin-bottom: 10px;
     display: block;
+  }
+  & small {
+    color: #aaa;
+    margin-bottom: 10px;
+    display: block;
+  }
+  & button {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    & svg,
+    & .spin {
+      width: 12px;
+      height: 12px;
+    }
   }
 }

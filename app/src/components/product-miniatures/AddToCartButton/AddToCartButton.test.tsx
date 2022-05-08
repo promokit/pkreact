@@ -8,19 +8,17 @@ const formData: AddToCartFormInterface = {
   qty: 1,
   id_product: 1,
   id_product_attribute: 0,
-  id_customization: 0
+  id_customization: 0,
+  toDelete: 0
 };
-
-export interface ButtonProps {
-  formData: AddToCartFormInterface;
-  onQtyChangeHandler: () => void;
-}
 
 const render = (component: any) => reactRender(<Provider store={store}>{component}</Provider>);
 
 describe('<AddToCartButton />', () => {
   test('should render Add to cart button', () => {
-    render(<AddToCartButton formData={formData} onQtyChangeHandler={jest.fn()} />);
-    expect(screen.getByText('Add to Cart')).toBeInTheDocument();
+    const { getByTestId } = render(
+      <AddToCartButton formData={formData} onQtyChangeHandler={jest.fn()} />
+    );
+    expect(getByTestId('addtocart')).toBeInTheDocument();
   });
 });

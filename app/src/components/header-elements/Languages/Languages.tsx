@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SidebarStates } from '../../../model/enums';
-import { BASE_URL } from '../../../constants/constants';
+import { APP_DIR } from '../../../constants/constants';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { languagesSelector } from '../../../providers/header/selector';
 import { contextLanguageSelector } from '../../../providers/context/selectors';
@@ -49,7 +49,7 @@ const Languages = () => {
             >
               <strong className="flex flex-center">
                 <img
-                  src={`${BASE_URL}img/flags/${iso_code}.jpg`}
+                  src={`${APP_DIR}img/flags/${iso_code}.jpg`}
                   width="16"
                   height="11"
                   alt={iso_code}

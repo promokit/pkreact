@@ -1,15 +1,8 @@
 import { useSelector } from 'react-redux';
+import { AddToCartFormInterface } from '../../../../model/interfaces';
 import { productSelector } from '../../../../providers/pages/product/selectors';
 
 import './styles.scss';
-
-interface AddToCartFormInterface {
-  qty: number;
-  id_product: number;
-  id_customization: number;
-  id_product_attribute: number;
-  [key: string]: string | number;
-}
 
 interface ComponentInterface {
   onFormChangeHandler: Function;

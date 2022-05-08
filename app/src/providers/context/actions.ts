@@ -1,20 +1,38 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ContextInterface, RestResponse } from '../../model/interfaces';
-import { getRestContext, setCurrency, setLanguage } from '../../rest/rest';
+import { AddToCartAction } from '../../model/enums';
+import { AddToCartFormInterface, ContextInterface, RestResponse } from '../../model/interfaces';
+import { getRestCartUpdate, getRestContext, setCurrency, setLanguage } from '../../rest/rest';
 
 export const fetchAction = createAsyncThunk(`context/fetch`, async (_, { rejectWithValue }) => {
   try {
-    const response: RestResponse<ContextInterface> = await getRestContext();
+    const { success, psdata }: RestResponse<ContextInterface> = await getRestContext();
 
-    if (!response.success) {
+    if (!success) {
       throw new Error('Unable to fetch context');
     }
 
-    return response.psdata;
+    return psdata;
   } catch (error) {
     return rejectWithValue(error);
   }
 });
+
+export const setCartAction = createAsyncThunk(
+  'context/setCart',
+  async (arg: AddToCartFormInterface, { rejectWithValue }) => {
+    try {
+      const { success, psdata } = await getRestCartUpdate(arg);
+
+      if (!success) {
+        throw new Error('Unable to to update cart');
+      }
+
+      return psdata;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 export const setCurrencyAction = createAsyncThunk(
   'context/setCurrency',

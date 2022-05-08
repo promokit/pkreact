@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import { fetchAction, setCurrencyAction, setLanguageAction } from './actions';
+import { fetchAction, setCartAction, setCurrencyAction, setLanguageAction } from './actions';
 import { ContextDetailsInterface } from '../../model/interfaces';
 import { StatusType } from '../../model/enums';
 import { initialState } from './state';
@@ -35,6 +35,18 @@ const contextSlice = createSlice({
         };
       })
       .addCase(fetchAction.rejected, (state) => {
+        state.status = StatusType.Error;
+      })
+      // Set Cart
+      .addCase(setCartAction.pending, (state) => {
+        state.status = StatusType.Loading;
+      })
+      .addCase(setCartAction.fulfilled, (state, action) => {
+        // return an entirely new state
+        state.status = StatusType.Success;
+        state.cart = action.payload;
+      })
+      .addCase(setCartAction.rejected, (state) => {
         state.status = StatusType.Error;
       })
       // Set Currency

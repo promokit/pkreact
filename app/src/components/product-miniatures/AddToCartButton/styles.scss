@@ -1,7 +1,8 @@
 .add-to-cart {
   & .add-to-cart__btn {
     display: flex;
-    padding: 15px 45px;
+    padding: 15px 30px;
+    position: relative;
     justify-content: center;
     cursor: pointer;
     & span {
@@ -11,6 +12,9 @@
       width: 16px;
       height: 16px;
       margin-left: 5px;
+      position: absolute;
+      margin: 1px 0 0 0;
+      right: 15px;
       & .spin {
         width: 15px;
         height: 15px;

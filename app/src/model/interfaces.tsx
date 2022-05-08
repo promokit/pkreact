@@ -4,23 +4,6 @@ export interface ActionInterface {
   type: string;
 }
 
-interface ContextCartInterface {
-  checkedTos: boolean;
-  delivery_option: null;
-  gift: number;
-  gift_message: string;
-  id: number;
-  id_address_delivery: number;
-  id_address_invoice: number;
-  id_carrier: number;
-  id_currency: number;
-  id_customer: number;
-  id_guest: number;
-  id_lang: number;
-  id_shop: number;
-  id_shop_group: number;
-}
-
 interface ContextCurrencyInterface {
   active: string;
   id: number;
@@ -28,16 +11,6 @@ interface ContextCurrencyInterface {
   name: string;
   numeric_iso_code: string;
   sign: string;
-}
-
-export interface ContextLanguageInterface {
-  active: string;
-  id: number;
-  is_rtl: string;
-  iso_code: string;
-  language_code: string;
-  locale: string;
-  name: string;
 }
 
 interface ContextShopInterface {
@@ -107,6 +80,16 @@ export interface CurrencyRestResponse {
   current_currency: CurrencyInterface;
 }
 
+export interface ContextLanguageInterface {
+  active: string;
+  id: number;
+  is_rtl: string;
+  iso_code: string;
+  language_code: string;
+  locale: string;
+  name: string;
+}
+
 export interface LanguageInterface {
   active: boolean;
   date_format_full: string;
@@ -121,16 +104,14 @@ export interface LanguageInterface {
   name_simple: string;
 }
 
-export interface CurrentLanguageInterface {
-  id_lang: number;
-  iso_code: string;
-  name: string;
-  name_simple: string;
-}
-
 export interface LanguageRestResponse {
   languages: Array<LanguageInterface>;
-  current_language: CurrentLanguageInterface;
+  current_language: {
+    id_lang: number;
+    iso_code: string;
+    name: string;
+    name_simple: string;
+  };
 }
 
 export interface MenuInterface {
@@ -185,6 +166,7 @@ export interface BannerInterface {
 
 export interface ProductInterface {
   id_product: number;
+  id_product_attribute: number;
   cover: CoverInterface;
   name: string;
   price: string;
@@ -192,6 +174,7 @@ export interface ProductInterface {
   discount_price: string;
   regular_price: string;
   discount_amount: number;
+  attributes_small: string;
 }
 
 export interface ProductPageInterface {
@@ -245,22 +228,12 @@ export interface ProductPageInterface {
   discount_amount: string;
 }
 
-export interface ProductPageComponentInterface {
-  product: {
-    details: ProductPageInterface;
-  };
-}
-
-export interface CategoryPageComponentInterface {
-  category: {
-    details: CategoryPageInterface;
-  };
-}
 export interface PagesInterface {
   category: CategoryPageInterface;
   home: HomePageInterface;
   product: ProductPageInterface;
 }
+
 export interface HomePageInterface {
   banner: BannerInterface;
   featuredProductsList: Array<ProductInterface>;
@@ -342,15 +315,10 @@ export interface CategoryPageInterface {
 }
 
 export interface AddToCartFormInterface {
+  qty: number;
   id_product: number;
   id_product_attribute: number;
   id_customization: number;
-  qty: number;
+  toDelete: number;
   [key: string]: string | number;
-}
-
-export interface GlobalStateInterface {
-  global: {
-    context: ContextInterface;
-  };
 }
