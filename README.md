@@ -3,6 +3,8 @@
 1. Install REST API module https://github.com/promokit/prestashop-rest using native prestashop module installation system
 2. Install current Prestashop React App module
 
+Download compiled module here https://amp.promokit.eu/pkreact.zip
+
 ## Compilation
 
 ### Configure .env file
