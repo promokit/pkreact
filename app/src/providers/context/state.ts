@@ -1,8 +1,9 @@
-import { StatusType } from '../../model/enums';
 import { AddToCartFormInterface, ContextDetailsInterface } from '../../model/interfaces';
+import { StatusType } from '../../model/enums';
 
 export const initialState: ContextDetailsInterface = {
   status: StatusType.Loading,
+  message: '',
   productListingPage: 1,
   cart: {
     discounts: [],

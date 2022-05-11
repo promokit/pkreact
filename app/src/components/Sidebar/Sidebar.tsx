@@ -9,7 +9,7 @@ interface ComponentInterface {
   sidebarTitle: string;
   children: React.ReactNode;
   sidebarState: SidebarStates;
-  setSidebarState: any;
+  setSidebarState: (value: SidebarStates) => void;
 }
 
 const Sidebar = ({

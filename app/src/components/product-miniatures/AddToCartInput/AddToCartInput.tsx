@@ -2,7 +2,7 @@ import { AddToCartAction } from '../../../model/enums';
 
 interface ComponentInterface {
   qty: number;
-  setQty: Function;
+  setQty: (value: number) => void;
 }
 
 const AddToCartInput = ({ qty = 1, setQty }: ComponentInterface) => {

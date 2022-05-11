@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SidebarStates } from '../../../../model/enums';
-import { MenuInterface } from '../../../../model/interfaces';
 import { APP_URL } from '../../../../constants/constants';
+import { MenuInterface } from '../../../../model/interfaces';
 
 import SvgIcon from '../../../SvgIcon/SvgIcon';
 import MenuRoot from '../Menuroot/Menuroot';
@@ -11,7 +11,7 @@ import './styles.scss';
 
 interface ComponentInterface {
   item: MenuInterface;
-  setSidebarState: Function;
+  setSidebarState: (value: SidebarStates) => void;
 }
 
 const MenuItem = ({ item: { type, label, children, id }, setSidebarState }: ComponentInterface) => {

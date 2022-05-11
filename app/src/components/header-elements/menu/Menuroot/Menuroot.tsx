@@ -1,10 +1,11 @@
 import MenuItem from '../Menuitem/Menuitem';
+import { SidebarStates } from '../../../../model/enums';
 import { MenuInterface } from '../../../../model/interfaces';
 
 interface ComponentInterface {
   menuItems: MenuInterface[];
   isRoot?: boolean;
-  setSidebarState: Function;
+  setSidebarState: (value: SidebarStates) => void;
 }
 
 const MenuRoot = ({ menuItems, isRoot = false, setSidebarState }: ComponentInterface) => (

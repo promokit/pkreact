@@ -1,10 +1,7 @@
 import { StatusType } from '../../model/enums';
 import {
-  CurrencyInterface,
   CurrencyRestResponse,
-  HeaderInterface,
   ImageInterface,
-  LanguageInterface,
   LanguageRestResponse,
   MenuInterface
 } from '../../model/interfaces';

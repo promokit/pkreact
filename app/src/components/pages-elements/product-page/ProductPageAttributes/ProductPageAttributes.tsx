@@ -5,7 +5,7 @@ import { productSelector } from '../../../../providers/pages/product/selectors';
 import './styles.scss';
 
 interface ComponentInterface {
-  onFormChangeHandler: Function;
+  onFormChangeHandler: (value: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
   formData: AddToCartFormInterface;
 }
 

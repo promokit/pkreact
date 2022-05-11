@@ -1,7 +1,7 @@
 import { useEffect, useState, MouseEvent } from 'react';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { AddToCartFormInterface } from '../../../model/interfaces';
-import { AddToCartAction, NotificationType, StatusType } from '../../../model/enums';
+import { AddToCartAction, NotificationType, SidebarStates, StatusType } from '../../../model/enums';
 
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import Notification from '../../notifications/Notification/Notification';
@@ -11,7 +11,7 @@ import './styles.scss';
 
 interface ComponentInterface {
   formData: AddToCartFormInterface;
-  onQtyChangeHandler: Function;
+  onQtyChangeHandler: (value: number) => void;
   showInput?: boolean;
 }
 
