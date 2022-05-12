@@ -3,6 +3,7 @@ import {
   AddToCartFormInterface,
   CartInterface,
   CategoryPageInterface,
+  CmsPageInterface,
   ContextInterface,
   HeaderInterface,
   HomePageInterface,
@@ -25,6 +26,11 @@ export const getRestContext = async (): Promise<RestResponse<ContextInterface>> 
 export const getRestHomePage = async (): Promise<RestResponse<HomePageInterface>> => {
   const query: string = 'bootstrap?menu_with_images=single';
   return await psFetch<RestResponse<HomePageInterface>>(query);
+};
+
+export const getRestCmsPage = async (id: number): Promise<RestResponse<CmsPageInterface>> => {
+  const query: string = `cms?id_cms=${id}`;
+  return await psFetch<RestResponse<CmsPageInterface>>(query);
 };
 
 export const getRestCategoryPage = async (

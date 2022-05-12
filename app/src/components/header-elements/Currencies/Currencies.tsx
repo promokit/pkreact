@@ -16,24 +16,26 @@ const Currencies = () => {
   const { currencies } = useSelector(currenciesSelector);
   const { id: currentId } = useSelector(contextCurrencySelector);
   const { setCurrency } = usePsContext();
+  const closeSidebar = () => setSidebarState(SidebarStates.Close);
+  const openSidebar = () => setSidebarState(SidebarStates.Open);
 
   const changeCurrency = async (e: React.MouseEvent<HTMLLIElement>) => {
     const li = e.target as HTMLLIElement;
     const id = li.getAttribute('data-id') as string;
-    setSidebarState(SidebarStates.Close);
     setCurrency(Number(id));
+    closeSidebar();
   };
 
   return (
     <>
-      <button className={componentId} onClick={() => setSidebarState(SidebarStates.Open)}>
+      <button className={componentId} onClick={openSidebar}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar
         id={componentId}
         sidebarTitle="Currencies"
         sidebarState={sidebarState}
-        setSidebarState={setSidebarState}
+        closeSidebar={closeSidebar}
       >
         <ul className="currencies-list user-list">
           {currencies.map(({ id, name, symbol }) => (

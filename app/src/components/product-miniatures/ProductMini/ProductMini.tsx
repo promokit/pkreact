@@ -10,15 +10,22 @@ import './styles.scss';
 
 interface ComponentInterface {
   product: ProductInterface;
+  closeSidebar: () => void;
 }
 
-const ProductMini = ({ product }: ComponentInterface) => {
+const ProductMini = ({ product, closeSidebar }: ComponentInterface) => {
   const { id_product, cover, name, cart_quantity, attributes_small } = product;
   return (
     <div className="product-mini grid" data-id={id_product}>
-      <ProductImage id_product={id_product} cover={cover.medium} />
+      <div onClick={closeSidebar}>
+        <ProductImage id_product={id_product} cover={cover.medium} />
+      </div>
       <div className="product-mini__details flex-grow">
-        <Link to={`${APP_URL}/product/${id_product}`} className="product-mini__title">
+        <Link
+          to={`${APP_URL}/product/${id_product}`}
+          className="product-mini__title"
+          onClick={closeSidebar}
+        >
           {name}
         </Link>
         {cart_quantity && <small>{attributes_small}</small>}

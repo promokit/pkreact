@@ -19,6 +19,11 @@ export const contextCartSelector = createDraftSafeSelector(
   (state: Ctx) => state.cart
 );
 
+export const statusCartSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.cart.status
+);
+
 export const listingPageNumberSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.productListingPage || 1

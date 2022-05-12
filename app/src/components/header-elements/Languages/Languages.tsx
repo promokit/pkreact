@@ -17,24 +17,26 @@ const Languages = () => {
   const { languages } = useSelector(languagesSelector);
   const { id: currentLangId } = useSelector(contextLanguageSelector);
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
+  const closeSidebar = () => setSidebarState(SidebarStates.Close);
+  const openSidebar = () => setSidebarState(SidebarStates.Open);
 
   const changeLanguage = async (e: React.MouseEvent<HTMLLIElement>) => {
     const li = e.target as HTMLLIElement;
     const iso = li.getAttribute('data-iso') as string;
-    setSidebarState(SidebarStates.Close);
     setLanguage(iso);
+    closeSidebar();
   };
 
   return (
     <>
-      <button className={componentId} onClick={() => setSidebarState(SidebarStates.Open)}>
+      <button className={componentId} onClick={openSidebar}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar
         id={componentId}
         sidebarTitle="Languages"
         sidebarState={sidebarState}
-        setSidebarState={setSidebarState}
+        closeSidebar={closeSidebar}
       >
         <ul className="languages-list user-list">
           {languages.map(({ id_lang, iso_code, name_simple }) => (

@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCartFormInterface } from '../model/interfaces';
-import { setProductListingPage } from '../providers/context/reducers';
+import { setProductListingPage, setCartMessage } from '../providers/context/reducers';
 import {
   listingPageNumberSelector,
+  contextCartSelector,
   messageSelector,
   statusSelector
 } from '../providers/context/selectors';
@@ -19,6 +20,7 @@ export const usePsContext = () => {
 
   const status = useSelector(statusSelector);
   const message = useSelector(messageSelector);
+  const cartContext = useSelector(contextCartSelector);
   const productListingPage = useSelector(listingPageNumberSelector);
 
   const getContext = useCallback(() => dispatch(fetchAction()), [dispatch]);
@@ -32,15 +34,21 @@ export const usePsContext = () => {
     (pageNumber: number) => dispatch(setProductListingPage(pageNumber)),
     [dispatch]
   );
+  const setMessage = useCallback(
+    (message: string) => dispatch(setCartMessage(message)),
+    [dispatch]
+  );
 
   return {
     status,
     message,
     setCart,
     setPage,
+    setMessage,
     getContext,
     setLanguage,
     setCurrency,
+    cartContext,
     productListingPage
   };
 };

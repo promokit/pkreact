@@ -230,9 +230,10 @@ export interface ProductPageInterface {
 }
 
 export interface PagesInterface {
-  category: CategoryPageInterface;
+  cms: CmsPageInterface;
   home: HomePageInterface;
   product: ProductPageInterface;
+  category: CategoryPageInterface;
 }
 
 export interface HomePageInterface {
@@ -285,6 +286,8 @@ export interface CartInterface {
     total_including_tax: CartTotalInterface;
   };
   vouchers: {};
+  status: StatusType;
+  message?: string;
 }
 
 export interface NotificationInterface {
@@ -322,4 +325,15 @@ export interface AddToCartFormInterface {
   id_customization: number;
   toDelete: number;
   [key: string]: string | number;
+}
+
+export interface CmsPageActionInterface {
+  cmsId: number;
+}
+
+export interface CmsPageInterface {
+  status: StatusType;
+  id_cms: string;
+  content: string;
+  cms_title: string;
 }

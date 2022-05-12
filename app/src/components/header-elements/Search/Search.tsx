@@ -22,6 +22,8 @@ const Search = () => {
   const [msg, setMessage] = useState<NotificationInterface>(defaultMessages);
   const [searchResults, setSearchResults] = useState<ProductInterface[]>([]);
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
+  const closeSidebar = () => setSidebarState(SidebarStates.Close);
+  const openSidebar = () => setSidebarState(SidebarStates.Open);
 
   const input = document.getElementById(config.inputId) as HTMLInputElement;
   const inputRef = useRef<HTMLInputElement>(input);
@@ -62,14 +64,14 @@ const Search = () => {
 
   return (
     <>
-      <button className={componentId} onClick={() => setSidebarState(SidebarStates.Open)}>
+      <button className={componentId} onClick={openSidebar}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar
         id={componentId}
         sidebarTitle="Search"
         sidebarState={sidebarState}
-        setSidebarState={setSidebarState}
+        closeSidebar={closeSidebar}
       >
         <div className="sidebar-content__input relative">
           <input
@@ -85,7 +87,9 @@ const Search = () => {
         </div>
         {loader && <ComponentLoader />}
         {loader || <Notifications message={msg} />}
-        {!loader && searchResults.length > 0 && <MiniProductList products={searchResults} />}
+        {!loader && searchResults.length > 0 && (
+          <MiniProductList products={searchResults} closeSidebar={closeSidebar} />
+        )}
       </Sidebar>
     </>
   );

@@ -21,7 +21,9 @@ export const initialState: ContextDetailsInterface = {
       total_excluding_tax: { type: 'total', label: 'Total (tax excl.)', amount: 0, value: '$0.00' },
       total_including_tax: { type: 'total', label: 'Total (tax incl.)', amount: 0, value: '$0.00' }
     },
-    vouchers: {}
+    vouchers: {},
+    status: StatusType.Success,
+    message: ''
   },
   cookie: {},
   currency: {

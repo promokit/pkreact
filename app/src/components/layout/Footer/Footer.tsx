@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { APP_URL } from '../../../constants/constants';
+
 import './styles.scss';
 
 const Footer = () => (
@@ -7,28 +10,28 @@ const Footer = () => (
         <h2>Shop Links</h2>
         <ul>
           <li>
-            <a href="https://promokit.eu">Delivery</a>
+            <Link to={`${APP_URL}/cms-page/1`}>Delivery</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Legal Notice</a>
+            <Link to={`${APP_URL}/cms-page/2`}>Legal Notice</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Terms and conditions of use</a>
+            <Link to={`${APP_URL}/cms-page/3`}>Terms and condit</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">About us</a>
+            <Link to={`${APP_URL}/cms-page/4`}>About us</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Secure payment</a>
+            <Link to={`${APP_URL}/cms-page/5`}>Secure payment</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Kontakt z nami</a>
+            <Link to={`${APP_URL}/cms-page/6`}>Kontakt z nami</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Mapa strony</a>
+            <Link to={`${APP_URL}/cms-page/7`}>Mapa strony</Link>
           </li>
           <li>
-            <a href="https://promokit.eu">Sklepy</a>
+            <Link to={`${APP_URL}/cms-page/8`}>Sklepy</Link>
           </li>
         </ul>
       </div>

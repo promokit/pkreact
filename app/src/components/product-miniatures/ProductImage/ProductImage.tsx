@@ -7,14 +7,14 @@ interface ComponentInterface {
   cover: ImageInterface;
 }
 
-const ProductImage = ({ id_product, cover }: ComponentInterface) => (
+const ProductImage = ({ id_product, cover: { url, width, height } }: ComponentInterface) => (
   <Link to={`${APP_URL}/product/${id_product}`} className="product-image">
     <img
       loading="lazy"
       className="img"
-      src={cover.url}
-      width={cover.width}
-      height={cover.height}
+      src={url}
+      width={width}
+      height={height}
       alt="product-miniature"
     />
   </Link>

@@ -13,6 +13,7 @@ import './styles.scss';
 const Mainmenu = () => {
   const componentId: string = 'menu';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
+  const closeSidebar = () => setSidebarState(SidebarStates.Close);
   const menu = useSelector(menuSelector);
 
   return (
@@ -26,11 +27,11 @@ const Mainmenu = () => {
           id={componentId}
           sidebarTitle="Main Menu"
           sidebarState={sidebarState}
-          setSidebarState={setSidebarState}
+          closeSidebar={closeSidebar}
         >
           {menu.length > 0 ? (
             <nav id="menu-nav-root">
-              <MenuRoot menuItems={menu} isRoot={true} setSidebarState={setSidebarState} />
+              <MenuRoot menuItems={menu} isRoot={true} closeSidebar={closeSidebar} />
             </nav>
           ) : (
             <Notification type={NotificationType.Info} message="No menu items yet" />

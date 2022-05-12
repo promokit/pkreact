@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarStates } from '../../../../model/enums';
 import { APP_URL } from '../../../../constants/constants';
 import { MenuInterface } from '../../../../model/interfaces';
 
@@ -11,10 +10,10 @@ import './styles.scss';
 
 interface ComponentInterface {
   item: MenuInterface;
-  setSidebarState: (value: SidebarStates) => void;
+  closeSidebar: () => void;
 }
 
-const MenuItem = ({ item: { type, label, children, id }, setSidebarState }: ComponentInterface) => {
+const MenuItem = ({ item: { type, label, children, id }, closeSidebar }: ComponentInterface) => {
   const [menuItemState, setMenuItemState] = useState<boolean>(false);
   const classList =
     children && children.length > 0
@@ -24,7 +23,7 @@ const MenuItem = ({ item: { type, label, children, id }, setSidebarState }: Comp
   return (
     <li className={classList}>
       <span className="menu-item__span flex">
-        <span className="flex-grow" onClick={() => setSidebarState(SidebarStates.Close)}>
+        <span className="flex-grow" onClick={closeSidebar}>
           <Link to={`${APP_URL}/${type}/${id}`}>{label}</Link>
         </span>
         {children && children.length > 0 && (
@@ -34,7 +33,7 @@ const MenuItem = ({ item: { type, label, children, id }, setSidebarState }: Comp
         )}
       </span>
       {children && children.length > 0 && (
-        <MenuRoot menuItems={children} setSidebarState={setSidebarState} />
+        <MenuRoot menuItems={children} closeSidebar={closeSidebar} />
       )}
     </li>
   );

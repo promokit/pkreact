@@ -3,6 +3,7 @@ import { StatusType } from '../../../model/enums';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { ProductInterface } from '../../../model/interfaces';
 import { addToCartFormDefaults } from '../../../providers/context/state';
+
 import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 

@@ -1,17 +1,16 @@
 import MenuItem from '../Menuitem/Menuitem';
-import { SidebarStates } from '../../../../model/enums';
 import { MenuInterface } from '../../../../model/interfaces';
 
 interface ComponentInterface {
   menuItems: MenuInterface[];
   isRoot?: boolean;
-  setSidebarState: (value: SidebarStates) => void;
+  closeSidebar: () => void;
 }
 
-const MenuRoot = ({ menuItems, isRoot = false, setSidebarState }: ComponentInterface) => (
+const MenuRoot = ({ menuItems, isRoot = false, closeSidebar }: ComponentInterface) => (
   <ul className={isRoot ? 'root-item' : 'parent'}>
     {menuItems.map((item) => (
-      <MenuItem key={item.page_identifier} item={item} setSidebarState={setSidebarState} />
+      <MenuItem key={item.page_identifier} item={item} closeSidebar={closeSidebar} />
     ))}
   </ul>
 );

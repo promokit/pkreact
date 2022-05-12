@@ -1,7 +1,7 @@
 import { useEffect, useState, MouseEvent } from 'react';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { AddToCartFormInterface } from '../../../model/interfaces';
-import { AddToCartAction, NotificationType, SidebarStates, StatusType } from '../../../model/enums';
+import { AddToCartAction, NotificationType, StatusType } from '../../../model/enums';
 
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import Notification from '../../notifications/Notification/Notification';
@@ -20,8 +20,18 @@ const AddToCartButton = ({
   onQtyChangeHandler,
   showInput = true
 }: ComponentInterface) => {
-  const { status, message, setCart } = usePsContext();
+  const {
+    cartContext: { status, message },
+    setMessage,
+    setCart
+  } = usePsContext();
+
   const [qty, setQty] = useState<number>(1);
+  const delay = 5000; // ms
+
+  useEffect(() => {
+    setTimeout(() => setMessage(''), delay);
+  }, [message]);
 
   useEffect(() => {
     onQtyChangeHandler(qty);

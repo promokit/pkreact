@@ -9,7 +9,7 @@ interface ComponentInterface {
   sidebarTitle: string;
   children: React.ReactNode;
   sidebarState: SidebarStates;
-  setSidebarState: (value: SidebarStates) => void;
+  closeSidebar: () => void;
 }
 
 const Sidebar = ({
@@ -17,25 +17,19 @@ const Sidebar = ({
   sidebarTitle,
   children,
   sidebarState,
-  setSidebarState
+  closeSidebar
 }: ComponentInterface) => {
   const sidebarHeader: React.ReactNode = (
     <div className="sidebar-title flex">
       <h3 className="flex-grow">{sidebarTitle}</h3>
-      <button
-        className="clear-button close-button smooth200"
-        onClick={() => setSidebarState(SidebarStates.Close)}
-      >
+      <button className="clear-button close-button smooth200" onClick={closeSidebar}>
         <SvgIcon href="cross" />
       </button>
     </div>
   );
   return (
     <Portal id={id} state={sidebarState}>
-      <div
-        className="sidebar-bg smooth200"
-        onClick={() => setSidebarState(SidebarStates.Close)}
-      ></div>
+      <div className="sidebar-bg smooth200" onClick={closeSidebar}></div>
       <div className="sidebar">
         <div className="sidebar-content">
           {sidebarHeader}

@@ -11,6 +11,9 @@ const contextSlice = createSlice({
     setCartState(state: ContextDetailsInterface, action) {
       state.cart = action.payload;
     },
+    setCartMessage(state: ContextDetailsInterface, action) {
+      state.cart.message = action.payload;
+    },
     setProductListingPage(state: ContextDetailsInterface, action) {
       state.productListingPage = action.payload;
     },
@@ -39,16 +42,16 @@ const contextSlice = createSlice({
       })
       // Set Cart
       .addCase(setCartAction.pending, (state) => {
-        state.status = StatusType.Loading;
+        state.cart.status = StatusType.Loading;
       })
       .addCase(setCartAction.fulfilled, (state, action) => {
         // return an entirely new state
-        state.status = StatusType.Success;
-        state.message = action.payload.message;
         state.cart = action.payload.psdata;
+        state.cart.status = StatusType.Success;
+        state.cart.message = action.payload.message;
       })
       .addCase(setCartAction.rejected, (state) => {
-        state.status = StatusType.Error;
+        state.cart.status = StatusType.Error;
       })
       // Set Currency
       .addCase(setCurrencyAction.pending, (state) => {
@@ -74,6 +77,6 @@ const contextSlice = createSlice({
       })
 });
 
-export const { setCartState, setProductListingPage } = contextSlice.actions;
+export const { setCartState, setCartMessage, setProductListingPage } = contextSlice.actions;
 
 export default contextSlice.reducer;
