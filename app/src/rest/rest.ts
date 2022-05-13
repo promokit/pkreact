@@ -1,6 +1,7 @@
 import { APP_DIR } from '../constants/constants';
 import {
   AddToCartFormInterface,
+  BrandPageInterface,
   CartInterface,
   CategoryPageInterface,
   CmsPageInterface,
@@ -31,6 +32,14 @@ export const getRestHomePage = async (): Promise<RestResponse<HomePageInterface>
 export const getRestCmsPage = async (id: number): Promise<RestResponse<CmsPageInterface>> => {
   const query: string = `cms?id_cms=${id}`;
   return await psFetch<RestResponse<CmsPageInterface>>(query);
+};
+
+export const getRestManufacturerPage = async (
+  id: number,
+  page: number
+): Promise<RestResponse<BrandPageInterface>> => {
+  const query: string = `manufacturer?id_manufacturer=${id}&page=${page}&resultsPerPage=4`;
+  return await psFetch<RestResponse<BrandPageInterface>>(query);
 };
 
 export const getRestCategoryPage = async (

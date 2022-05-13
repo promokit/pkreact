@@ -11,7 +11,7 @@ import './styles.scss';
 const Cms = () => {
   const { id } = useParams();
   const { fetchCmsPage, cms } = useCmsPage();
-  const { cms_title, content, status } = cms;
+  const { content, status } = cms;
   const cmsId = Number(id);
 
   useEffect(() => {
@@ -28,7 +28,6 @@ const Cms = () => {
 
   return (
     <div className="cms-page">
-      <h2>{cms_title}</h2>
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   );

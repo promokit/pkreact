@@ -232,6 +232,7 @@ export interface ProductPageInterface {
 export interface PagesInterface {
   cms: CmsPageInterface;
   home: HomePageInterface;
+  brand: BrandPageInterface;
   product: ProductPageInterface;
   category: CategoryPageInterface;
 }
@@ -296,6 +297,16 @@ export interface NotificationInterface {
   error: string;
 }
 
+interface Pagination {
+  current_page: number;
+  items_shown_from: number;
+  items_shown_to: number;
+  pages: object;
+  pages_count: number;
+  should_be_displayed: boolean;
+  total_items: number;
+}
+
 export interface CategoryPageInterface {
   id_category: number;
   active: string;
@@ -303,18 +314,23 @@ export interface CategoryPageInterface {
   facets: [];
   images: CoverInterface;
   label: string;
-  pagination: {
-    current_page: number;
-    items_shown_from: number;
-    items_shown_to: number;
-    pages: object;
-    pages_count: number;
-    should_be_displayed: boolean;
-    total_items: number;
-  };
+  pagination: Pagination;
   products: Array<ProductInterface>;
   sort_orders?: [];
   sort_selected?: string;
+  status: StatusType;
+}
+
+export interface BrandPageInterface {
+  id: number;
+  name: string;
+  description: string;
+  link_rewrite: string;
+  logo: string;
+  products: Array<ProductInterface>;
+  facets: [];
+  sort_orders?: [];
+  pagination: Pagination;
   status: StatusType;
 }
 

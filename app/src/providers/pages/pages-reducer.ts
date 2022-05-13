@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import cmspageReducer from './cms/reducers';
-import homepageReducer from './home/reducers';
-import categoryReducer from './category/reducers';
+import cmsPageReducer from './cms/reducers';
+import homePageReducer from './home/reducers';
+import brandPageReducer from './brand/reducers';
 import productPageReducer from './product/reducers';
+import categoryPageReducer from './category/reducers';
 
 const pagesReducer = combineReducers({
-  cms: cmspageReducer,
-  home: homepageReducer,
-  category: categoryReducer,
-  product: productPageReducer
+  cms: cmsPageReducer,
+  home: homePageReducer,
+  brand: brandPageReducer,
+  product: productPageReducer,
+  category: categoryPageReducer
 });
 
 export default pagesReducer;
