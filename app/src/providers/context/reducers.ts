@@ -1,5 +1,12 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import { fetchAction, setCartAction, setCurrencyAction, setLanguageAction } from './actions';
+import {
+  fetchAction,
+  setLoginAction,
+  setCartAction,
+  setCurrencyAction,
+  setLanguageAction,
+  setLogoutAction
+} from './actions';
 import { ContextDetailsInterface } from '../../model/interfaces';
 import { StatusType } from '../../model/enums';
 import { initialState } from './state';
@@ -74,6 +81,27 @@ const contextSlice = createSlice({
       })
       .addCase(setLanguageAction.rejected, (state) => {
         state.status = StatusType.Error;
+      })
+      // Login
+      .addCase(setLoginAction.pending, (state) => {
+        state.customer.status = StatusType.Loading;
+      })
+      .addCase(setLoginAction.fulfilled, (state, action) => {
+        state.customer = action.payload.psdata;
+        state.customer.status = StatusType.Success;
+      })
+      .addCase(setLoginAction.rejected, (state) => {
+        state.customer.status = StatusType.Error;
+      })
+      // Logout
+      .addCase(setLogoutAction.pending, (state) => {
+        state.customer.status = StatusType.Loading;
+      })
+      .addCase(setLogoutAction.fulfilled, (state) => {
+        state.customer = initialState.customer;
+      })
+      .addCase(setLogoutAction.rejected, (state) => {
+        state.customer.status = StatusType.Error;
       })
 });
 

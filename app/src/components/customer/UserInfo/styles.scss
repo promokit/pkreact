@@ -1,0 +1,19 @@
+.user-info {
+  & .user-info__avatar {
+    margin-bottom: 40px;
+  }
+  & .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  & > ul {
+    & li {
+      & svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

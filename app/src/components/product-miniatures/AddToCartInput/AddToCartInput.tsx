@@ -32,7 +32,7 @@ const AddToCartInput = ({ qty = 1, setQty }: ComponentInterface) => {
         data-testid="dec"
         onClick={(e) => cartClickHandler(e, AddToCartAction.Down)}
       >
-        –
+        -
       </button>
     </div>
   );

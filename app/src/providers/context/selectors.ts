@@ -19,6 +19,16 @@ export const contextCartSelector = createDraftSafeSelector(
   (state: Ctx) => state.cart
 );
 
+export const contextUserSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.customer.user || { id: 0 }
+);
+
+export const contextUserStatusSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.customer.status
+);
+
 export const statusCartSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.cart.status

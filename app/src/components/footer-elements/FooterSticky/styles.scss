@@ -1,0 +1,23 @@
+.footer-sticky {
+  position: sticky;
+  z-index: 9;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  color: #333;
+  padding: 22px 0;
+  box-sizing: border-box;
+  box-shadow: 0px -0px 5px 0px rgba(0, 0, 0, 0.3);
+  & > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    & button {
+      margin: 0 15px;
+      & svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+}

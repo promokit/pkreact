@@ -5,19 +5,37 @@ import {
   CartInterface,
   CategoryPageInterface,
   CmsPageInterface,
+  ContextCustomerInterface,
   ContextInterface,
   HeaderInterface,
   HomePageInterface,
+  LoginFormInterface,
   ProductPageInterface,
   RestResponse,
   SearchResultsInterface
 } from '../model/interfaces';
 
-async function psFetch<T>(query: string): Promise<T> {
-  const restSlug = 'rest';
-  const response = await fetch(`${APP_DIR}${restSlug}/${query}`);
-  return await response.json();
+enum Methods {
+  GET = 'GET',
+  POST = 'POST'
 }
+
+const psFetch = async <T>(query: string, body: string = ''): Promise<T> => {
+  const restSlug = 'rest';
+
+  const options: RequestInit = {
+    method: Methods.GET
+  };
+
+  if (body) {
+    options.body = body;
+    options.method = Methods.POST;
+  }
+
+  const response = await fetch(`${APP_DIR}${restSlug}/${query}`, options);
+
+  return await response.json();
+};
 
 export const getRestContext = async (): Promise<RestResponse<ContextInterface>> => {
   const query: string = 'context';
@@ -103,4 +121,21 @@ export const setCurrency = async (currencyId: number) => {
     success
   } = await psFetch(query);
   return { currency, success };
+};
+
+export const getRestLogin = async (
+  args: LoginFormInterface
+): Promise<RestResponse<ContextCustomerInterface>> => {
+  const query: string = 'login';
+  return await psFetch<RestResponse<ContextCustomerInterface>>(query, JSON.stringify(args));
+};
+
+export const getRestRegister = async (): Promise<RestResponse<any>> => {
+  const query: string = 'register';
+  return await psFetch<RestResponse<any>>(query);
+};
+
+export const getRestLogout = async (): Promise<RestResponse<any>> => {
+  const query: string = 'logout';
+  return await psFetch<RestResponse<any>>(query);
 };

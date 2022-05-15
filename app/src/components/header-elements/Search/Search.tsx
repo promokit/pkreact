@@ -64,7 +64,7 @@ const Search = () => {
 
   return (
     <>
-      <button className={componentId} onClick={openSidebar}>
+      <button className={`${componentId} clear-button`} onClick={openSidebar}>
         <SvgIcon href={componentId} />
       </button>
       <Sidebar

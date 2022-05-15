@@ -1,6 +1,8 @@
 import MenuItem from '../Menuitem/Menuitem';
 import { MenuInterface } from '../../../../model/interfaces';
 
+import './styles.scss';
+
 interface ComponentInterface {
   menuItems: MenuInterface[];
   isRoot?: boolean;

@@ -13,25 +13,15 @@ import BrandLoadMore from '../../components/pages-elements/brand-page/BrandLoadM
 import './styles.scss';
 const Brand = () => {
   const { id } = useParams();
-  const { setPage } = usePsContext();
-  const { fetchBrandPage, status, brand } = useBrandPage();
   const { productListingPage } = usePsContext();
+  const { fetchBrandPage, status, brand } = useBrandPage();
   const brandId = Number(id);
 
   useEffect(() => {
     if (!brand) return;
 
-    // reset page number if category ID is changed
-    brandId !== brand.id && setPage(1);
-
     fetchBrandPage({ brandId, brand, productListingPage });
-  }, [fetchBrandPage, setPage, brandId, productListingPage]);
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setPage(1);
-  }, [pathname]);
+  }, [fetchBrandPage, brandId, productListingPage]);
 
   if (status === StatusType.Loading && productListingPage === 1) {
     return <ComponentLoader />;

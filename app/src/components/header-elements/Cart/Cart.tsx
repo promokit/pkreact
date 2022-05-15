@@ -20,7 +20,7 @@ const Cart = () => {
   const openSidebar = () => setSidebarState(SidebarStates.Open);
   return (
     <>
-      <button className={`${componentId} relative`} onClick={openSidebar}>
+      <button className={`${componentId} relative clear-button`} onClick={openSidebar}>
         <SvgIcon href={componentId} />
         {cart && <Indicator numb={cart.products_count} />}
       </button>

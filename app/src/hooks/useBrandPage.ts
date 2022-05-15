@@ -9,7 +9,6 @@ export const useBrandPage = () => {
 
   const status = useSelector(statusSelector);
   const brand = useSelector(brandSelector);
-  //const productListingPage = useSelector(brandSelector);
 
   const fetchBrandPage = useCallback(
     (arg: ActionInterface) => dispatch(fetchBrandPageAction(arg)),

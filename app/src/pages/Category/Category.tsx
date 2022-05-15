@@ -14,7 +14,6 @@ import './styles.scss';
 
 const Category = () => {
   const { id } = useParams();
-  const { setPage } = usePsContext();
   const { fetchCategoryPage, status, category } = useCategoryPage();
   const { productListingPage } = usePsContext();
   const categoryId = Number(id);
@@ -22,11 +21,8 @@ const Category = () => {
   useEffect(() => {
     if (!category) return;
 
-    // reset page number if category ID is changed
-    categoryId !== category.id_category && setPage(1);
-
     fetchCategoryPage({ category, categoryId, productListingPage });
-  }, [setPage, fetchCategoryPage, categoryId, productListingPage]);
+  }, [fetchCategoryPage, categoryId, productListingPage]);
 
   if (status === StatusType.Loading && productListingPage === 1) {
     return <ComponentLoader />;

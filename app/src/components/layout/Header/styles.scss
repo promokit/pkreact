@@ -7,13 +7,16 @@ header {
   color: #333;
   & .header-top {
     padding: 25px 0;
-    & .header-top__items button {
-      background: none;
-      border: none;
-      margin-left: 30px;
-      padding: 0;
-      color: #555;
-      cursor: pointer;
+    & .header-top__items {
+      align-items: center;
+      & button {
+        background: none;
+        border: none;
+        margin-left: 30px;
+        padding: 0;
+        color: #555;
+        cursor: pointer;
+      }
     }
   }
   & .component-loader {

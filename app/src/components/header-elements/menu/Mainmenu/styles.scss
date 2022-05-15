@@ -9,15 +9,3 @@
     display: none;
   }
 }
-#menu-nav-root {
-  & .root-item ul.parent {
-    margin: 0;
-    padding: 0 15px;
-  }
-  & .menu-item__span a {
-    flex-grow: 1;
-  }
-  & .collapsed > .parent {
-    display: none;
-  }
-}

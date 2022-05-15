@@ -1,6 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AddToCartFormInterface, ContextInterface, RestResponse } from '../../model/interfaces';
-import { getRestCartUpdate, getRestContext, setCurrency, setLanguage } from '../../rest/rest';
+import {
+  AddToCartFormInterface,
+  ContextInterface,
+  LoginFormInterface,
+  RestResponse
+} from '../../model/interfaces';
+import {
+  getRestCartUpdate,
+  getRestContext,
+  getRestLogin,
+  getRestLogout,
+  setCurrency,
+  setLanguage
+} from '../../rest/rest';
 
 export const fetchAction = createAsyncThunk(`context/fetch`, async (_, { rejectWithValue }) => {
   try {
@@ -61,6 +73,42 @@ export const setLanguageAction = createAsyncThunk(
       }
 
       return language;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const setLoginAction = createAsyncThunk(
+  'context/login',
+  async (args: LoginFormInterface, { rejectWithValue }) => {
+    try {
+      const response = await getRestLogin(args);
+
+      // if (!success) {
+      //   throw new Error('Unable to get language');
+      // }
+      console.log(response);
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const setLogoutAction = createAsyncThunk(
+  'context/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await getRestLogout();
+
+      // if (!success) {
+      //   throw new Error('Unable to get language');
+      // }
+      console.log(response);
+
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }

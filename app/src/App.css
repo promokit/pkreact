@@ -63,10 +63,29 @@ main {
 .button {
   background: #333;
   color: #fff;
-  padding: 12px 25px;
+  padding: 12px 35px;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  position: relative;
+}
+.button .component-loader {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  position: absolute;
+  margin: 1px 0 0 0;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.button .spin {
+  width: 15px;
+  height: 15px;
+  color: #fff;
+}
+.button:disabled {
+  background: #999;
 }
 .svgic {
   display: inline-block;

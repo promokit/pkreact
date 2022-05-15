@@ -31,8 +31,50 @@ interface ContextShopInterface {
   virtual_uri: string;
 }
 
-interface ContextCustomerInterface {
-  id: number;
+export interface ContextCustomerInterface {
+  status: StatusType;
+  message: string;
+  user: {
+    active: string;
+    ape: string;
+    birthday: string;
+    company: string;
+    date_add: string;
+    date_upd: string;
+    days: string;
+    deleted: string;
+    email: string;
+    firstname: string;
+    force_id: boolean;
+    geoloc_id_country: string;
+    geoloc_id_state: string;
+    geoloc_postcode: string;
+    groupBox: string;
+    id: string;
+    id_default_group: string;
+    id_gender: string;
+    id_guest: string;
+    id_lang: string;
+    id_risk: string;
+    id_shop: string;
+    id_shop_group: string;
+    id_shop_list: Array<number>;
+    ip_registration_newsletter: string;
+    is_guest: string;
+    lastname: string;
+    logged: number;
+    max_payment_days: string;
+    months: string;
+    newsletter: string;
+    newsletter_date_add: string;
+    note: string;
+    optin: string;
+    outstanding_allow_amount: string;
+    show_public_prices: string;
+    siret: string;
+    website: string;
+    years: string;
+  };
 }
 
 export interface ContextDetailsInterface {
@@ -352,4 +394,9 @@ export interface CmsPageInterface {
   id_cms: string;
   content: string;
   cms_title: string;
+}
+
+export interface LoginFormInterface {
+  email: string;
+  password: string;
 }

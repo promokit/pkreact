@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { fireEvent, cleanup, render as reactRender } from '@testing-library/react';
+import { fireEvent, cleanup, render as reactRender, screen } from '@testing-library/react';
 import AddToCartInput from './AddToCartInput';
 import store from '../../../providers/store';
 import { debug } from 'console';
@@ -29,9 +29,11 @@ describe('<AddToCartInput />', () => {
     const { getByTestId } = render(<AddToCartInput qty={1} setQty={mockQty} />);
 
     const inputEl = getByTestId('qty') as HTMLInputElement;
-    const incBtn = getByTestId('inc') as HTMLButtonElement;
-    const decBtn = getByTestId('dec') as HTMLButtonElement;
-
+    //const incBtn = getByTestId('inc') as HTMLButtonElement;
+    const incBtn = screen.getByRole('button', { name: '+' }) as HTMLButtonElement;
+    const decBtn = screen.getByRole('button', { name: '-' }) as HTMLButtonElement;
+    // const decBtn = getByTestId('dec') as HTMLButtonElement;
+    console.log(inputEl);
     fireEvent.change(inputEl, {
       target: {
         value: 5
