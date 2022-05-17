@@ -62,3 +62,43 @@ export const concatenateBrandProductList = (
     facets: { ...newList.facets }
   };
 };
+
+const validateText = (value: string): boolean => {
+  if (value === '') {
+    return false;
+  }
+  return true;
+};
+
+const validateEmail = (value: string): boolean => {
+  const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  const check = regex.test(value);
+  if (value === '' || !check) {
+    return false;
+  }
+  return true;
+};
+
+const validatePassword = (value: string): boolean => {
+  if (value === '') {
+    return false;
+  }
+  return true;
+};
+
+export const validateInput = ({ value, type }: { value: string; type: string }): boolean => {
+  if (type === 'text') {
+    return validateText(value);
+  }
+  if (type === 'email') {
+    return validateEmail(value);
+  }
+  if (type === 'password') {
+    return validatePassword(value);
+  }
+  return true;
+};
+
+export const isFormValid = (formData: object): boolean => {
+  return Object.values(formData).every((item) => item === true);
+};

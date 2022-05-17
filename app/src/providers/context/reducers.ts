@@ -29,6 +29,9 @@ const contextSlice = createSlice({
     },
     setErrorState(state: ContextDetailsInterface, action) {
       state.cart = action.payload;
+    },
+    setCustomerMessage(state: ContextDetailsInterface, action) {
+      state.customer.message = action.payload;
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<any>) =>
@@ -89,6 +92,7 @@ const contextSlice = createSlice({
       .addCase(setLoginAction.fulfilled, (state, action) => {
         state.customer = action.payload.psdata;
         state.customer.status = StatusType.Success;
+        state.customer.message = action.payload.psdata.message;
       })
       .addCase(setLoginAction.rejected, (state) => {
         state.customer.status = StatusType.Error;
@@ -105,6 +109,7 @@ const contextSlice = createSlice({
       })
 });
 
-export const { setCartState, setCartMessage, setProductListingPage } = contextSlice.actions;
+export const { setCartState, setCartMessage, setCustomerMessage, setProductListingPage } =
+  contextSlice.actions;
 
 export default contextSlice.reducer;

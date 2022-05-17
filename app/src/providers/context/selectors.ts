@@ -28,6 +28,10 @@ export const contextUserStatusSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.customer.status
 );
+export const contextUserMessageSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.customer.message
+);
 
 export const statusCartSelector = createDraftSafeSelector(
   contextSelector,

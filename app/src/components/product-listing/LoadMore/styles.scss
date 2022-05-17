@@ -1,9 +1,11 @@
-.pagination-info {
-  padding: 20px 0 0;
-  margin: 20px 0 0;
-  border-top: 1px solid #e1e1e1;
-  text-align: center;
-}
-.load-more-btn {
-  margin: 15px auto;
+.pagination {
+  & .pagination-info {
+    padding: 20px 0 0;
+    margin: 20px 0 0;
+    border-top: 1px solid #e1e1e1;
+    text-align: center;
+  }
+  & button {
+    margin: 15px auto;
+  }
 }

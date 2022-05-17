@@ -1,14 +1,19 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCartFormInterface, LoginFormInterface } from '../model/interfaces';
-import { setProductListingPage, setCartMessage } from '../providers/context/reducers';
+import {
+  setProductListingPage,
+  setCartMessage,
+  setCustomerMessage
+} from '../providers/context/reducers';
 import {
   listingPageNumberSelector,
   contextCartSelector,
   messageSelector,
   statusSelector,
   contextUserSelector,
-  contextUserStatusSelector
+  contextUserStatusSelector,
+  contextUserMessageSelector
 } from '../providers/context/selectors';
 import {
   fetchAction,
@@ -27,6 +32,7 @@ export const usePsContext = () => {
   const cartContext = useSelector(contextCartSelector);
   const userContext = useSelector(contextUserSelector);
   const userStatus = useSelector(contextUserStatusSelector);
+  const userMessage = useSelector(contextUserMessageSelector);
   const productListingPage = useSelector(listingPageNumberSelector);
 
   const getContext = useCallback(() => dispatch(fetchAction()), [dispatch]);
@@ -35,6 +41,10 @@ export const usePsContext = () => {
   const setLogout = useCallback(() => dispatch(setLogoutAction()), [dispatch]);
   const setLogin = useCallback(
     (args: LoginFormInterface) => dispatch(setLoginAction(args)),
+    [dispatch]
+  );
+  const setUserMessage = useCallback(
+    (message: string) => dispatch(setCustomerMessage(message)),
     [dispatch]
   );
   const setCart = useCallback(
@@ -63,7 +73,9 @@ export const usePsContext = () => {
     setCurrency,
     userStatus,
     userContext,
+    userMessage,
     cartContext,
+    setUserMessage,
     productListingPage
   };
 };

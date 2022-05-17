@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { SidebarStates } from '../../../model/enums';
 import { usePsContext } from '../../../hooks/usePsContext';
 
-import LoginForm from '../../LoginForm/LoginForm';
 import Sidebar from '../../Sidebar/Sidebar';
 import SvgIcon from '../../SvgIcon/SvgIcon';
+import LoginForm from '../../LoginForm/LoginForm';
 import UserInfo from '../../customer/UserInfo/UserInfo';
 
 const MyAccount = () => {
@@ -21,7 +21,7 @@ const MyAccount = () => {
       </button>
       <Sidebar
         id={componentId}
-        sidebarTitle="My Account"
+        sidebarTitle="User Area"
         sidebarState={sidebarState}
         closeSidebar={closeSidebar}
       >

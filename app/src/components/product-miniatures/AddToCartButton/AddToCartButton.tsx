@@ -3,9 +3,9 @@ import { usePsContext } from '../../../hooks/usePsContext';
 import { AddToCartFormInterface } from '../../../model/interfaces';
 import { AddToCartAction, NotificationType, StatusType } from '../../../model/enums';
 
+import Button from '../../Button/Button';
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import Notification from '../../notifications/Notification/Notification';
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
 
 import './styles.scss';
 
@@ -31,7 +31,7 @@ const AddToCartButton = ({
 
   useEffect(() => {
     setTimeout(() => setMessage(''), delay);
-  }, [message]);
+  }, [message, setMessage]);
 
   useEffect(() => {
     onQtyChangeHandler(qty);
@@ -46,15 +46,7 @@ const AddToCartButton = ({
     <div className="add-to-cart">
       <div className="flex">
         {showInput && <AddToCartInput qty={qty} setQty={setQty} />}
-        <button
-          className="add-to-cart__btn button flex flex-grow"
-          onClick={addToCart}
-          name="addtocart"
-          data-testid="addtocart"
-        >
-          <span>Add to Cart</span>
-          {status === StatusType.Loading && <ComponentLoader />}
-        </button>
+        <Button title="Add to Cart" status={status} clickHandler={addToCart} />
       </div>
       {status === StatusType.Error && (
         <Notification type={NotificationType.Error} message="Unable to Add to Cart" />

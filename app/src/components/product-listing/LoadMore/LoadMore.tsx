@@ -1,5 +1,8 @@
-import { CategoryPageInterface } from '../../../model/interfaces';
+import { MouseEvent } from 'react';
 import { usePsContext } from '../../../hooks/usePsContext';
+import { CategoryPageInterface } from '../../../model/interfaces';
+
+import Button from '../../Button/Button';
 
 import './styles.scss';
 
@@ -9,18 +12,17 @@ interface ComponentInterface {
 
 const LoadMore = ({ pagination: { current_page, pages_count } }: ComponentInterface) => {
   const { setPage } = usePsContext();
-  const loadMore = () => setPage(current_page + 1);
+  const loadMore = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setPage(current_page + 1);
+  };
 
   return (
     <div className="pagination flex flex-column">
       <div className="pagination-info">
         Page <strong>{current_page}</strong> of <strong>{pages_count}</strong>
       </div>
-      {current_page < pages_count && (
-        <button className="button load-more-btn" onClick={loadMore}>
-          Load More
-        </button>
-      )}
+      {current_page < pages_count && <Button title="Load More" clickHandler={loadMore} />}
     </div>
   );
 };

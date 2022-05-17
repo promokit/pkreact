@@ -1,12 +1,12 @@
-import { usePsContext } from '../../../hooks/usePsContext';
-import avatar from '../../../assets/lottie/avatar.json';
+import { MouseEvent } from 'react';
 import Lottie from 'lottie-react';
+import avatar from '../../../assets/lottie/avatar.json';
+import { usePsContext } from '../../../hooks/usePsContext';
 
+import Button from '../../Button/Button';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 
 import './styles.scss';
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
-import { StatusType } from '../../../model/enums';
 
 const UserInfo = () => {
   const {
@@ -14,7 +14,7 @@ const UserInfo = () => {
     userStatus,
     setLogout
   } = usePsContext();
-  const submitHandler = (e: any): void => {
+  const submitHandler = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     setLogout();
   };
@@ -31,46 +31,43 @@ const UserInfo = () => {
       </div>
       <ul>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/identity">
+          <a href="#identity">
             <SvgIcon href="info" />
             <span>Customer Information</span>
           </a>
         </li>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/address">
+          <a href="#address">
             <SvgIcon href="address" />
             <span>Add first address</span>
           </a>
         </li>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/history">
+          <a href="#history">
             <SvgIcon href="file3" />
             <span>Order history and details</span>
           </a>
         </li>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/order-slip">
+          <a href="#order-slip">
             <SvgIcon href="file2" />
             <span>Credit slips</span>
           </a>
         </li>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/discount">
+          <a href="#discount">
             <SvgIcon href="voucher" />
             <span>Vouchers</span>
           </a>
         </li>
         <li>
-          <a href="https://alysum5.promokit.eu/en/module/pkamp/order-follow">
+          <a href="#order-follow">
             <SvgIcon href="info" />
             <span>Merchandise returns</span>
           </a>
         </li>
       </ul>
-      <button className="button" onClick={submitHandler}>
-        <span>Log Out</span>
-        {userStatus === StatusType.Loading && <ComponentLoader />}
-      </button>
+      <Button title="Log Out" status={userStatus} clickHandler={submitHandler} />
     </div>
   );
 };

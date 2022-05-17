@@ -85,10 +85,9 @@ export const setLoginAction = createAsyncThunk(
     try {
       const response = await getRestLogin(args);
 
-      // if (!success) {
-      //   throw new Error('Unable to get language');
-      // }
-      console.log(response);
+      if (!response.success) {
+        throw new Error('Unable to make login request');
+      }
 
       return response;
     } catch (error) {
@@ -103,10 +102,9 @@ export const setLogoutAction = createAsyncThunk(
     try {
       const response = await getRestLogout();
 
-      // if (!success) {
-      //   throw new Error('Unable to get language');
-      // }
-      console.log(response);
+      if (!response.success) {
+        throw new Error('Unable to make logout request');
+      }
 
       return response;
     } catch (error) {
