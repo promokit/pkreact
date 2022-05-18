@@ -399,6 +399,6 @@ export interface CmsPageInterface {
 export interface LoginFormInterface {
   email: string;
   password: string;
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
 }

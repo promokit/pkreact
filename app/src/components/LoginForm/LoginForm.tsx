@@ -1,22 +1,23 @@
 import { ChangeEvent, MouseEvent, useEffect, useState, useRef } from 'react';
+import { validateInput } from '../../providers/pages/category/utils';
+import { LoginFormInterface } from '../../model/interfaces';
 import { usePsContext } from '../../hooks/usePsContext';
 import { NotificationType } from '../../model/enums';
-import { validateInput } from '../../providers/pages/category/utils';
 
-import Button from '../Button/Button';
 import Notification from '../notifications/Notification/Notification';
+import Button from '../Button/Button';
 
 import './styles.scss';
 
 enum FormFields {
   Email = 'email',
-  FirstName = 'firstname',
-  LastName = 'lastname',
+  FirstName = 'firstName',
+  LastName = 'lastName',
   Password = 'password'
 }
 
 const LoginForm = () => {
-  const { setLogin, userStatus, userMessage } = usePsContext();
+  const { setLogin, setRegister, userStatus, userMessage } = usePsContext();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const [isRegister, setRegisterMode] = useState<boolean>(false);
   const [isAgreed, setAgreed] = useState<boolean>(false);
@@ -24,9 +25,9 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState<string>('');
   const [validEmail, setValidEmail] = useState<boolean>(true);
-  const [firstname, setFirstName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
   const [validFirstName, setValidFirstName] = useState<boolean>(true);
-  const [lastname, setLastName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [validLastName, setValidLastName] = useState<boolean>(true);
   const [password, setPassword] = useState<string>('');
   const [validPassword, setValidPassword] = useState<boolean>(true);
@@ -34,9 +35,12 @@ const LoginForm = () => {
   const toggleRegister = () => setRegisterMode(!isRegister);
   const toggleAgreed = () => setAgreed(!isAgreed);
 
+  const getBorderColor = () => (validEmail ? '#333' : 'red');
+
   const submitHandler = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
-    setLogin({ email, firstname, lastname, password });
+    const formData: LoginFormInterface = { email, password, firstName, lastName };
+    isRegister ? setRegister(formData) : setLogin(formData);
   };
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -86,9 +90,18 @@ const LoginForm = () => {
   }, [emailRef]);
 
   useEffect(() => {
-    setFormValid(validPassword && validEmail);
-    //isRegister && setFormValid(!validPassword || !validEmail || !validFirstName || !validLastName);
-  }, [validPassword, validEmail]);
+    !isRegister && setFormValid(validPassword && validEmail);
+    isRegister &&
+      setFormValid(validPassword && validEmail && validFirstName && validLastName && isAgreed);
+  }, [
+    validPassword,
+    validEmail,
+    validFirstName,
+    validLastName,
+    isRegister,
+    isAgreed,
+    setFormValid
+  ]);
 
   return (
     <form className="login-form">
@@ -102,7 +115,7 @@ const LoginForm = () => {
         placeholder="my@email.com"
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
-        style={{ borderColor: validEmail ? '#333' : 'red' }}
+        style={{ borderColor: getBorderColor() }}
       />
       {!validEmail && <Notification type={NotificationType.Error} message="Email is not valid" />}
       {isRegister && (
@@ -110,11 +123,11 @@ const LoginForm = () => {
           <input
             type="text"
             name={FormFields.FirstName}
-            value={firstname}
+            value={firstName}
             placeholder="Alex"
             onBlur={onBlurHandler}
             onChange={onChangeHandler}
-            style={{ borderColor: validFirstName ? '#333' : 'red' }}
+            style={{ borderColor: getBorderColor() }}
           />
           {!validFirstName && (
             <Notification type={NotificationType.Error} message="First name is not valid" />
@@ -122,11 +135,11 @@ const LoginForm = () => {
           <input
             type="text"
             name={FormFields.LastName}
-            value={lastname}
+            value={lastName}
             placeholder="Brown"
             onBlur={onBlurHandler}
             onChange={onChangeHandler}
-            style={{ borderColor: validLastName ? '#333' : 'red' }}
+            style={{ borderColor: getBorderColor() }}
           />
           {!validLastName && (
             <Notification type={NotificationType.Error} message="Last name is not valid" />
@@ -140,7 +153,7 @@ const LoginForm = () => {
         placeholder="password"
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
-        style={{ borderColor: validPassword ? '#333' : 'red' }}
+        style={{ borderColor: getBorderColor() }}
       />
       {!validPassword && (
         <Notification type={NotificationType.Error} message="Password is not valid" />
@@ -157,9 +170,7 @@ const LoginForm = () => {
               I agree to the terms and conditions and the privacy policy
             </span>
           </label>
-          <button type="submit" className="button" disabled={!isAgreed}>
-            Register
-          </button>
+          <Button title="Register" clickHandler={submitHandler} disabled={!isFormValid} />
         </>
       ) : (
         <Button

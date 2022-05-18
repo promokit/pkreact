@@ -5,7 +5,8 @@ import {
   setCartAction,
   setCurrencyAction,
   setLanguageAction,
-  setLogoutAction
+  setLogoutAction,
+  setRegisterAction
 } from './actions';
 import { ContextDetailsInterface } from '../../model/interfaces';
 import { StatusType } from '../../model/enums';
@@ -90,9 +91,9 @@ const contextSlice = createSlice({
         state.customer.status = StatusType.Loading;
       })
       .addCase(setLoginAction.fulfilled, (state, action) => {
-        state.customer = action.payload.psdata;
-        state.customer.status = StatusType.Success;
+        state.customer.user = action.payload.psdata.user;
         state.customer.message = action.payload.psdata.message;
+        state.customer.status = StatusType.Success;
       })
       .addCase(setLoginAction.rejected, (state) => {
         state.customer.status = StatusType.Error;
@@ -105,6 +106,18 @@ const contextSlice = createSlice({
         state.customer = initialState.customer;
       })
       .addCase(setLogoutAction.rejected, (state) => {
+        state.customer.status = StatusType.Error;
+      })
+      // Register
+      .addCase(setRegisterAction.pending, (state) => {
+        state.customer.status = StatusType.Loading;
+      })
+      .addCase(setRegisterAction.fulfilled, (state, action) => {
+        state.customer.user = action.payload.psdata.user;
+        state.customer.message = action.payload.psdata.message;
+        state.customer.status = StatusType.Success;
+      })
+      .addCase(setRegisterAction.rejected, (state) => {
         state.customer.status = StatusType.Error;
       })
 });

@@ -21,7 +21,8 @@ import {
   setCurrencyAction,
   setLanguageAction,
   setLoginAction,
-  setLogoutAction
+  setLogoutAction,
+  setRegisterAction
 } from '../providers/context/actions';
 
 export const usePsContext = () => {
@@ -41,6 +42,10 @@ export const usePsContext = () => {
   const setLogout = useCallback(() => dispatch(setLogoutAction()), [dispatch]);
   const setLogin = useCallback(
     (args: LoginFormInterface) => dispatch(setLoginAction(args)),
+    [dispatch]
+  );
+  const setRegister = useCallback(
+    (args: LoginFormInterface) => dispatch(setRegisterAction(args)),
     [dispatch]
   );
   const setUserMessage = useCallback(
@@ -69,6 +74,7 @@ export const usePsContext = () => {
     setLogout,
     setMessage,
     getContext,
+    setRegister,
     setLanguage,
     setCurrency,
     userStatus,

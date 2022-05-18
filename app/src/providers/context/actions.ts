@@ -10,6 +10,7 @@ import {
   getRestContext,
   getRestLogin,
   getRestLogout,
+  getRestRegister,
   setCurrency,
   setLanguage
 } from '../../rest/rest';
@@ -104,6 +105,40 @@ export const setLogoutAction = createAsyncThunk(
 
       if (!response.success) {
         throw new Error('Unable to make logout request');
+      }
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const setRegisterAction = createAsyncThunk(
+  'context/register',
+  async (args: LoginFormInterface, { rejectWithValue }) => {
+    try {
+      const response = await getRestRegister(args);
+
+      if (!response.success) {
+        throw new Error('Unable to make register request');
+      }
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getRegisterAction = createAsyncThunk(
+  'context/register',
+  async (args: LoginFormInterface, { rejectWithValue }) => {
+    try {
+      const response = await getRestRegister(args);
+
+      if (!response.success) {
+        throw new Error('Unable to make register request');
       }
 
       return response;

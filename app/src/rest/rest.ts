@@ -130,12 +130,19 @@ export const getRestLogin = async (
   return await psFetch<RestResponse<ContextCustomerInterface>>(query, JSON.stringify(args));
 };
 
-export const getRestRegister = async (): Promise<RestResponse<any>> => {
+export const getRestRegister = async (
+  args: LoginFormInterface
+): Promise<RestResponse<ContextCustomerInterface>> => {
   const query: string = 'register';
-  return await psFetch<RestResponse<any>>(query);
+  return await psFetch<RestResponse<ContextCustomerInterface>>(query, JSON.stringify(args));
 };
 
-export const getRestLogout = async (): Promise<RestResponse<any>> => {
+export const getRestLogout = async (): Promise<RestResponse<ContextCustomerInterface>> => {
   const query: string = 'logout';
+  return await psFetch<RestResponse<ContextCustomerInterface>>(query);
+};
+
+export const getRestAccountInfo = async (): Promise<RestResponse<any>> => {
+  const query: string = 'accountInfo';
   return await psFetch<RestResponse<any>>(query);
 };
