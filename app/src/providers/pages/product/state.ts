@@ -40,6 +40,7 @@ export const initialState = {
   id_product: 0,
   images: [],
   manufacturer_name: '',
+  manufacturer_id: '',
   minimal_quantity: '',
   name: '',
   new_products: '',

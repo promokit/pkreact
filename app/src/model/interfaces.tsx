@@ -254,6 +254,7 @@ export interface ProductPageInterface {
   id_product: number;
   images: Array<ImageInterface>;
   manufacturer_name: string;
+  manufacturer_id: string;
   minimal_quantity: string;
   name: string;
   new_products: string;

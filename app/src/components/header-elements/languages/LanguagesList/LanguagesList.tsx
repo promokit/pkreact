@@ -15,6 +15,7 @@ const LanguagesList = () => {
     const li = e.target as HTMLLIElement;
     const iso = li.getAttribute('data-iso') as string;
     setLanguage(iso);
+    setTimeout(() => window.location.reload(), 500);
   };
 
   return (
@@ -27,7 +28,7 @@ const LanguagesList = () => {
           }`}
           data-id={id_lang}
           data-iso={iso_code}
-          onClick={(e) => changeLanguage(e)}
+          onClick={changeLanguage}
         >
           <strong className="flex flex-center">
             <img

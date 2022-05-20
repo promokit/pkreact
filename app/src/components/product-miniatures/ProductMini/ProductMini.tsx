@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Subdirs } from '../../../model/subdirs';
 import { APP_URL } from '../../../constants/constants';
 import { ProductInterface } from '../../../model/interfaces';
 
@@ -22,7 +23,7 @@ const ProductMini = ({ product, closeSidebar }: ComponentInterface) => {
       </div>
       <div className="product-mini__details flex-grow">
         <Link
-          to={`${APP_URL}/product/${id_product}`}
+          to={`${APP_URL}/${Subdirs.Product}/${id_product}`}
           className="product-mini__title"
           onClick={closeSidebar}
         >

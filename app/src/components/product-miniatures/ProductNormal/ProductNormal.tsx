@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { Subdirs } from '../../../model/subdirs';
 import { APP_URL } from '../../../constants/constants';
 import { ProductInterface } from '../../../model/interfaces';
+
 import ProductImage from '../ProductImage/ProductImage';
 import ProductPrice from '../ProductPrice/ProductPrice';
 
@@ -13,7 +15,10 @@ interface ComponentInterface {
 const ProductNormal = ({ product }: ComponentInterface) => (
   <div className="product-normal" data-id={product.id_product}>
     <ProductImage id_product={product.id_product} cover={product.cover.large} />
-    <Link to={`${APP_URL}/product/${product.id_product}`} className="product-normal__title">
+    <Link
+      to={`${APP_URL}/${Subdirs.Product}/${product.id_product}`}
+      className="product-normal__title"
+    >
       {product.name}
     </Link>
     <ProductPrice product={product} />

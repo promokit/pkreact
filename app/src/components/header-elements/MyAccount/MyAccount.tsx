@@ -4,8 +4,8 @@ import { usePsContext } from '../../../hooks/usePsContext';
 
 import Sidebar from '../../Sidebar/Sidebar';
 import SvgIcon from '../../SvgIcon/SvgIcon';
-import LoginForm from '../../LoginForm/LoginForm';
 import UserInfo from '../../customer/UserInfo/UserInfo';
+import LoginForm from '../../customer/LoginForm/LoginForm';
 
 const MyAccount = () => {
   const componentId: string = 'myaccount';

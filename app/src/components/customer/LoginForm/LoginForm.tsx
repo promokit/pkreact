@@ -1,11 +1,11 @@
 import { ChangeEvent, MouseEvent, useEffect, useState, useRef } from 'react';
-import { validateInput } from '../../providers/pages/category/utils';
-import { LoginFormInterface } from '../../model/interfaces';
-import { usePsContext } from '../../hooks/usePsContext';
-import { NotificationType } from '../../model/enums';
+import { validateInput } from '../../../providers/pages/category/utils';
+import { LoginFormInterface } from '../../../model/interfaces';
+import { usePsContext } from '../../../hooks/usePsContext';
+import { NotificationType } from '../../../model/enums';
 
-import Notification from '../notifications/Notification/Notification';
-import Button from '../Button/Button';
+import Notification from '../../notifications/Notification/Notification';
+import Button from '../../Button/Button';
 
 import './styles.scss';
 
@@ -34,8 +34,7 @@ const LoginForm = () => {
 
   const toggleRegister = () => setRegisterMode(!isRegister);
   const toggleAgreed = () => setAgreed(!isAgreed);
-
-  const getBorderColor = () => (validEmail ? '#333' : 'red');
+  const getBorderColor = () => (validEmail ? '#333' : '#ca0101');
 
   const submitHandler = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
@@ -90,21 +89,35 @@ const LoginForm = () => {
   }, [emailRef]);
 
   useEffect(() => {
-    !isRegister && setFormValid(validPassword && validEmail);
-    isRegister &&
-      setFormValid(validPassword && validEmail && validFirstName && validLastName && isAgreed);
+    setFormValid(
+      isRegister
+        ? validPassword &&
+            validEmail &&
+            validFirstName &&
+            validLastName &&
+            isAgreed &&
+            password !== '' &&
+            email !== '' &&
+            lastName !== '' &&
+            firstName !== ''
+        : validPassword && validEmail && password !== '' && email !== ''
+    );
   }, [
     validPassword,
-    validEmail,
     validFirstName,
     validLastName,
     isRegister,
+    validEmail,
+    firstName,
     isAgreed,
+    lastName,
+    password,
+    email,
     setFormValid
   ]);
 
   return (
-    <form className="login-form">
+    <form className="login-form" role="form">
       <h4>{isRegister ? 'Create Account' : 'Sign In'}</h4>
       <input
         ref={emailRef}
@@ -116,6 +129,7 @@ const LoginForm = () => {
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
         style={{ borderColor: getBorderColor() }}
+        required={true}
       />
       {!validEmail && <Notification type={NotificationType.Error} message="Email is not valid" />}
       {isRegister && (
@@ -128,6 +142,7 @@ const LoginForm = () => {
             onBlur={onBlurHandler}
             onChange={onChangeHandler}
             style={{ borderColor: getBorderColor() }}
+            required={true}
           />
           {!validFirstName && (
             <Notification type={NotificationType.Error} message="First name is not valid" />
@@ -140,6 +155,7 @@ const LoginForm = () => {
             onBlur={onBlurHandler}
             onChange={onChangeHandler}
             style={{ borderColor: getBorderColor() }}
+            required={true}
           />
           {!validLastName && (
             <Notification type={NotificationType.Error} message="Last name is not valid" />
@@ -154,30 +170,36 @@ const LoginForm = () => {
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
         style={{ borderColor: getBorderColor() }}
+        required={true}
       />
       {!validPassword && (
         <Notification type={NotificationType.Error} message="Password is not valid" />
       )}
-      <label htmlFor="reg" className="flex form-item">
+      <label htmlFor="reg" className="flex form-item align-center">
         <input type="checkbox" name="isregister" id="reg" onChange={toggleRegister} />
         <span className="flex-grow">I want to register</span>
       </label>
       {isRegister ? (
         <>
-          <label htmlFor="gdpr" className="flex form-item">
+          <label htmlFor="gdpr" className="flex form-item align-center">
             <input type="checkbox" name="gdpr" id="gdpr" onChange={toggleAgreed} />
             <span className="flex-grow">
               I agree to the terms and conditions and the privacy policy
             </span>
           </label>
-          <Button title="Register" clickHandler={submitHandler} disabled={!isFormValid} />
+          <Button
+            title="Register"
+            status={userStatus}
+            disabled={!isFormValid}
+            clickHandler={submitHandler}
+          />
         </>
       ) : (
         <Button
           title="Sign In"
           status={userStatus}
-          clickHandler={submitHandler}
           disabled={!isFormValid}
+          clickHandler={submitHandler}
         />
       )}
       {userMessage && <Notification type={NotificationType.Error} message={userMessage} />}

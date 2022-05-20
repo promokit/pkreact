@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
+import { usePsContext } from '../../../../hooks/usePsContext';
 import { currenciesSelector } from '../../../../providers/header/selector';
 import { contextCurrencySelector } from '../../../../providers/context/selectors';
-import { usePsContext } from '../../../../hooks/usePsContext';
 
 import './styles.scss';
 
@@ -14,6 +14,7 @@ const CurrenciesList = () => {
     const li = e.target as HTMLLIElement;
     const id = li.getAttribute('data-id') as string;
     setCurrency(Number(id));
+    setTimeout(() => window.location.reload(), 500);
   };
 
   return (
@@ -23,7 +24,7 @@ const CurrenciesList = () => {
           key={id}
           className={`flex smooth200${currentId === id ? ' active' : ''}`}
           data-id={id}
-          onClick={(e) => changeCurrency(e)}
+          onClick={changeCurrency}
         >
           <strong>{symbol}</strong>
           <span className="flex-grow">{name}</span>

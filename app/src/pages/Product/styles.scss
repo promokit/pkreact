@@ -3,8 +3,17 @@
   & .main-img {
     margin-bottom: 30px;
   }
-  & .product__brand span {
-    color: #aaa;
+  & .product__brand {
+    & span {
+      color: #aaa;
+    }
+    & a {
+      color: #666;
+      text-decoration: none;
+    }
+    & a:hover {
+      color: #444;
+    }
   }
   & .product__images {
     margin-bottom: 35px;

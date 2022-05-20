@@ -16,6 +16,7 @@ const Category = () => {
   const { id } = useParams();
   const { fetchCategoryPage, status, category } = useCategoryPage();
   const { productListingPage } = usePsContext();
+  const isLoading = status === StatusType.Loading;
   const categoryId = Number(id);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Category = () => {
     fetchCategoryPage({ category, categoryId, productListingPage });
   }, [fetchCategoryPage, categoryId, productListingPage]);
 
-  if (status === StatusType.Loading && productListingPage === 1) {
+  if (isLoading && productListingPage === 1) {
     return <ComponentLoader />;
   }
 
@@ -36,8 +37,8 @@ const Category = () => {
     <>
       <CategoryDetails />
       <CategoryProducts />
-      {status === StatusType.Loading && <ComponentLoader />}
-      <CategoryLoadMore />
+      {isLoading && <ComponentLoader />}
+      <CategoryLoadMore disabled={isLoading} />
     </>
   );
 };

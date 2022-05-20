@@ -3,9 +3,13 @@ import { categorySelector } from '../../../../providers/pages/category/selectors
 
 import LoadMore from '../../../product-listing/LoadMore/LoadMore';
 
-const CategoryLoadMore = () => {
+interface ComponentInterface {
+  disabled: boolean;
+}
+
+const CategoryLoadMore = ({ disabled }: ComponentInterface) => {
   const { pagination } = useSelector(categorySelector);
-  return <LoadMore pagination={pagination} />;
+  return <LoadMore pagination={pagination} disabled={disabled} />;
 };
 
 export default CategoryLoadMore;

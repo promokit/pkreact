@@ -18,6 +18,8 @@ const Button = ({
   disabled = false,
   clickHandler
 }: ComponentInterface) => {
+  const isLoading = status === StatusType.Loading;
+  isLoading && (disabled = true);
   return (
     <button
       type={type}
@@ -26,7 +28,7 @@ const Button = ({
       disabled={disabled}
     >
       <span>{title}</span>
-      {status === StatusType.Loading && <ComponentLoader />}
+      {isLoading && <ComponentLoader />}
     </button>
   );
 };
