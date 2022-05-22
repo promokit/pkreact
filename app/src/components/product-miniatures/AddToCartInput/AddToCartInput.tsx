@@ -1,5 +1,5 @@
 import { MouseEvent, ChangeEvent } from 'react';
-import Button from '../../Button/Button';
+import Button from '../../forms/Button/Button';
 
 interface ComponentInterface {
   qty: number;

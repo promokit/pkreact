@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useHeader } from '../../../hooks/useHeader';
 import { NotificationType, StatusType } from '../../../model/enums';
 
-import Logo from '../../header-elements/Logo/Logo';
-import MenuButton from '../../header-elements/menu/MenuButton/MenuButton';
+import Logo from '../../atoms/Logo/Logo';
+import MenuButton from '../../sidebars/menu/MenuButton/MenuButton';
 import Notification from '../../notifications/Notification/Notification';
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
+import ComponentLoader from '../../atoms/loaders/ComponentLoader/ComponentLoader';
 
 import './styles.scss';
 

@@ -3,8 +3,8 @@ import { APP_URL } from '../../constants/constants';
 import { NotificationType } from '../../model/enums';
 
 import Notification from '../../components/notifications/Notification/Notification';
-import PageTitle from '../../components/pages-elements/PageTitle/PageTitle';
-import Button from '../../components/Button/Button';
+import PageTitle from '../../components/atoms/PageTitle/PageTitle';
+import Button from '../../components/forms/Button/Button';
 
 const Error404 = () => {
   const navigate = useNavigate();

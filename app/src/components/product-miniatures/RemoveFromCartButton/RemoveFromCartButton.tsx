@@ -4,8 +4,8 @@ import { usePsContext } from '../../../hooks/usePsContext';
 import { ProductInterface } from '../../../model/interfaces';
 import { addToCartFormDefaults } from '../../../providers/context/state';
 
-import ComponentLoader from '../../loaders/ComponentLoader/ComponentLoader';
-import SvgIcon from '../../SvgIcon/SvgIcon';
+import ComponentLoader from '../../atoms/loaders/ComponentLoader/ComponentLoader';
+import SvgIcon from '../../atoms/SvgIcon/SvgIcon';
 
 interface ComponentInterface {
   product: ProductInterface;

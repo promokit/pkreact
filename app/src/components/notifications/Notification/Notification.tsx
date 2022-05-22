@@ -8,7 +8,9 @@ interface ComponentInterface {
 }
 
 const Notification = ({ type, message }: ComponentInterface) => (
-  <div className={`alert alert-${type}`}>{message}</div>
+  <div role="alert" className={`alert alert-${type}`}>
+    {message}
+  </div>
 );
 
 export default Notification;

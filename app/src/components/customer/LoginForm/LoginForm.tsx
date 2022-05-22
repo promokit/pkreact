@@ -1,13 +1,16 @@
 import { ChangeEvent, MouseEvent, useEffect, useState, useRef } from 'react';
-import { validateInput } from '../../../providers/pages/category/utils';
 import { LoginFormInterface } from '../../../model/interfaces';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { NotificationType } from '../../../model/enums';
+import { validateInput } from '../../../utils/form';
 
 import Notification from '../../notifications/Notification/Notification';
-import Button from '../../Button/Button';
+import Button from '../../forms/Button/Button';
 
 import './styles.scss';
+import Details from '../../atoms/Details/Details';
+import LanguagesList from '../../atoms/LanguagesList/LanguagesList';
+import CurrenciesList from '../../atoms/CurrenciesList/CurrenciesList';
 
 enum FormFields {
   Email = 'email',
@@ -32,8 +35,8 @@ const LoginForm = () => {
   const [password, setPassword] = useState<string>('');
   const [validPassword, setValidPassword] = useState<boolean>(true);
 
-  const toggleRegister = () => setRegisterMode(!isRegister);
   const toggleAgreed = () => setAgreed(!isAgreed);
+  const toggleRegister = () => setRegisterMode(!isRegister);
   const getBorderColor = () => (validEmail ? '#333' : '#ca0101');
 
   const submitHandler = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
@@ -106,10 +109,10 @@ const LoginForm = () => {
     validPassword,
     validFirstName,
     validLastName,
-    isRegister,
     validEmail,
-    firstName,
+    isRegister,
     isAgreed,
+    firstName,
     lastName,
     password,
     email,
@@ -117,93 +120,100 @@ const LoginForm = () => {
   ]);
 
   return (
-    <form className="login-form" role="form">
-      <h4>{isRegister ? 'Create Account' : 'Sign In'}</h4>
-      <input
-        ref={emailRef}
-        id="email"
-        type="email"
-        name={FormFields.Email}
-        value={email}
-        placeholder="my@email.com"
-        onBlur={onBlurHandler}
-        onChange={onChangeHandler}
-        style={{ borderColor: getBorderColor() }}
-        required={true}
-      />
-      {!validEmail && <Notification type={NotificationType.Error} message="Email is not valid" />}
-      {isRegister && (
-        <>
-          <input
-            type="text"
-            name={FormFields.FirstName}
-            value={firstName}
-            placeholder="Alex"
-            onBlur={onBlurHandler}
-            onChange={onChangeHandler}
-            style={{ borderColor: getBorderColor() }}
-            required={true}
-          />
-          {!validFirstName && (
-            <Notification type={NotificationType.Error} message="First name is not valid" />
-          )}
-          <input
-            type="text"
-            name={FormFields.LastName}
-            value={lastName}
-            placeholder="Brown"
-            onBlur={onBlurHandler}
-            onChange={onChangeHandler}
-            style={{ borderColor: getBorderColor() }}
-            required={true}
-          />
-          {!validLastName && (
-            <Notification type={NotificationType.Error} message="Last name is not valid" />
-          )}
-        </>
-      )}
-      <input
-        type="password"
-        name={FormFields.Password}
-        value={password}
-        placeholder="password"
-        onBlur={onBlurHandler}
-        onChange={onChangeHandler}
-        style={{ borderColor: getBorderColor() }}
-        required={true}
-      />
-      {!validPassword && (
-        <Notification type={NotificationType.Error} message="Password is not valid" />
-      )}
-      <label htmlFor="reg" className="flex form-item align-center">
-        <input type="checkbox" name="isregister" id="reg" onChange={toggleRegister} />
-        <span className="flex-grow">I want to register</span>
-      </label>
-      {isRegister ? (
-        <>
-          <label htmlFor="gdpr" className="flex form-item align-center">
-            <input type="checkbox" name="gdpr" id="gdpr" onChange={toggleAgreed} />
-            <span className="flex-grow">
-              I agree to the terms and conditions and the privacy policy
-            </span>
-          </label>
+    <>
+      <form className="login-form">
+        <h4>{isRegister ? 'Create Account' : 'Sign In'}</h4>
+        <input
+          ref={emailRef}
+          id="email"
+          type="email"
+          name={FormFields.Email}
+          value={email}
+          placeholder="my@email.com"
+          onBlur={onBlurHandler}
+          onChange={onChangeHandler}
+          style={{ borderColor: getBorderColor() }}
+          required={true}
+        />
+        {!validEmail && <Notification type={NotificationType.Error} message="Email is not valid" />}
+        {isRegister && (
+          <>
+            <input
+              type="text"
+              name={FormFields.FirstName}
+              value={firstName}
+              placeholder="Alex"
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              style={{ borderColor: getBorderColor() }}
+              required={true}
+            />
+            {!validFirstName && (
+              <Notification type={NotificationType.Error} message="First name is not valid" />
+            )}
+            <input
+              type="text"
+              name={FormFields.LastName}
+              value={lastName}
+              placeholder="Brown"
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              style={{ borderColor: getBorderColor() }}
+              required={true}
+            />
+            {!validLastName && (
+              <Notification type={NotificationType.Error} message="Last name is not valid" />
+            )}
+          </>
+        )}
+        <input
+          type="password"
+          name={FormFields.Password}
+          value={password}
+          placeholder="password"
+          onBlur={onBlurHandler}
+          onChange={onChangeHandler}
+          style={{ borderColor: getBorderColor() }}
+          required={true}
+        />
+        {!validPassword && (
+          <Notification type={NotificationType.Error} message="Password is not valid" />
+        )}
+        <label htmlFor="reg" className="flex form-item align-center">
+          <input type="checkbox" name="isregister" id="reg" onChange={toggleRegister} />
+          <span className="flex-grow">I want to register</span>
+        </label>
+        {isRegister ? (
+          <>
+            <label htmlFor="gdpr" className="flex form-item align-center">
+              <input type="checkbox" name="gdpr" id="gdpr" onChange={toggleAgreed} />
+              <span className="flex-grow">
+                I agree to the terms and conditions and the privacy policy
+              </span>
+            </label>
+            <Button
+              title="Register"
+              status={userStatus}
+              disabled={!isFormValid}
+              clickHandler={submitHandler}
+            />
+          </>
+        ) : (
           <Button
-            title="Register"
+            title="Sign In"
             status={userStatus}
             disabled={!isFormValid}
             clickHandler={submitHandler}
           />
-        </>
-      ) : (
-        <Button
-          title="Sign In"
-          status={userStatus}
-          disabled={!isFormValid}
-          clickHandler={submitHandler}
-        />
-      )}
-      {userMessage && <Notification type={NotificationType.Error} message={userMessage} />}
-    </form>
+        )}
+        {userMessage && <Notification type={NotificationType.Error} message={userMessage} />}
+      </form>
+      <br />
+      <br />
+      <h4>My Settings</h4>
+      <Details title="Languages" content={<LanguagesList />} />
+      <Details title="Currencies" content={<CurrenciesList />} />
+    </>
   );
 };
 

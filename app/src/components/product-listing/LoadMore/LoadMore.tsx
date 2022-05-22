@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { CategoryPageInterface } from '../../../model/interfaces';
 
-import Button from '../../Button/Button';
+import Button from '../../forms/Button/Button';
 
 import './styles.scss';
 

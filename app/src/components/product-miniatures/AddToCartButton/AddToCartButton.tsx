@@ -3,7 +3,7 @@ import { usePsContext } from '../../../hooks/usePsContext';
 import { AddToCartFormInterface } from '../../../model/interfaces';
 import { AddToCartAction, NotificationType, StatusType } from '../../../model/enums';
 
-import Button from '../../Button/Button';
+import Button from '../../forms/Button/Button';
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import Notification from '../../notifications/Notification/Notification';
 

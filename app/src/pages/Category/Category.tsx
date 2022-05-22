@@ -5,7 +5,7 @@ import { useCategoryPage } from '../../hooks/useCategoryPage';
 import { NotificationType, StatusType } from '../../model/enums';
 
 import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import CategoryDetails from '../../components/pages-elements/category-page/CategoryDetails/CategoryDetails';
 import CategoryLoadMore from '../../components/pages-elements/category-page/CategoryLoadMore/CategoryLoadMore';
 import CategoryProducts from '../../components/pages-elements/category-page/CategoryProducts/CategoryProducts';
@@ -21,7 +21,6 @@ const Category = () => {
 
   useEffect(() => {
     if (!category) return;
-
     fetchCategoryPage({ category, categoryId, productListingPage });
   }, [fetchCategoryPage, categoryId, productListingPage]);
 

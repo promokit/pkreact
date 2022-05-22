@@ -3,8 +3,11 @@ import Lottie from 'lottie-react';
 import avatar from '../../../assets/lottie/avatar.json';
 import { usePsContext } from '../../../hooks/usePsContext';
 
-import Button from '../../Button/Button';
-import SvgIcon from '../../SvgIcon/SvgIcon';
+import Button from '../../forms/Button/Button';
+import SvgIcon from '../../atoms/SvgIcon/SvgIcon';
+import Details from '../../atoms/Details/Details';
+import LanguagesList from '../../atoms/LanguagesList/LanguagesList';
+import CurrenciesList from '../../atoms/CurrenciesList/CurrenciesList';
 
 import './styles.scss';
 
@@ -29,6 +32,7 @@ const UserInfo = () => {
           Hi, {firstname} {lastname}
         </strong>
       </div>
+      <h3>My Pages</h3>
       <ul>
         <li>
           <a href="#identity">
@@ -67,6 +71,9 @@ const UserInfo = () => {
           </a>
         </li>
       </ul>
+      <h3>My Settings</h3>
+      <Details title="Languages" content={<LanguagesList />} />
+      <Details title="Currencies" content={<CurrenciesList />} />
       <Button title="Log Out" status={userStatus} clickHandler={submitHandler} />
     </div>
   );

@@ -4,7 +4,7 @@ import { usePsContext } from '../../hooks/usePsContext';
 import { useBrandPage } from '../../hooks/useBrandPage';
 import { NotificationType, StatusType } from '../../model/enums';
 
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import Notification from '../../components/notifications/Notification/Notification';
 import BrandDetails from '../../components/pages-elements/brand-page/BrandDetails/BrandDetails';
 import BrandProducts from '../../components/pages-elements/brand-page/BrandProducts/BrandProducts';

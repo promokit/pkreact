@@ -16,6 +16,10 @@ header {
         padding: 0;
         color: #555;
         cursor: pointer;
+        & svg {
+          width: 25px;
+          height: 17px;
+        }
       }
     }
   }

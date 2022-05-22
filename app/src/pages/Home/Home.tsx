@@ -4,7 +4,7 @@ import { NotificationType, StatusType } from '../../model/enums';
 
 import Banner from '../../components/widgets/Banner/Banner';
 import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import FeaturedProducts from '../../components/widgets/FeaturedProducts/FeaturedProducts';
 
 import './styles.scss';

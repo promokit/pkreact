@@ -4,7 +4,7 @@ import { useProductPage } from '../../hooks/useProductPage';
 import { NotificationType, StatusType } from '../../model/enums';
 
 import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/loaders/ComponentLoader/ComponentLoader';
+import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import ProductPageName from '../../components/pages-elements/product-page/ProductPageName/ProductPageName';
 import ProductPageImage from '../../components/pages-elements/product-page/ProductPageImage/ProductPageImage';
 import ProductPageBrand from '../../components/pages-elements/product-page/ProductPageBrand/ProductPageBrand';
