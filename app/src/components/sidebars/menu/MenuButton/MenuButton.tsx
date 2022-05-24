@@ -8,7 +8,7 @@ import SvgIcon from '../../../atoms/SvgIcon/SvgIcon';
 import MenuSidebarContent from '../MenuSidebarContent/MenuSidebarContent';
 
 const MenuButton = () => {
-  const componentId: string = 'menu-button';
+  const componentId: string = 'menu';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
   const closeSidebar = () => setSidebarState(SidebarStates.Close);
   const openSidebar = () => setSidebarState(SidebarStates.Open);

@@ -1,3 +1,4 @@
+import { subdirs } from '../appconfig.json';
 export enum Subdirs {
   Product = 'product',
   Category = 'category',

@@ -1,0 +1,10 @@
+{
+  "slug": "react",
+  "test": "123",
+  "subdirs": {
+    "product": "product",
+    "category": "category",
+    "manufacturer": "manufacturer",
+    "cmspage": "cms-page"
+  }
+}

@@ -14,11 +14,11 @@ const App = () => {
     getContext();
   }, [getContext]);
 
-  if (status === StatusType.Error) {
-    return <Notification type={NotificationType.Error} message="Unable to load Context" />;
-  }
-
-  return <Page />;
+  return status === StatusType.Error ? (
+    <Notification type={NotificationType.Error} message="Unable to load Context" />
+  ) : (
+    <Page />
+  );
 };
 
 export default App;
