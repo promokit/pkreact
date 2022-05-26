@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { usePsContext } from '../../../hooks/usePsContext';
+import { useCategoryPage } from '../../../hooks/useCategoryPage';
 import { CategoryPageInterface } from '../../../model/interfaces';
 
 import Button from '../../forms/Button/Button';
@@ -12,7 +12,7 @@ interface ComponentInterface {
 }
 
 const LoadMore = ({ pagination: { current_page, pages_count }, disabled }: ComponentInterface) => {
-  const { setPage } = usePsContext();
+  const { setPage } = useCategoryPage();
   const loadMore = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPage(current_page + 1);

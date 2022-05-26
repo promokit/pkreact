@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRestCategoryPage } from '../../../rest/rest';
 import { CategoryPageInterface, RestResponse } from '../../../model/interfaces';
 import { concatenateProductList } from './utils';
@@ -8,6 +8,8 @@ export interface ActionInterface {
   categoryId: number;
   productListingPage: number;
 }
+
+export const setProductListingPage = createAction<number>('categorypage/setpage');
 
 export const fetchCategoryPageAction = createAsyncThunk(
   `categorypage/fetch`,

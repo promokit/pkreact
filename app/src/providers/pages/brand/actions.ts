@@ -1,13 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRestManufacturerPage } from '../../../rest/rest';
-import { BrandPageInterface, RestResponse } from '../../../model/interfaces';
 import { concatenateBrandProductList } from '../category/utils';
+import { BrandPageInterface, RestResponse } from '../../../model/interfaces';
 
 export interface ActionInterface {
   brand: BrandPageInterface;
   brandId: number;
   productListingPage: number;
 }
+
+export const setProductListingPage = createAction<number>('categorypage/setpage');
 
 export const fetchBrandPageAction = createAsyncThunk(
   `brandpage/fetch`,
@@ -23,10 +25,7 @@ export const fetchBrandPageAction = createAsyncThunk(
       }
 
       if (!brand) return psdata;
-
       return concatenateBrandProductList(brand, psdata);
-
-      return psdata;
     } catch (error) {
       return rejectWithValue(error);
     }

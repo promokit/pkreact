@@ -22,9 +22,6 @@ const contextSlice = createSlice({
     setCartMessage(state: ContextDetailsInterface, action) {
       state.cart.message = action.payload;
     },
-    setProductListingPage(state: ContextDetailsInterface, action) {
-      state.productListingPage = action.payload;
-    },
     setLoadedState(state: ContextDetailsInterface, action) {
       state.status = action.payload;
     },
@@ -122,7 +119,6 @@ const contextSlice = createSlice({
       })
 });
 
-export const { setCartState, setCartMessage, setCustomerMessage, setProductListingPage } =
-  contextSlice.actions;
+export const { setCartState, setCartMessage, setCustomerMessage } = contextSlice.actions;
 
 export default contextSlice.reducer;

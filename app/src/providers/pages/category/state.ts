@@ -9,6 +9,7 @@ const defaultImageData: ImageInterface = {
 
 export const initialState: CategoryPageInterface = {
   status: StatusType.Loading,
+  productListingPage: 1,
   active: '1',
   description: 'Default framed poster and vector images, all you need...',
   facets: [],

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { usePsContext } from '../../hooks/usePsContext';
+import { useLocation, useParams } from 'react-router-dom';
 import { useCategoryPage } from '../../hooks/useCategoryPage';
 import { NotificationType, StatusType } from '../../model/enums';
 
@@ -14,8 +13,8 @@ import './styles.scss';
 
 const Category = () => {
   const { id } = useParams();
-  const { fetchCategoryPage, status, category } = useCategoryPage();
-  const { productListingPage } = usePsContext();
+  const { pathname } = useLocation();
+  const { status, category, productListingPage, setPage, fetchCategoryPage } = useCategoryPage();
   const isLoading = status === StatusType.Loading;
   const categoryId = Number(id);
 
@@ -23,6 +22,11 @@ const Category = () => {
     if (!category) return;
     fetchCategoryPage({ category, categoryId, productListingPage });
   }, [fetchCategoryPage, categoryId, productListingPage]);
+
+  useEffect(() => {
+    // reset product listing page if URL was changed
+    productListingPage !== 1 && setPage(1);
+  }, [pathname, setPage]);
 
   if (isLoading && productListingPage === 1) {
     return <ComponentLoader />;

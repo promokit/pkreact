@@ -5,7 +5,6 @@ import routesCollection from '../../../model/routes';
 
 const Main = () => {
   const routes = useRoutes(routesCollection);
-  const { setPage, productListingPage } = usePsContext();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -14,11 +13,6 @@ const Main = () => {
       top: 0,
       behavior: 'smooth'
     });
-
-    // reset product listing page if URL was changed
-    if (productListingPage !== 1) {
-      setPage(1);
-    }
   }, [pathname]);
 
   return (

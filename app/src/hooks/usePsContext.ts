@@ -1,13 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCartFormInterface, LoginFormInterface } from '../model/interfaces';
+import { setCartMessage, setCustomerMessage } from '../providers/context/reducers';
 import {
-  setProductListingPage,
-  setCartMessage,
-  setCustomerMessage
-} from '../providers/context/reducers';
-import {
-  listingPageNumberSelector,
   contextCartSelector,
   messageSelector,
   statusSelector,
@@ -34,7 +29,6 @@ export const usePsContext = () => {
   const userContext = useSelector(contextUserSelector);
   const userStatus = useSelector(contextUserStatusSelector);
   const userMessage = useSelector(contextUserMessageSelector);
-  const productListingPage = useSelector(listingPageNumberSelector);
 
   const getContext = useCallback(() => dispatch(fetchAction()), [dispatch]);
   const setLanguage = useCallback((iso: string) => dispatch(setLanguageAction(iso)), [dispatch]);
@@ -56,10 +50,6 @@ export const usePsContext = () => {
     (cart: AddToCartFormInterface) => dispatch(setCartAction(cart)),
     [dispatch]
   );
-  const setPage = useCallback(
-    (pageNumber: number) => dispatch(setProductListingPage(pageNumber)),
-    [dispatch]
-  );
   const setMessage = useCallback(
     (message: string) => dispatch(setCartMessage(message)),
     [dispatch]
@@ -69,7 +59,6 @@ export const usePsContext = () => {
     status,
     message,
     setCart,
-    setPage,
     setLogin,
     setLogout,
     setMessage,
@@ -81,7 +70,6 @@ export const usePsContext = () => {
     userContext,
     userMessage,
     cartContext,
-    setUserMessage,
-    productListingPage
+    setUserMessage
   };
 };

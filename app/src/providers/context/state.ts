@@ -4,7 +4,6 @@ import { StatusType } from '../../model/enums';
 export const initialState: ContextDetailsInterface = {
   status: StatusType.Loading,
   message: '',
-  productListingPage: 1,
   cart: {
     discounts: [],
     id_address_delivery: '0',

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { subdirs } from '../../../appconfig.json';
+import appConfig from '../../../appconfig.json';
 import { APP_URL } from '../../../constants/constants';
 import { ProductInterface } from '../../../model/interfaces';
 
@@ -16,6 +16,7 @@ interface ComponentInterface {
 
 const ProductMini = ({ product, closeSidebar }: ComponentInterface) => {
   const { id_product, cover, name, cart_quantity, attributes_small } = product;
+  const { subdirs } = appConfig;
   return (
     <div className="product-mini grid" data-id={id_product}>
       <div onClick={closeSidebar}>

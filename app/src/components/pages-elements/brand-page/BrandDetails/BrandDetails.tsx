@@ -6,9 +6,9 @@ const BrandDetails = () => {
 
   return (
     <div className="brand-block">
-      <img src={logo} width={136} height={150} alt={name} className="img" />
-      <h2>{name}</h2>
-      <p>{description}</p>
+      {logo && <img src={logo} width={136} height={150} alt={name} className="img" />}
+      {name && <h2>{name}</h2>}
+      {description && <p>{description}</p>}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { subdirs } from '../../../appconfig.json';
+import appConfig from '../../../appconfig.json';
 import { APP_URL } from '../../../constants/constants';
 import { ImageInterface } from '../../../model/interfaces';
 
@@ -9,7 +9,7 @@ interface ComponentInterface {
 }
 
 const ProductImage = ({ id_product, cover: { url, width, height } }: ComponentInterface) => (
-  <Link to={`${APP_URL}/${subdirs.product}/${id_product}`} className="product-image">
+  <Link to={`${APP_URL}/${appConfig.subdirs.product}/${id_product}`} className="product-image">
     <img
       loading="lazy"
       className="img"

@@ -18,5 +18,6 @@ export const initialState: BrandPageInterface = {
     total_items: 1
   },
   facets: [],
-  status: StatusType.Success
+  status: StatusType.Success,
+  productListingPage: 1
 };

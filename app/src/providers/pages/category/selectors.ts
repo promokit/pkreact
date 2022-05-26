@@ -13,3 +13,8 @@ export const statusSelector = createDraftSafeSelector(
   categorySelector,
   (state: CategoryPageInterface) => state.status
 );
+
+export const productListingPageSelector = createDraftSafeSelector(
+  categorySelector,
+  (state: CategoryPageInterface) => state.productListingPage
+);

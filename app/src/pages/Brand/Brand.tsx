@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { usePsContext } from '../../hooks/usePsContext';
+import { useLocation, useParams } from 'react-router-dom';
 import { useBrandPage } from '../../hooks/useBrandPage';
 import { NotificationType, StatusType } from '../../model/enums';
 
@@ -14,16 +13,20 @@ import './styles.scss';
 
 const Brand = () => {
   const { id } = useParams();
-  const { productListingPage } = usePsContext();
-  const { fetchBrandPage, status, brand } = useBrandPage();
+  const { pathname } = useLocation();
+  const { status, brand, productListingPage, setPage, fetchBrandPage } = useBrandPage();
   const isLoading = status === StatusType.Loading;
   const brandId = Number(id);
 
   useEffect(() => {
     if (!brand) return;
-
     fetchBrandPage({ brandId, brand, productListingPage });
   }, [fetchBrandPage, brandId, productListingPage]);
+
+  useEffect(() => {
+    // reset product listing page if URL was changed
+    productListingPage !== 1 && setPage(1);
+  }, [pathname, setPage]);
 
   if (isLoading && productListingPage === 1) {
     return <ComponentLoader />;

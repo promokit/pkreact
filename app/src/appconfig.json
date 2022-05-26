@@ -1,10 +1,1 @@
-{
-  "slug": "react",
-  "test": "123",
-  "subdirs": {
-    "product": "product",
-    "category": "category",
-    "manufacturer": "manufacturer",
-    "cmspage": "cms-page"
-  }
-}
+{"slug":"react","productsPerPage":"6","subdirs":{"product":"product","category":"category","manufacturer":"manufacturer","cmspage":"cms-page"}}

@@ -1,5 +1,15 @@
 import { StatusType } from './enums';
 
+export interface AppConfigInterface {
+  slug: string;
+  subdirs: {
+    product: string;
+    category: string;
+    manufacturer: string;
+    cmspage: string;
+  };
+}
+
 export interface ActionInterface {
   type: string;
 }
@@ -84,7 +94,6 @@ export interface ContextDetailsInterface {
   customer: ContextCustomerInterface;
   language: ContextLanguageInterface;
   shop: ContextShopInterface;
-  productListingPage: number;
   status: StatusType;
   message?: string;
 }
@@ -362,6 +371,7 @@ export interface CategoryPageInterface {
   sort_orders?: [];
   sort_selected?: string;
   status: StatusType;
+  productListingPage: number;
 }
 
 export interface BrandPageInterface {
@@ -375,6 +385,7 @@ export interface BrandPageInterface {
   sort_orders?: [];
   pagination: Pagination;
   status: StatusType;
+  productListingPage: number;
 }
 
 export interface AddToCartFormInterface {
