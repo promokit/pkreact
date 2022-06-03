@@ -2,6 +2,7 @@ import { StatusType } from '../../../model/enums';
 
 export const initialState = {
   status: StatusType.Loading,
+  accessories: [],
   cover: [],
   category_name: '',
   cover_image: '',

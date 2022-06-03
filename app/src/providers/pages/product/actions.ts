@@ -1,10 +1,13 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getRestProductPage } from '../../../rest/rest';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { ProductPageInterface, RestResponse } from '../../../model/interfaces';
+import { getRestProductPage } from '../../../rest/rest';
 
 export interface ActionInterface {
   productId: number;
 }
+
+export const setProductPriceAction = createAction<string>('productpage/setprice');
+export const setProductQuantityAction = createAction<number>('productpage/setquantity');
 
 export const fetchProductPageAction = createAsyncThunk(
   'productpage/fetch',

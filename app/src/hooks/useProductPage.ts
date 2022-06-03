@@ -1,8 +1,13 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkAppDispatch } from '../providers/store';
-import { ActionInterface, fetchProductPageAction } from '../providers/pages/product/actions';
 import { productSelector, statusSelector } from '../providers/pages/product/selectors';
+import {
+  ActionInterface,
+  fetchProductPageAction,
+  setProductPriceAction,
+  setProductQuantityAction
+} from '../providers/pages/product/actions';
 
 export const useProductPage = () => {
   const dispatch = useDispatch<ThunkAppDispatch>();
@@ -15,9 +20,21 @@ export const useProductPage = () => {
     [dispatch]
   );
 
+  const setProductPrice = useCallback(
+    (arg: string) => dispatch(setProductPriceAction(arg)),
+    [dispatch]
+  );
+
+  const setProductQuantity = useCallback(
+    (arg: number) => dispatch(setProductQuantityAction(arg)),
+    [dispatch]
+  );
+
   return {
     status,
     product,
-    fetchProductPage
+    setProductPrice,
+    fetchProductPage,
+    setProductQuantity
   } as const;
 };

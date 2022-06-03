@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useProductPage } from '../../../../hooks/useProductPage';
 import { AddToCartFormInterface } from '../../../../model/interfaces';
 import { addToCartFormDefaults } from '../../../../providers/context/state';
 import { productSelector } from '../../../../providers/pages/product/selectors';
 
 import ProductPagePrice from '../ProductPagePrice/ProductPagePrice';
+import ProductPageQuantity from '../ProductPageQuantity/ProductPageQuantity';
 import ProductPageAttributes from '../ProductPageAttributes/ProductPageAttributes';
 import AddToCartButton from '../../../product-miniatures/AddToCartButton/AddToCartButton';
 
@@ -16,6 +18,7 @@ interface CombiInterface {
 
 const ProductPageAddToCartForm = () => {
   const { groups, combinations, id_product } = useSelector(productSelector);
+  const { setProductPrice, setProductQuantity } = useProductPage();
 
   const memoQtyChangeHandler = useCallback((qty) => onQtyChangeHandler(qty), []);
 
@@ -57,6 +60,9 @@ const ProductPageAddToCartForm = () => {
       (comb) => comb.combination_code === Object.values(combiCodes).join('_')
     );
 
+    setProductPrice(curentComb.price);
+    setProductQuantity(curentComb.quantity);
+
     updateFormData((prevState) => {
       return {
         ...prevState,
@@ -80,6 +86,7 @@ const ProductPageAddToCartForm = () => {
     <form className="product__add-to-cart">
       <ProductPageAttributes formData={formData} onFormChangeHandler={onFormChangeHandler} />
       <ProductPagePrice />
+      <ProductPageQuantity />
       <AddToCartButton formData={formData} onQtyChangeHandler={memoQtyChangeHandler} />
     </form>
   );

@@ -1,8 +1,12 @@
-.product .product-price {
-  margin-bottom: 20px;
-  font-size: 24px;
-  & del {
-    color: #999;
-    margin-right: 10px;
+.product {
+  & .product__add-to-cart {
+    & .product-price {
+      margin-bottom: 20px;
+      font-size: 24px;
+      & del {
+        color: #999;
+        margin-right: 10px;
+      }
+    }
   }
 }

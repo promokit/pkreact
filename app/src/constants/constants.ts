@@ -7,5 +7,8 @@ export const APP_URL = `${REACT_APP_SUBDIR}${appConfig.slug}`;
 export const APP_CONFIG = {
   search: {
     minSymbolsNumber: 3
+  },
+  productListing: {
+    productsPerPage: appConfig.productsPerPage || 10
   }
 };

@@ -8,7 +8,8 @@ import {
   statusSelector,
   contextUserSelector,
   contextUserStatusSelector,
-  contextUserMessageSelector
+  contextUserMessageSelector,
+  contextLanguageSelector
 } from '../providers/context/selectors';
 import {
   fetchAction,
@@ -29,6 +30,7 @@ export const usePsContext = () => {
   const userContext = useSelector(contextUserSelector);
   const userStatus = useSelector(contextUserStatusSelector);
   const userMessage = useSelector(contextUserMessageSelector);
+  const getLanguage = useSelector(contextLanguageSelector);
 
   const getContext = useCallback(() => dispatch(fetchAction()), [dispatch]);
   const setLanguage = useCallback((iso: string) => dispatch(setLanguageAction(iso)), [dispatch]);
@@ -66,6 +68,7 @@ export const usePsContext = () => {
     setRegister,
     setLanguage,
     setCurrency,
+    getLanguage,
     userStatus,
     userContext,
     userMessage,

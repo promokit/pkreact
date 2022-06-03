@@ -9,6 +9,7 @@ import ProductPageName from '../../components/pages-elements/product-page/Produc
 import ProductPageImage from '../../components/pages-elements/product-page/ProductPageImage/ProductPageImage';
 import ProductPageBrand from '../../components/pages-elements/product-page/ProductPageBrand/ProductPageBrand';
 import ProductPageDetails from '../../components/pages-elements/product-page/ProductPageDetails/ProductPageDetails';
+import ProductPageAccessories from '../../components/pages-elements/product-page/ProductPageAccessories/ProductPageAccessories';
 import ProductPageDescription from '../../components/pages-elements/product-page/ProductPageDescription/ProductPageDescription';
 import ProductPageAddToCartForm from '../../components/pages-elements/product-page/ProductPageAddToCartForm/ProductPageAddToCartForm';
 
@@ -39,6 +40,7 @@ const Product = () => {
       <ProductPageDescription />
       <ProductPageAddToCartForm />
       <ProductPageDetails />
+      <ProductPageAccessories />
     </div>
   );
 };

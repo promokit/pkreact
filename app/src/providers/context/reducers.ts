@@ -41,8 +41,7 @@ const contextSlice = createSlice({
         // return an entirely new state
         return {
           ...action.payload,
-          status: StatusType.Success,
-          productListingPage: state.productListingPage
+          status: StatusType.Success
         };
       })
       .addCase(fetchAction.rejected, (state) => {

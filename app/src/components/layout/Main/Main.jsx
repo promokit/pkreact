@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
-import { usePsContext } from '../../../hooks/usePsContext';
 import routesCollection from '../../../model/routes';
 
 const Main = () => {
@@ -8,11 +7,9 @@ const Main = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    const scrollParams = { top: 0, behavior: 'smooth' };
     // scroll to top after click on a link
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(scrollParams);
   }, [pathname]);
 
   return (

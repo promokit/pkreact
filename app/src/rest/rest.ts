@@ -1,4 +1,4 @@
-import { APP_DIR } from '../constants/constants';
+import { APP_DIR, APP_CONFIG } from '../constants/constants';
 import {
   AddToCartFormInterface,
   BrandPageInterface,
@@ -19,6 +19,10 @@ enum Methods {
   GET = 'GET',
   POST = 'POST'
 }
+
+const {
+  productListing: { productsPerPage }
+} = APP_CONFIG;
 
 const psFetch = async <T>(query: string, body: string = ''): Promise<T> => {
   const restSlug = 'rest';
@@ -56,7 +60,7 @@ export const getRestManufacturerPage = async (
   id: number,
   page: number
 ): Promise<RestResponse<BrandPageInterface>> => {
-  const query: string = `manufacturer?id_manufacturer=${id}&page=${page}&resultsPerPage=4`;
+  const query: string = `manufacturer?id_manufacturer=${id}&page=${page}&resultsPerPage=${productsPerPage}`;
   return await psFetch<RestResponse<BrandPageInterface>>(query);
 };
 
@@ -64,7 +68,7 @@ export const getRestCategoryPage = async (
   id: number,
   page: number
 ): Promise<RestResponse<CategoryPageInterface>> => {
-  const query: string = `categoryProducts?id_category=${id}&page=${page}&resultsPerPage=4`;
+  const query: string = `categoryProducts?id_category=${id}&page=${page}&resultsPerPage=${productsPerPage}`;
   return await psFetch<RestResponse<CategoryPageInterface>>(query);
 };
 
@@ -142,7 +146,7 @@ export const getRestLogout = async (): Promise<RestResponse<ContextCustomerInter
   return await psFetch<RestResponse<ContextCustomerInterface>>(query);
 };
 
-export const getRestAccountInfo = async (): Promise<RestResponse<any>> => {
+export const getRestAccountInfo = async (): Promise<RestResponse<ContextCustomerInterface>> => {
   const query: string = 'accountInfo';
-  return await psFetch<RestResponse<any>>(query);
+  return await psFetch<RestResponse<ContextCustomerInterface>>(query);
 };

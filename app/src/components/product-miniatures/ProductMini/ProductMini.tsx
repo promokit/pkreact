@@ -11,7 +11,7 @@ import './styles.scss';
 
 interface ComponentInterface {
   product: ProductInterface;
-  closeSidebar: () => void;
+  closeSidebar?: () => void;
 }
 
 const ProductMini = ({ product, closeSidebar }: ComponentInterface) => {

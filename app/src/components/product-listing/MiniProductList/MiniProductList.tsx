@@ -5,7 +5,7 @@ import './styles.scss';
 
 interface ComponentInterface {
   products: Array<ProductInterface>;
-  closeSidebar: () => void;
+  closeSidebar?: () => void;
 }
 
 const MiniProductList = ({ products, closeSidebar }: ComponentInterface) => {

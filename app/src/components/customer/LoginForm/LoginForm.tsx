@@ -4,13 +4,13 @@ import { usePsContext } from '../../../hooks/usePsContext';
 import { NotificationType } from '../../../model/enums';
 import { validateInput } from '../../../utils/form';
 
-import Notification from '../../notifications/Notification/Notification';
 import Button from '../../forms/Button/Button';
-
-import './styles.scss';
 import Details from '../../atoms/Details/Details';
 import LanguagesList from '../../atoms/LanguagesList/LanguagesList';
 import CurrenciesList from '../../atoms/CurrenciesList/CurrenciesList';
+import Notification from '../../notifications/Notification/Notification';
+
+import './styles.scss';
 
 enum FormFields {
   Email = 'email',

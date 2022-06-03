@@ -100,7 +100,6 @@ export interface ContextDetailsInterface {
 
 export interface ContextInterface {
   details: ContextDetailsInterface;
-  productListingPage: number;
   status: StatusType;
 }
 
@@ -231,6 +230,7 @@ export interface ProductInterface {
 
 export interface ProductPageInterface {
   status: StatusType;
+  accessories?: Array<ProductInterface>;
   cover: Array<CoverInterface>;
   category_name: string;
   cover_image: string;
