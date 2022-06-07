@@ -1,0 +1,29 @@
+services:
+  _defaults:
+    public: true
+
+  promokit.module.pkreact.form.type.pkreact_form:
+    class: 'Promokit\Module\Pkreact\Form\Type\PkreactType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  promokit.module.pkreact.form.type.pkreact_data_provider:
+    class: 'Promokit\Module\Pkreact\Form\Type\PkreactTypeFormDataProvider'
+    public: true
+    arguments:
+      - '@promokit.module.pkreact.form.type.pkreact_data_configuration'
+
+  promokit.module.pkreact.form.type.pkreact_data_handler:
+    class: 'PrestaShop\PrestaShop\Core\Form\Handler'
+    arguments:
+      - '@form.factory'
+      - '@prestashop.core.hook.dispatcher'
+      - '@promokit.module.pkreact.form.type.pkreact_data_provider'
+      - 'Promokit\Module\Pkreact\Form\Type\PkreactType'
+      - 'PkreactConfiguration'
+
+  promokit.module.pkreact.form.type.pkreact_data_configuration:
+    class: Promokit\Module\Pkreact\Form\Type\PkreactTypeDataConfiguration
+    arguments: ['@prestashop.adapter.legacy.configuration']

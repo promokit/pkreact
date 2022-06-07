@@ -33,7 +33,7 @@ const Search = () => {
     inputRef.current.focus();
   });
 
-  const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     value.length === 0
@@ -81,7 +81,7 @@ const Search = () => {
             type="search"
             name="search"
             placeholder="Search..."
-            onChange={onChangeHandler}
+            onChange={handleChange}
             className="emptyInput"
           />
           <SvgIcon href="search" />

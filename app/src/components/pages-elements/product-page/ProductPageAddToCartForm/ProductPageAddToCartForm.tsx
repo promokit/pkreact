@@ -17,7 +17,7 @@ interface CombiInterface {
 }
 
 const ProductPageAddToCartForm = () => {
-  const { groups, combinations, id_product } = useSelector(productSelector);
+  const { groups, combinations, id_product, quantity } = useSelector(productSelector);
   const { setProductPrice, setProductQuantity } = useProductPage();
 
   const memoQtyChangeHandler = useCallback((qty) => onQtyChangeHandler(qty), []);
@@ -33,7 +33,7 @@ const ProductPageAddToCartForm = () => {
     });
   }, []);
 
-  const onFormChangeHandler = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+  const handleOnFormChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     if (!groups) return;
 
     const combiCodes: CombiInterface = {};
@@ -84,10 +84,14 @@ const ProductPageAddToCartForm = () => {
 
   return (
     <form className="product__add-to-cart">
-      <ProductPageAttributes formData={formData} onFormChangeHandler={onFormChangeHandler} />
+      <ProductPageAttributes formData={formData} onFormChangeHandler={handleOnFormChange} />
       <ProductPagePrice />
       <ProductPageQuantity />
-      <AddToCartButton formData={formData} onQtyChangeHandler={memoQtyChangeHandler} />
+      <AddToCartButton
+        formData={formData}
+        onQtyChangeHandler={memoQtyChangeHandler}
+        disabled={!Boolean(quantity)}
+      />
     </form>
   );
 };

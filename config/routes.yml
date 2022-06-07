@@ -1,0 +1,8 @@
+pkreact_configuration_form:
+  path: /pkreact/configuration
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Promokit\Module\Pkreact\Controller\PkreactConfigurationController::index'
+    # Needed to work with tab system
+    _legacy_controller: AdminPkreactForm
+    _legacy_link: AdminPkreactForm

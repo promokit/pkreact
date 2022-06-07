@@ -14,9 +14,9 @@ export const Page: React.VFC = () => {
     <article>
       <Header
         user={user}
-        onLogin={() => setUser({ name: 'Jane Doe' })}
-        onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: 'Jane Doe' })}
+        loginHandler={() => setUser({ name: 'Jane Doe' })}
+        logoutHandler={() => setUser(undefined)}
+        createAccountHandler={() => setUser({ name: 'Jane Doe' })}
       />
 
       <section>

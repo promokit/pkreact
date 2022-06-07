@@ -7,7 +7,7 @@ const ProductPageQuantity = () => {
   const { quantity } = useSelector(productSelector);
   return (
     <div className="product-qty">
-      <span>Quantity:</span> {quantity}
+      <span>Availability:</span> {quantity > 0 ? `${quantity} items` : 'Out of stock'}
     </div>
   );
 };

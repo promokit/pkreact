@@ -5,12 +5,13 @@ import appConfig from '../appconfig.json';
 import Cms from '../pages/Cms/Cms';
 import Home from '../pages/Home/Home';
 import Brand from '../pages/Brand/Brand';
+import Contact from '../pages/Contact/Contact';
 import Product from '../pages/Product/Product';
 import Category from '../pages/Category/Category';
 import Error404 from '../pages/Error404/Error404';
 
 const {
-  subdirs: { product, category, manufacturer, cmspage }
+  subdirs: { product, category, manufacturer, cmspage, contact }
 } = appConfig;
 
 const routesCollection: RouteObject[] = [
@@ -19,6 +20,7 @@ const routesCollection: RouteObject[] = [
   { path: `${APP_URL}/${category}/:id`, element: <Category /> },
   { path: `${APP_URL}/${manufacturer}/:id`, element: <Brand /> },
   { path: `${APP_URL}/${cmspage}/:id`, element: <Cms /> },
+  { path: `${APP_URL}/${contact}`, element: <Contact /> },
   { path: '*', element: <Error404 /> }
 ];
 

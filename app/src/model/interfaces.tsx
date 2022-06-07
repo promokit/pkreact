@@ -414,3 +414,39 @@ export interface LoginFormInterface {
   firstName?: string;
   lastName?: string;
 }
+
+export interface ContactPageContactsInterface {
+  id_contact: string;
+  email: string;
+  customer_service: string;
+  position: string;
+  id_shop: string;
+  id_lang: string;
+  name: string;
+  description: string;
+}
+export interface ContactPageInterface {
+  status: StatusType;
+  token: string;
+  contact: {
+    contacts: Array<ContactPageContactsInterface>;
+    message: string;
+    allow_file_upload?: boolean;
+    orders: Array<{
+      id_order: string;
+      reference: string;
+      id_shop_group: string;
+      id_shop: string;
+      id_carrier: string;
+      id_lang: string;
+      id_customer: string;
+      id_cart: string;
+    }>;
+    email: string;
+  };
+}
+
+export interface SelectInterface {
+  id: string;
+  name: string;
+}

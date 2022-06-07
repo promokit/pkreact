@@ -16,7 +16,7 @@ const render = (component: any) => reactRender(<Provider store={store}>{componen
 
 describe('<AddToCartButton />', () => {
   test('should render Add to cart button', () => {
-    render(<AddToCartButton formData={formData} onQtyChangeHandler={jest.fn()} />);
+    render(<AddToCartButton formData={formData} onQtyChangeHandler={jest.fn()} disabled={false} />);
     const button = screen.getByRole('button', { name: /add to cart/i });
     expect(button).toBeInTheDocument();
   });

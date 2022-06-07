@@ -5,6 +5,7 @@ import {
   CartInterface,
   CategoryPageInterface,
   CmsPageInterface,
+  ContactPageInterface,
   ContextCustomerInterface,
   ContextInterface,
   HeaderInterface,
@@ -149,4 +150,9 @@ export const getRestLogout = async (): Promise<RestResponse<ContextCustomerInter
 export const getRestAccountInfo = async (): Promise<RestResponse<ContextCustomerInterface>> => {
   const query: string = 'accountInfo';
   return await psFetch<RestResponse<ContextCustomerInterface>>(query);
+};
+
+export const getRestContactPage = async (): Promise<RestResponse<ContactPageInterface>> => {
+  const query: string = 'contact';
+  return await psFetch<RestResponse<ContactPageInterface>>(query);
 };

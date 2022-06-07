@@ -6,9 +6,9 @@ import { validateInput } from '../../../utils/form';
 
 import Button from '../../forms/Button/Button';
 import Details from '../../atoms/Details/Details';
+import Notification from '../../notifications/Notification/Notification';
 import LanguagesList from '../../atoms/LanguagesList/LanguagesList';
 import CurrenciesList from '../../atoms/CurrenciesList/CurrenciesList';
-import Notification from '../../notifications/Notification/Notification';
 
 import './styles.scss';
 
@@ -45,7 +45,7 @@ const LoginForm = () => {
     isRegister ? setRegister(formData) : setLogin(formData);
   };
 
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handlerOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const target = event.target;
     const { value, name } = target;
     switch (name) {
@@ -66,7 +66,7 @@ const LoginForm = () => {
     }
   };
 
-  const onBlurHandler = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handlerOnBlur = (event: ChangeEvent<HTMLInputElement>): void => {
     const target = event.target;
     const { type, value, name } = target;
     switch (name) {
@@ -130,8 +130,8 @@ const LoginForm = () => {
           name={FormFields.Email}
           value={email}
           placeholder="my@email.com"
-          onBlur={onBlurHandler}
-          onChange={onChangeHandler}
+          onBlur={handlerOnBlur}
+          onChange={handlerOnChange}
           style={{ borderColor: getBorderColor() }}
           required={true}
         />
@@ -143,8 +143,8 @@ const LoginForm = () => {
               name={FormFields.FirstName}
               value={firstName}
               placeholder="Alex"
-              onBlur={onBlurHandler}
-              onChange={onChangeHandler}
+              onBlur={handlerOnBlur}
+              onChange={handlerOnChange}
               style={{ borderColor: getBorderColor() }}
               required={true}
             />
@@ -156,8 +156,8 @@ const LoginForm = () => {
               name={FormFields.LastName}
               value={lastName}
               placeholder="Brown"
-              onBlur={onBlurHandler}
-              onChange={onChangeHandler}
+              onBlur={handlerOnBlur}
+              onChange={handlerOnChange}
               style={{ borderColor: getBorderColor() }}
               required={true}
             />
@@ -171,8 +171,8 @@ const LoginForm = () => {
           name={FormFields.Password}
           value={password}
           placeholder="password"
-          onBlur={onBlurHandler}
-          onChange={onChangeHandler}
+          onBlur={handlerOnBlur}
+          onChange={handlerOnChange}
           style={{ borderColor: getBorderColor() }}
           required={true}
         />

@@ -27,7 +27,7 @@ const Footer = () => (
               <Link to={`${APP_URL}/cms-page/5`}>Secure payment</Link>
             </li>
             <li>
-              <Link to={`${APP_URL}/cms-page/6`}>Kontakt z nami</Link>
+              <Link to={`${APP_URL}/contact-us`}>Kontakt z nami</Link>
             </li>
             <li>
               <Link to={`${APP_URL}/cms-page/7`}>Mapa strony</Link>

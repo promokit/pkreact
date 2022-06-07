@@ -13,12 +13,14 @@ interface ComponentInterface {
   formData: AddToCartFormInterface;
   onQtyChangeHandler: (value: number) => void;
   showInput?: boolean;
+  disabled: boolean;
 }
 
 const AddToCartButton = ({
   formData,
   onQtyChangeHandler,
-  showInput = true
+  showInput = true,
+  disabled = false
 }: ComponentInterface) => {
   const {
     cartContext: { status, message },
@@ -46,7 +48,7 @@ const AddToCartButton = ({
     <div className="add-to-cart">
       <div className="flex">
         {showInput && <AddToCartInput qty={qty} setQty={setQty} />}
-        <Button title="Add to Cart" status={status} clickHandler={addToCart} />
+        <Button title="Add to Cart" status={status} clickHandler={addToCart} disabled={disabled} />
       </div>
       {status === StatusType.Error && (
         <Notification type={NotificationType.Error} message="Unable to Add to Cart" />
