@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { useContact } from '../../hooks/useContact';
 import { useFormValidator } from '../../hooks/useFormValidator';
@@ -14,12 +14,9 @@ import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/Comp
 import './styles.scss';
 
 const Contact = () => {
-  const { fetchContactPage, status, contacts, contactPage } = useContact();
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const { fetchContactPage, submitContactForm, status, contacts, contactPage } = useContact();
   const { validateForm } = useFormValidator();
-
-  useEffect(() => {
-    fetchContactPage();
-  }, [fetchContactPage]);
 
   const emailInput = useInput({
     type: 'email',
@@ -32,7 +29,13 @@ const Contact = () => {
     placeholder: 'A message'
   });
 
-  const isFormValid = validateForm({ emailInput, messageInput });
+  useEffect(() => {
+    fetchContactPage();
+  }, [fetchContactPage]);
+
+  useEffect(() => {
+    setIsFormValid(validateForm({ emailInput, messageInput }));
+  }, [emailInput, messageInput, validateForm]);
 
   if (status === StatusType.Loading) {
     return <ComponentLoader />;

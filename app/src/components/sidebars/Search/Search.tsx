@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { getRestSearch } from '../../../rest/rest';
 import { SidebarStates } from '../../../model/enums';
 import { APP_CONFIG } from '../../../constants/constants';
-import { getRestSearch } from '../../../rest/rest';
 import { NotificationInterface, ProductInterface } from '../../../model/interfaces';
 
 import Notifications, { defaultMessages } from '../../notifications/Notifications/Notifications';
 import MiniProductList from '../../product-listing/MiniProductList/MiniProductList';
 import ComponentLoader from '../../atoms/loaders/ComponentLoader/ComponentLoader';
-import Sidebar from '../Sidebar/Sidebar';
 import SvgIcon from '../../atoms/SvgIcon/SvgIcon';
+import Sidebar from '../Sidebar/Sidebar';
 
 import './styles.scss';
 

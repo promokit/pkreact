@@ -5,7 +5,10 @@ import {
   contactPageStatusSelector,
   contactsSelector
 } from '../providers/pages/contact/selectors';
-import { fetchContactPageAction } from '../providers/pages/contact/actions';
+import {
+  fetchContactPageAction,
+  submitContactFormAction
+} from '../providers/pages/contact/actions';
 import { ContactPageContactsInterface, SelectInterface } from '../model/interfaces';
 
 const selectAdapter = (contactsList: ContactPageContactsInterface[]): SelectInterface[] => {
@@ -32,10 +35,16 @@ export const useContact = () => {
     return dispatch(fetchContactPageAction());
   }, [dispatch]);
 
+  const submitContactForm = useCallback(
+    (arg: any) => dispatch(submitContactFormAction()),
+    [dispatch]
+  );
+
   return {
     status,
     contacts,
     contactPage,
-    fetchContactPage
+    fetchContactPage,
+    submitContactForm
   } as const;
 };

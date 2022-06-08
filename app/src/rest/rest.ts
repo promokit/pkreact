@@ -156,3 +156,8 @@ export const getRestContactPage = async (): Promise<RestResponse<ContactPageInte
   const query: string = 'contact';
   return await psFetch<RestResponse<ContactPageInterface>>(query);
 };
+
+export const submitContactForm = async (args: any): Promise<RestResponse<ContactPageInterface>> => {
+  const query: string = 'contact';
+  return await psFetch<RestResponse<ContactPageInterface>>(query, JSON.stringify(args));
+};

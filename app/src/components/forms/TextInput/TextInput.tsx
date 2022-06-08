@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { NotificationType } from '../../../model/enums';
-import Notification from '../../notifications/Notification/Notification';
 
 import './styles.scss';
 
@@ -22,13 +20,13 @@ const TextInput = ({ input, label = '', description = '' }: ComponentInterface) 
       {label && <label htmlFor={name}>{label}</label>}
       {type === 'textarea' ? (
         <textarea
-          ref={reference}
           id={name}
           name={name}
-          defaultValue={value}
+          ref={reference}
           onBlur={handleBlur}
-          placeholder={placeholder}
+          defaultValue={value}
           onChange={handleChange}
+          placeholder={placeholder}
           className={isValid ? '' : 'invalid'}
         ></textarea>
       ) : (
@@ -45,7 +43,6 @@ const TextInput = ({ input, label = '', description = '' }: ComponentInterface) 
         />
       )}
       {description && <small>{description}</small>}
-      {/* {!isValid && <Notification type={NotificationType.Error} message="Field is not valid" />} */}
     </div>
   );
 };

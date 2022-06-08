@@ -12,9 +12,9 @@ const useInput = ({ type, name, initialValue = '', placeholder = '' }: HookInter
   const [isValid, setInputValid] = useState<boolean>(true);
   const [value, setValue] = useState<string>(initialValue);
   const reference = useRef<HTMLInputElement | null>(null);
-  const resetInput = () => setValue(initialValue);
   const { validateInput } = useFormValidator();
 
+  const resetInput = () => setValue(initialValue);
   const handleBlur = () => setInputValid(validateInput({ value, type }));
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -34,4 +34,5 @@ const useInput = ({ type, name, initialValue = '', placeholder = '' }: HookInter
     handleChange
   };
 };
+
 export default useInput;

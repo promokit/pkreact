@@ -1,7 +1,7 @@
 import { ActionReducerMapBuilder, createReducer } from '@reduxjs/toolkit';
+import { fetchContactPageAction, submitContactFormAction } from './actions';
 import { ContactPageInterface } from '../../../model/interfaces';
 import { StatusType } from '../../../model/enums';
-import { fetchContactPageAction } from './actions';
 import { initialState } from './state';
 
 const contactpageReducer = createReducer(
@@ -15,6 +15,15 @@ const contactpageReducer = createReducer(
         return action.payload;
       })
       .addCase(fetchContactPageAction.rejected, (state) => {
+        state.status = StatusType.Error;
+      })
+      .addCase(submitContactFormAction.pending, (state) => {
+        state.status = StatusType.Loading;
+      })
+      .addCase(submitContactFormAction.fulfilled, (_, action) => {
+        return action.payload;
+      })
+      .addCase(submitContactFormAction.rejected, (state) => {
         state.status = StatusType.Error;
       })
 );
