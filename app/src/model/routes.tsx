@@ -1,27 +1,77 @@
+import { Suspense, lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { APP_URL } from '../constants/constants';
 import appConfig from '../appconfig.json';
 
-import Cms from '../pages/Cms/Cms';
-import Home from '../pages/Home/Home';
-import Brand from '../pages/Brand/Brand';
-import Contact from '../pages/Contact/Contact';
-import Product from '../pages/Product/Product';
-import Category from '../pages/Category/Category';
-import Error404 from '../pages/Error404/Error404';
+const Cms = lazy(() => import('../pages/Cms/Cms'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Brand = lazy(() => import('../pages/Brand/Brand'));
+const Contact = lazy(() => import('../pages/Contact/Contact'));
+const Product = lazy(() => import('../pages/Product/Product'));
+const Category = lazy(() => import('../pages/Category/Category'));
+const Error404 = lazy(() => import('../pages/Error404/Error404'));
 
 const {
   subdirs: { product, category, manufacturer, cmspage, contact }
 } = appConfig;
 
 const routesCollection: RouteObject[] = [
-  { path: `${APP_URL}`, element: <Home /> },
-  { path: `${APP_URL}/${product}/:id`, element: <Product /> },
-  { path: `${APP_URL}/${category}/:id`, element: <Category /> },
-  { path: `${APP_URL}/${manufacturer}/:id`, element: <Brand /> },
-  { path: `${APP_URL}/${cmspage}/:id`, element: <Cms /> },
-  { path: `${APP_URL}/${contact}`, element: <Contact /> },
-  { path: '*', element: <Error404 /> }
+  {
+    path: `${APP_URL}`,
+    element: (
+      <Suspense fallback={null}>
+        <Home />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${product}/:id`,
+    element: (
+      <Suspense fallback={null}>
+        <Product />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${category}/:id`,
+    element: (
+      <Suspense fallback={null}>
+        <Category />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${manufacturer}/:id`,
+    element: (
+      <Suspense fallback={null}>
+        <Brand />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${cmspage}/:id`,
+    element: (
+      <Suspense fallback={null}>
+        <Cms />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${contact}`,
+    element: (
+      <Suspense fallback={null}>
+        <Contact />
+      </Suspense>
+    )
+  },
+  {
+    path: '*',
+    element: (
+      <Suspense fallback={null}>
+        <Error404 />
+      </Suspense>
+    )
+  }
 ];
 
 export default routesCollection;

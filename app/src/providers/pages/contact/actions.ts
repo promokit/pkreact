@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getRestContactPage, submitContactForm } from '../../../rest/rest';
-import { ContactPageInterface, RestResponse } from '../../../model/interfaces';
+import {
+  ContactFormInterface,
+  ContactPageInterface,
+  RestResponse
+} from '../../../model/interfaces';
 
 export const fetchContactPageAction = createAsyncThunk(
   'contactpage/fetch',
@@ -21,7 +25,7 @@ export const fetchContactPageAction = createAsyncThunk(
 
 export const submitContactFormAction = createAsyncThunk(
   'contactpage/submitform',
-  async (arg, { rejectWithValue }) => {
+  async (arg: ContactFormInterface, { rejectWithValue }) => {
     try {
       const response: RestResponse<ContactPageInterface> = await submitContactForm(arg);
 

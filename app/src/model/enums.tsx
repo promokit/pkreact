@@ -19,3 +19,8 @@ export enum StatusType {
   Loading = 'loading',
   Success = 'success'
 }
+
+export enum ErrorBoundaryMode {
+  Silent = 'silent',
+  Verbal = 'verbal'
+}

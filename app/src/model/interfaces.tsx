@@ -443,7 +443,16 @@ export interface ContactPageInterface {
       id_cart: string;
     }>;
     email: string;
+    formLoader: StatusType;
   };
+}
+
+export interface ContactFormInterface {
+  from: string;
+  message: string;
+  id_contact: string;
+  token: string;
+  url: string;
 }
 
 export interface SelectInterface {

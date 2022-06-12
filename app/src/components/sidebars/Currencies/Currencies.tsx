@@ -7,7 +7,7 @@ import CurrenciesList from '../../atoms/CurrenciesList/CurrenciesList';
 
 import './styles.scss';
 
-const CurrenciesButton = () => {
+const Currencies = () => {
   const componentId: string = 'currencies';
   const [sidebarState, setSidebarState] = useState<SidebarStates>(SidebarStates.Close);
   const closeSidebar = () => setSidebarState(SidebarStates.Close);
@@ -30,4 +30,4 @@ const CurrenciesButton = () => {
   );
 };
 
-export default CurrenciesButton;
+export default Currencies;

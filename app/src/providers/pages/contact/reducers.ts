@@ -18,13 +18,13 @@ const contactpageReducer = createReducer(
         state.status = StatusType.Error;
       })
       .addCase(submitContactFormAction.pending, (state) => {
-        state.status = StatusType.Loading;
+        state.contact.formLoader = StatusType.Loading;
       })
       .addCase(submitContactFormAction.fulfilled, (_, action) => {
         return action.payload;
       })
       .addCase(submitContactFormAction.rejected, (state) => {
-        state.status = StatusType.Error;
+        state.contact.formLoader = StatusType.Error;
       })
 );
 

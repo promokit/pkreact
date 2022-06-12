@@ -7,7 +7,8 @@ export const initialState: ContactPageInterface = {
     message: '',
     allow_file_upload: true,
     orders: [],
-    email: ''
+    email: '',
+    formLoader: StatusType.Success
   },
   status: StatusType.Loading,
   token: ''

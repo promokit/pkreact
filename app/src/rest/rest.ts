@@ -5,6 +5,7 @@ import {
   CartInterface,
   CategoryPageInterface,
   CmsPageInterface,
+  ContactFormInterface,
   ContactPageInterface,
   ContextCustomerInterface,
   ContextInterface,
@@ -157,7 +158,9 @@ export const getRestContactPage = async (): Promise<RestResponse<ContactPageInte
   return await psFetch<RestResponse<ContactPageInterface>>(query);
 };
 
-export const submitContactForm = async (args: any): Promise<RestResponse<ContactPageInterface>> => {
+export const submitContactForm = async (
+  args: ContactFormInterface
+): Promise<RestResponse<ContactPageInterface>> => {
   const query: string = 'contact';
   return await psFetch<RestResponse<ContactPageInterface>>(query, JSON.stringify(args));
 };

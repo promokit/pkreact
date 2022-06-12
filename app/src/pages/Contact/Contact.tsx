@@ -18,14 +18,24 @@ const Contact = () => {
   const { fetchContactPage, submitContactForm, status, contacts, contactPage } = useContact();
   const { validateForm } = useFormValidator();
 
+  const submitHandler = () => {
+    submitContactForm({
+      from: emailInput.value,
+      message: messageInput.value,
+      token: contactPage.token,
+      id_contact: '1',
+      url: ''
+    });
+  };
+
   const emailInput = useInput({
     type: 'email',
-    name: 'useremail',
+    name: 'from',
     placeholder: 'name@email.com'
   });
   const messageInput = useInput({
     type: 'textarea',
-    name: 'usermessage',
+    name: 'message',
     placeholder: 'A message'
   });
 
@@ -52,9 +62,7 @@ const Contact = () => {
         <Select selectName="id_contact" selectOptions={contacts} />
         <TextInput input={emailInput} />
         <TextInput input={messageInput} />
-        <Button title="Send" disabled={!isFormValid} clickHandler={() => {}} />
-        <input type="hidden" name="token" value={contactPage.token} />
-        <input type="hidden" name="url" value="" />
+        <Button title="Send" disabled={!isFormValid} clickHandler={submitHandler} />
       </form>
     </>
   );
