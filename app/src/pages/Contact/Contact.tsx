@@ -15,14 +15,15 @@ import './styles.scss';
 
 const Contact = () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const { fetchContactPage, submitContactForm, status, contacts, contactPage } = useContact();
+  const { fetchContactPage, submitContactForm, status, contacts, token, formMessage, formStatus } =
+    useContact();
   const { validateForm } = useFormValidator();
 
   const submitHandler = () => {
     submitContactForm({
       from: emailInput.value,
       message: messageInput.value,
-      token: contactPage.token,
+      token: token,
       id_contact: '1',
       url: ''
     });
@@ -62,8 +63,19 @@ const Contact = () => {
         <Select selectName="id_contact" selectOptions={contacts} />
         <TextInput input={emailInput} />
         <TextInput input={messageInput} />
-        <Button title="Send" disabled={!isFormValid} clickHandler={submitHandler} />
+        <Button
+          title="Send"
+          disabled={!isFormValid}
+          status={formStatus}
+          clickHandler={submitHandler}
+        />
       </form>
+      {formMessage.success.length > 0 && (
+        <Notification type={NotificationType.Info} message={formMessage.success} />
+      )}
+      {formMessage.errors.length > 0 && (
+        <Notification type={NotificationType.Error} message={formMessage.errors} />
+      )}
     </>
   );
 };

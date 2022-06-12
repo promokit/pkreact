@@ -3,12 +3,16 @@ import { StatusType } from '../../../model/enums';
 
 export const initialState: ContactPageInterface = {
   contact: {
-    contacts: [],
-    message: '',
-    allow_file_upload: true,
-    orders: [],
     email: '',
-    formLoader: StatusType.Success
+    message: '',
+    orders: [],
+    contacts: [],
+    allow_file_upload: true,
+    formStatus: StatusType.Success,
+    formMessage: {
+      errors: '',
+      success: ''
+    }
   },
   status: StatusType.Loading,
   token: ''

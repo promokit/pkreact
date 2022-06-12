@@ -425,6 +425,12 @@ export interface ContactPageContactsInterface {
   name: string;
   description: string;
 }
+
+export interface ContactFormResponseInterface {
+  errors: string;
+  success: string;
+}
+
 export interface ContactPageInterface {
   status: StatusType;
   token: string;
@@ -443,7 +449,8 @@ export interface ContactPageInterface {
       id_cart: string;
     }>;
     email: string;
-    formLoader: StatusType;
+    formStatus: StatusType;
+    formMessage: ContactFormResponseInterface;
   };
 }
 

@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   contactPageSelector,
   contactPageStatusSelector,
-  contactsSelector
+  contactsSelector,
+  formMessageSelector,
+  formStatusSelector,
+  tokenSelector
 } from '../providers/pages/contact/selectors';
 import {
   fetchContactPageAction,
@@ -33,6 +36,9 @@ export const useContact = () => {
   const status = useSelector(contactPageStatusSelector);
   const contactPage = useSelector(contactPageSelector);
   const contactsList = useSelector(contactsSelector);
+  const formMessage = useSelector(formMessageSelector);
+  const formStatus = useSelector(formStatusSelector);
+  const token = useSelector(tokenSelector);
   const contacts = selectAdapter(Object.values(contactsList));
 
   const fetchContactPage = useCallback(() => dispatch(fetchContactPageAction()), [dispatch]);
@@ -43,8 +49,11 @@ export const useContact = () => {
   );
 
   return {
+    token,
     status,
     contacts,
+    formStatus,
+    formMessage,
     contactPage,
     fetchContactPage,
     submitContactForm
