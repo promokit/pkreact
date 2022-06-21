@@ -4,11 +4,18 @@ import { useFormValidator } from './useFormValidator';
 interface HookInterface {
   type: string;
   name: string;
+  isRequired?: boolean;
   placeholder?: string;
   initialValue?: string;
 }
 
-const useInput = ({ type, name, initialValue = '', placeholder = '' }: HookInterface) => {
+const useInput = ({
+  type,
+  name,
+  initialValue = '',
+  placeholder = '',
+  isRequired = true
+}: HookInterface) => {
   const [isValid, setInputValid] = useState<boolean>(true);
   const [value, setValue] = useState<string>(initialValue);
   const reference = useRef<HTMLInputElement | null>(null);
@@ -25,13 +32,14 @@ const useInput = ({ type, name, initialValue = '', placeholder = '' }: HookInter
     name,
     value,
     isValid,
-    placeholder,
     reference,
+    isRequired,
+    placeholder,
     setValue,
     resetInput,
-    setInputValid,
     handleBlur,
-    handleChange
+    handleChange,
+    setInputValid
   };
 };
 

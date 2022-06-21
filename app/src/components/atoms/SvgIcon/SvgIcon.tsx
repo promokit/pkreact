@@ -5,7 +5,7 @@ interface ComponentInterface {
 }
 
 const SvgIcon = ({ href }: ComponentInterface) => (
-  <svg className="svgic">
+  <svg className="svgic" role="img" aria-label={`${href} svg image`}>
     <use href={`${process.env.REACT_APP_BUILD_PATH}${Icon}#${href}`}></use>
   </svg>
 );

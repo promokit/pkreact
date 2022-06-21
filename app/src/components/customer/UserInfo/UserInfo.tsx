@@ -74,7 +74,7 @@ const UserInfo = () => {
       <h3>My Settings</h3>
       <Details title="Languages" content={<LanguagesList />} />
       <Details title="Currencies" content={<CurrenciesList />} />
-      <Button title="Log Out" status={userStatus} clickHandler={submitHandler} />
+      <Button title="Sign Out" status={userStatus} clickHandler={submitHandler} />
     </div>
   );
 };

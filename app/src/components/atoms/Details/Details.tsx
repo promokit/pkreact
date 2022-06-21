@@ -1,6 +1,6 @@
 import './styles.scss';
 
-interface ComponentInterface {
+export interface ComponentInterface {
   title: string;
   content: React.ReactNode;
 }

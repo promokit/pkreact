@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import './styles.scss';
 
 interface ComponentInterface {
@@ -10,10 +8,6 @@ interface ComponentInterface {
 
 const TextInput = ({ input, label = '', description = '' }: ComponentInterface) => {
   const { name, type, value, placeholder, isValid, reference, handleChange, handleBlur } = input;
-
-  useEffect(() => {
-    reference.current?.focus();
-  }, [reference]);
 
   return (
     <div className="form-field">

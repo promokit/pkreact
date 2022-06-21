@@ -1,6 +1,6 @@
 import './styles.scss';
 
-interface ComponentInterface {
+export interface ComponentInterface {
   name: string;
   description?: string;
   changeHandler: () => void;

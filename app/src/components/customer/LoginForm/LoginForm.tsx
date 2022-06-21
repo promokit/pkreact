@@ -44,6 +44,10 @@ const LoginForm = () => {
   });
 
   useEffect(() => {
+    emailInput.reference.current?.focus();
+  }, []);
+
+  useEffect(() => {
     const formFields = isRegister
       ? { emailInput, firstNameInput, lastNameInput, passwordInput }
       : { emailInput, passwordInput };

@@ -89,6 +89,7 @@ main {
 }
 .button:disabled {
   background: #999;
+  cursor: not-allowed;
 }
 .svgic {
   display: inline-block;

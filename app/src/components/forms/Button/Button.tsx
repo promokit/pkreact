@@ -3,7 +3,7 @@ import { StatusType } from '../../../model/enums';
 
 import ComponentLoader from '../../atoms/loaders/ComponentLoader/ComponentLoader';
 
-interface ComponentInterface {
+export interface ComponentInterface {
   title: string;
   status?: StatusType;
   type?: 'button' | 'submit' | 'reset';

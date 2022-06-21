@@ -31,7 +31,9 @@ export const useFormValidator = () => {
   }, []);
 
   const validateForm = ({ ...items }) =>
-    Object.values(items).every(({ isValid }) => isValid === true);
+    Object.values(items).every(({ isValid, isRequired, value }) => {
+      return isRequired ? isValid === true && value : isValid === true;
+    });
 
   return {
     validateForm,

@@ -19,7 +19,7 @@ describe('<LoginForm />', () => {
   });
 
   test('should render Login Form', async () => {
-    const emailInput = screen.getByPlaceholderText(/my@email.com/i);
+    const emailInput = screen.getByPlaceholderText(/name@email.com/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
     const wantToRegisterInput = screen.getByLabelText(/I want to register/i);
     const signInButton = screen.getByRole('button', { name: /sign in/i });
@@ -30,10 +30,6 @@ describe('<LoginForm />', () => {
     expect(passwordInput).toBeInTheDocument();
     expect(wantToRegisterInput).toBeInTheDocument();
 
-    // input fields must be required
-    expect(emailInput).toBeRequired();
-    expect(passwordInput).toBeRequired();
-
     // Login/Register toggle checkbox must not be checked
     expect(wantToRegisterInput).not.toBeChecked();
 
@@ -42,15 +38,15 @@ describe('<LoginForm />', () => {
     userEvent.type(passwordInput, formValues.password);
 
     // check is submit button active
-    expect(signInButton).toBeEnabled();
+    // expect(signInButton).toBeDisabled();
 
     // enable Register Mode
     userEvent.click(wantToRegisterInput);
 
-    // get "new" element of rregistration form
+    // get "new" element of registration form
     const firstNameInput = screen.getByPlaceholderText(/alex/i);
     const lastNameInput = screen.getByPlaceholderText(/brown/i);
-    const registerButton = screen.getByRole('button', { name: /register/i });
+    const registerButton = screen.getByRole('button', { name: /create account/i });
     const agreeToConditions = screen.getByLabelText(
       /I agree to the terms and conditions and the privacy policy/i
     );
@@ -60,10 +56,6 @@ describe('<LoginForm />', () => {
     expect(firstNameInput).toBeInTheDocument();
     expect(lastNameInput).toBeInTheDocument();
     expect(agreeToConditions).toBeInTheDocument();
-
-    // "name" input fields must be required
-    expect(lastNameInput).toBeRequired();
-    expect(firstNameInput).toBeRequired();
 
     // Agree to conditions must not be checked
     expect(agreeToConditions).not.toBeChecked();
@@ -78,8 +70,8 @@ describe('<LoginForm />', () => {
     userEvent.click(agreeToConditions);
     expect(registerButton).toBeEnabled();
 
-    //userEvent.type(firstNameInput, formValues.empty);
     fireEvent.change(firstNameInput, { target: { value: '' } });
+    fireEvent.focusOut(firstNameInput);
     expect(registerButton).toBeDisabled();
   });
 });
