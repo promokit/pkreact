@@ -3,6 +3,8 @@ import { StatusType } from '../../../model/enums';
 
 import ComponentLoader from '../../atoms/loaders/ComponentLoader/ComponentLoader';
 
+import './styles.scss';
+
 export interface ComponentInterface {
   title: string;
   status?: StatusType;

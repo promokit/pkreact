@@ -14,6 +14,11 @@ export interface ActionInterface {
   type: string;
 }
 
+interface FormResponseInterface {
+  errors: string;
+  success: string;
+}
+
 interface ContextCurrencyInterface {
   active: string;
   id: number;
@@ -87,6 +92,15 @@ export interface ContextCustomerInterface {
   };
 }
 
+export interface SubscriptionInterface {
+  formStatus: StatusType;
+  formMessage: string;
+}
+
+export interface SubscribeInterface {
+  email: string;
+}
+
 export interface ContextDetailsInterface {
   cart: CartInterface;
   cookie: object;
@@ -94,6 +108,7 @@ export interface ContextDetailsInterface {
   customer: ContextCustomerInterface;
   language: ContextLanguageInterface;
   shop: ContextShopInterface;
+  subscription: SubscriptionInterface;
   status: StatusType;
   message?: string;
 }
@@ -426,11 +441,6 @@ export interface ContactPageContactsInterface {
   description: string;
 }
 
-export interface ContactFormResponseInterface {
-  errors: string;
-  success: string;
-}
-
 export interface ContactPageInterface {
   status: StatusType;
   token: string;
@@ -450,7 +460,7 @@ export interface ContactPageInterface {
     }>;
     email: string;
     formStatus: StatusType;
-    formMessage: ContactFormResponseInterface;
+    formMessage: FormResponseInterface;
   };
 }
 

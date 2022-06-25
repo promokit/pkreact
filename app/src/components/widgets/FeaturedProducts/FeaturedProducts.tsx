@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { homePageFeaturedSelector } from '../../../providers/pages/home/selectors';
 
 import ProductNormal from '../../product-miniatures/ProductNormal/ProductNormal';
-import WidgetTitle from '../WidgetTitle/WidgetTitle';
+import WithWidgetWrapper from '../../../hocs/WithWidgetWrapper/WithWidgetWrapper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -12,8 +12,7 @@ import 'swiper/css/navigation';
 const FeaturedProducts = () => {
   const featuredProductsList = useSelector(homePageFeaturedSelector);
   return (
-    <>
-      <WidgetTitle title="Featured Products" />
+    <WithWidgetWrapper id="featured-products" title="Featured Products">
       <Swiper spaceBetween={20} slidesPerView={2} navigation modules={[Navigation]}>
         {featuredProductsList.map((product) => (
           <SwiperSlide key={product.id_product}>
@@ -21,7 +20,7 @@ const FeaturedProducts = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </WithWidgetWrapper>
   );
 };
 

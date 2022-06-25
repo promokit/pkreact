@@ -98,11 +98,15 @@ export const initialState: ContextDetailsInterface = {
     id_category: '1',
     id_shop_group: '1',
     id_shop_list: [],
-    name: 'Alysum',
+    name: '',
     physical_uri: '/',
     theme: {},
-    theme_name: 'alysum',
+    theme_name: '',
     virtual_uri: ''
+  },
+  subscription: {
+    formStatus: StatusType.Loading,
+    formMessage: ''
   }
 };
 

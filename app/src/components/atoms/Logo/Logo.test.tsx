@@ -5,8 +5,6 @@ import { render as reactRender, screen } from '@testing-library/react';
 
 import Logo from './Logo';
 
-//store.header.logo.url = '/logo.png';
-
 describe('<Logo />', () => {
   beforeEach(() => {
     const render = (component: any) =>

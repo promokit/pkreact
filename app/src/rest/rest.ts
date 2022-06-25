@@ -1,20 +1,22 @@
 import { APP_DIR, APP_CONFIG } from '../constants/constants';
 import {
-  AddToCartFormInterface,
-  BrandPageInterface,
+  RestResponse,
   CartInterface,
-  CategoryPageInterface,
-  CmsPageInterface,
-  ContactFormInterface,
-  ContactPageInterface,
-  ContextCustomerInterface,
-  ContextInterface,
   HeaderInterface,
+  ContextInterface,
+  CmsPageInterface,
   HomePageInterface,
   LoginFormInterface,
+  SubscribeInterface,
+  BrandPageInterface,
+  ContactFormInterface,
+  ContactPageInterface,
   ProductPageInterface,
-  RestResponse,
-  SearchResultsInterface
+  SubscriptionInterface,
+  CategoryPageInterface,
+  AddToCartFormInterface,
+  SearchResultsInterface,
+  ContextCustomerInterface
 } from '../model/interfaces';
 
 enum Methods {
@@ -163,4 +165,11 @@ export const submitContactForm = async (
 ): Promise<RestResponse<ContactPageInterface>> => {
   const query: string = 'contact';
   return await psFetch<RestResponse<ContactPageInterface>>(query, JSON.stringify(args));
+};
+
+export const submitSubscriptionForm = async (
+  args: SubscribeInterface
+): Promise<RestResponse<SubscriptionInterface>> => {
+  const query: string = 'emailsubscription?email=' + args.email;
+  return await psFetch<RestResponse<SubscriptionInterface>>(query);
 };

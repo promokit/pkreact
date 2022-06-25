@@ -47,3 +47,8 @@ export const messageSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.message || ''
 );
+
+export const subscriptionSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.subscription
+);

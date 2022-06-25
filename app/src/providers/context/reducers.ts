@@ -1,4 +1,7 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
+import { ContextDetailsInterface } from '../../model/interfaces';
+import { StatusType } from '../../model/enums';
+import { initialState } from './state';
 import {
   fetchAction,
   setLoginAction,
@@ -6,11 +9,9 @@ import {
   setCurrencyAction,
   setLanguageAction,
   setLogoutAction,
-  setRegisterAction
+  setRegisterAction,
+  subscribeAction
 } from './actions';
-import { ContextDetailsInterface } from '../../model/interfaces';
-import { StatusType } from '../../model/enums';
-import { initialState } from './state';
 
 const contextSlice = createSlice({
   name: 'context',
@@ -115,6 +116,16 @@ const contextSlice = createSlice({
       })
       .addCase(setRegisterAction.rejected, (state) => {
         state.customer.status = StatusType.Error;
+      })
+      .addCase(subscribeAction.pending, (state) => {
+        state.subscription.formStatus = StatusType.Loading;
+      })
+      .addCase(subscribeAction.fulfilled, (state, action) => {
+        state.subscription = action.payload;
+      })
+      .addCase(subscribeAction.rejected, (state, action) => {
+        state.subscription = action.payload;
+        state.subscription.formStatus = StatusType.Error;
       })
 });
 

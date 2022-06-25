@@ -3,9 +3,10 @@ import { useHomePage } from '../../hooks/useHomePage';
 import { NotificationType, StatusType } from '../../model/enums';
 
 import Banner from '../../components/widgets/Banner/Banner';
+import Newsletter from '../../components/widgets/Newsletter/Newsletter';
 import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import FeaturedProducts from '../../components/widgets/FeaturedProducts/FeaturedProducts';
+import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 
 import './styles.scss';
 
@@ -21,13 +22,14 @@ const Home = () => {
   }
 
   if (status === StatusType.Error) {
-    return <Notification type={NotificationType.Error} message="Category doesn't loaded" />;
+    return <Notification type={NotificationType.Error} message="Home page doesn't loaded" />;
   }
 
   return (
     <>
       <Banner />
       <FeaturedProducts />
+      <Newsletter />
     </>
   );
 };

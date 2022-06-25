@@ -3,7 +3,9 @@ import {
   AddToCartFormInterface,
   ContextInterface,
   LoginFormInterface,
-  RestResponse
+  RestResponse,
+  SubscribeInterface,
+  SubscriptionInterface
 } from '../../model/interfaces';
 import {
   getRestCartUpdate,
@@ -12,7 +14,8 @@ import {
   getRestLogout,
   getRestRegister,
   setCurrency,
-  setLanguage
+  setLanguage,
+  submitSubscriptionForm
 } from '../../rest/rest';
 
 export const fetchAction = createAsyncThunk(`context/fetch`, async (_, { rejectWithValue }) => {
@@ -142,6 +145,23 @@ export const getRegisterAction = createAsyncThunk(
       }
 
       return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const subscribeAction = createAsyncThunk(
+  'context/subscribe',
+  async (arg: SubscribeInterface, { rejectWithValue }) => {
+    try {
+      const response: RestResponse<SubscriptionInterface> = await submitSubscriptionForm(arg);
+
+      if (!response.success) {
+        throw new Error(response.psdata.formMessage);
+      }
+
+      return response.psdata;
     } catch (error) {
       return rejectWithValue(error);
     }
