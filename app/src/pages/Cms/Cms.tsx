@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCmsPage } from '../../hooks/useCmsPage';
-import { NotificationType, StatusType } from '../../model/enums';
 
-import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
+import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 
 import './styles.scss';
 
@@ -18,18 +16,12 @@ const Cms = () => {
     fetchCmsPage({ cmsId });
   }, [fetchCmsPage, cmsId]);
 
-  if (status === StatusType.Loading) {
-    return <ComponentLoader />;
-  }
-
-  if (status === StatusType.Error || !cms) {
-    return <Notification type={NotificationType.Error} message="Unable to load CMS Page" />;
-  }
-
   return (
-    <div className="cms-page">
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
-    </div>
+    <PageWrapper status={status}>
+      <div className="cms-page">
+        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+      </div>
+    </PageWrapper>
   );
 };
 

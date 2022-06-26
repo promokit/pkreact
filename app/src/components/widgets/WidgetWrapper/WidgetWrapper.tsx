@@ -1,4 +1,4 @@
-import WidgetTitle from '../../components/atoms/WidgetTitle/WidgetTitle';
+import WidgetTitle from '../../atoms/WidgetTitle/WidgetTitle';
 
 import './styles.scss';
 
@@ -8,7 +8,7 @@ interface ComponentInterface {
   children: React.ReactChild;
 }
 
-const WithWidgetWrapper = ({ id, title, children }: ComponentInterface) => {
+const WidgetWrapper = ({ id, title = '', children }: ComponentInterface) => {
   return (
     <div className={`widget widget-${id}`}>
       {title && <WidgetTitle title={title} />}
@@ -17,4 +17,4 @@ const WithWidgetWrapper = ({ id, title, children }: ComponentInterface) => {
   );
 };
 
-export default WithWidgetWrapper;
+export default WidgetWrapper;

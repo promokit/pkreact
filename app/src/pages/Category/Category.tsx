@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useCategoryPage } from '../../hooks/useCategoryPage';
-import { NotificationType, StatusType } from '../../model/enums';
+import { StatusType } from '../../model/enums';
 
-import Notification from '../../components/notifications/Notification/Notification';
+import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import CategoryDetails from '../../components/pages-elements/category-page/CategoryDetails/CategoryDetails';
 import CategoryLoadMore from '../../components/pages-elements/category-page/CategoryLoadMore/CategoryLoadMore';
@@ -28,21 +28,15 @@ const Category = () => {
     productListingPage !== 1 && setPage(1);
   }, [pathname, setPage]);
 
-  if (isLoading && productListingPage === 1) {
-    return <ComponentLoader />;
-  }
-
-  if (status === StatusType.Error || !category) {
-    return <Notification type={NotificationType.Error} message="Unable to load category" />;
-  }
-
   return (
-    <>
-      <CategoryDetails />
-      <CategoryProducts />
-      {isLoading && <ComponentLoader />}
-      <CategoryLoadMore disabled={isLoading} />
-    </>
+    <PageWrapper status={status} loaderCondition={productListingPage === 1}>
+      <>
+        <CategoryDetails />
+        <CategoryProducts />
+        {isLoading && <ComponentLoader />}
+        <CategoryLoadMore disabled={isLoading} />
+      </>
+    </PageWrapper>
   );
 };
 

@@ -6,8 +6,8 @@ import { NotificationType, StatusType } from '../../../model/enums';
 
 import Button from '../../forms/Button/Button';
 import TextInput from '../../forms/TextInput/TextInput';
+import WidgetWrapper from '../WidgetWrapper/WidgetWrapper';
 import Notification from '../../notifications/Notification/Notification';
-import WithWidgetWrapper from '../../../hocs/WithWidgetWrapper/WithWidgetWrapper';
 
 import './styles.scss';
 
@@ -37,7 +37,7 @@ const Newsletter = () => {
   }, [formStatus]);
 
   return (
-    <WithWidgetWrapper id="newsletter" title="Newsletter">
+    <WidgetWrapper id="newsletter" title="Newsletter">
       <>
         <form className="form flex">
           <TextInput input={emailInput} />
@@ -55,7 +55,7 @@ const Newsletter = () => {
           />
         )}
       </>
-    </WithWidgetWrapper>
+    </WidgetWrapper>
   );
 };
 

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { useContact } from '../../hooks/useContact';
+import { NotificationType } from '../../model/enums';
 import { useFormValidator } from '../../hooks/useFormValidator';
-import { NotificationType, StatusType } from '../../model/enums';
 
 import Select from '../../components/forms/Select/Select';
 import Button from '../../components/forms/Button/Button';
 import TextInput from '../../components/forms/TextInput/TextInput';
 import PageTitle from '../../components/atoms/PageTitle/PageTitle';
+import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 import Notification from '../../components/notifications/Notification/Notification';
-import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 
 import './styles.scss';
 
@@ -48,35 +48,29 @@ const Contact = () => {
     setIsFormValid(validateForm({ emailInput, messageInput }));
   }, [emailInput, messageInput, validateForm]);
 
-  if (status === StatusType.Loading) {
-    return <ComponentLoader />;
-  }
-
-  if (status === StatusType.Error) {
-    return <Notification type={NotificationType.Error} message="Unable to load Contact Page" />;
-  }
-
   return (
-    <>
-      <PageTitle title="Contact us" />
-      <form className="contact-form">
-        <Select selectName="id_contact" selectOptions={contacts} />
-        <TextInput input={emailInput} />
-        <TextInput input={messageInput} />
-        <Button
-          title="Send"
-          disabled={!isFormValid}
-          status={formStatus}
-          clickHandler={submitHandler}
-        />
-      </form>
-      {formMessage.success.length > 0 && (
-        <Notification type={NotificationType.Info} message={formMessage.success} />
-      )}
-      {formMessage.errors.length > 0 && (
-        <Notification type={NotificationType.Error} message={formMessage.errors} />
-      )}
-    </>
+    <PageWrapper status={status}>
+      <>
+        <PageTitle title="Contact us" />
+        <form className="contact-form">
+          <Select selectName="id_contact" selectOptions={contacts} />
+          <TextInput input={emailInput} />
+          <TextInput input={messageInput} />
+          <Button
+            title="Send"
+            disabled={!isFormValid}
+            status={formStatus}
+            clickHandler={submitHandler}
+          />
+        </form>
+        {formMessage.success.length > 0 && (
+          <Notification type={NotificationType.Info} message={formMessage.success} />
+        )}
+        {formMessage.errors.length > 0 && (
+          <Notification type={NotificationType.Error} message={formMessage.errors} />
+        )}
+      </>
+    </PageWrapper>
   );
 };
 

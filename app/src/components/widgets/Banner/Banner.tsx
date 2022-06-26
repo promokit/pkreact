@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { homePageBannerSelector } from '../../../providers/pages/home/selectors';
 
-import WithWidgetWrapper from '../../../hocs/WithWidgetWrapper/WithWidgetWrapper';
+import WidgetWrapper from '../WidgetWrapper/WidgetWrapper';
 
 const Banner = () => {
   const { image_url } = useSelector(homePageBannerSelector);
 
   return (
-    <WithWidgetWrapper id="banner">
+    <WidgetWrapper id="banner">
       <img
         className="img"
         src={image_url}
@@ -16,7 +16,7 @@ const Banner = () => {
         alt="banner-img"
         loading="lazy"
       />
-    </WithWidgetWrapper>
+    </WidgetWrapper>
   );
 };
 

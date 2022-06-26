@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useBrandPage } from '../../hooks/useBrandPage';
-import { NotificationType, StatusType } from '../../model/enums';
+import { StatusType } from '../../model/enums';
 
-import Notification from '../../components/notifications/Notification/Notification';
+import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 import ComponentLoader from '../../components/atoms/loaders/ComponentLoader/ComponentLoader';
 import BrandDetails from '../../components/pages-elements/brand-page/BrandDetails/BrandDetails';
 import BrandProducts from '../../components/pages-elements/brand-page/BrandProducts/BrandProducts';
@@ -28,21 +28,15 @@ const Brand = () => {
     productListingPage !== 1 && setPage(1);
   }, [pathname, setPage]);
 
-  if (isLoading && productListingPage === 1) {
-    return <ComponentLoader />;
-  }
-
-  if (status === StatusType.Error || !brand) {
-    return <Notification type={NotificationType.Error} message="Unable to load brand page" />;
-  }
-
   return (
-    <>
-      <BrandDetails />
-      <BrandProducts />
-      {isLoading && <ComponentLoader />}
-      <BrandLoadMore disabled={isLoading} />
-    </>
+    <PageWrapper status={status} loaderCondition={productListingPage === 1}>
+      <>
+        <BrandDetails />
+        <BrandProducts />
+        {isLoading && <ComponentLoader />}
+        <BrandLoadMore disabled={isLoading} />
+      </>
+    </PageWrapper>
   );
 };
 
