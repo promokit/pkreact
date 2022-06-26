@@ -1,4 +1,10 @@
-# Getting Started with Prestashop React App
+# Promokit React SPA
+
+## About the App
+
+This is a Single Page Application developed using React. It works like a lightweight front office of Prestashop eCommerce shops. Currently the App is designed for mobile devices only and development is still in progress.
+
+## Getting Started
 
 1. Install REST API module https://github.com/promokit/prestashop-rest using native prestashop module installation system
 2. Install current Prestashop React App module
