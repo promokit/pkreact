@@ -5,6 +5,9 @@ const { REACT_APP_DIR, REACT_APP_SUBDIR } = process.env;
 export const APP_DIR = `${REACT_APP_DIR}${REACT_APP_SUBDIR}` as string;
 export const APP_URL = `${REACT_APP_SUBDIR}${appConfig.slug}` as string;
 export const APP_CONFIG = {
+  notifications: {
+    timeout: 5000 // ms
+  },
   search: {
     minSymbolsNumber: 3
   },

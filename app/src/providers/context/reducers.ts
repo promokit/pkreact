@@ -20,7 +20,8 @@ const contextSlice = createSlice({
     setCartState(state: ContextDetailsInterface, action) {
       state.cart = action.payload;
     },
-    setCartMessage(state: ContextDetailsInterface, action) {
+    setCartMessageAction(state: ContextDetailsInterface, action) {
+      console.log(action.payload);
       state.cart.message = action.payload;
     },
     setLoadedState(state: ContextDetailsInterface, action) {
@@ -31,6 +32,9 @@ const contextSlice = createSlice({
     },
     setCustomerMessage(state: ContextDetailsInterface, action) {
       state.customer.message = action.payload;
+    },
+    setSubscriptionMessageAction(state: ContextDetailsInterface, action) {
+      state.subscription.formMessage = action.payload;
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<any>) =>
@@ -129,6 +133,11 @@ const contextSlice = createSlice({
       })
 });
 
-export const { setCartState, setCartMessage, setCustomerMessage } = contextSlice.actions;
+export const {
+  setCartState,
+  setCustomerMessage,
+  setCartMessageAction,
+  setSubscriptionMessageAction
+} = contextSlice.actions;
 
 export default contextSlice.reducer;

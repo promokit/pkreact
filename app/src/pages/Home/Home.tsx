@@ -3,6 +3,7 @@ import { useHomePage } from '../../hooks/useHomePage';
 
 import Banner from '../../components/widgets/Banner/Banner';
 import Newsletter from '../../components/widgets/Newsletter/Newsletter';
+import ImageSlider from '../../components/widgets/ImageSlider/ImageSlider';
 import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 import FeaturedProducts from '../../components/widgets/FeaturedProducts/FeaturedProducts';
 
@@ -18,8 +19,9 @@ const Home = () => {
   return (
     <PageWrapper status={status}>
       <>
-        <Banner />
+        <ImageSlider />
         <FeaturedProducts />
+        <Banner />
         <Newsletter />
       </>
     </PageWrapper>

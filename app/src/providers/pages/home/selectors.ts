@@ -9,6 +9,11 @@ export const homePageBannerSelector = createDraftSafeSelector(
   (state: HomePageInterface) => state.banner
 );
 
+export const homePageSliderSelector = createDraftSafeSelector(
+  homePageSelector,
+  (state: HomePageInterface) => state.slides
+);
+
 export const homePageFeaturedSelector = createDraftSafeSelector(
   homePageSelector,
   (state: HomePageInterface) => state.featuredProductsList

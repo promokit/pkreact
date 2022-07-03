@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SubscribeInterface } from '../model/interfaces';
 import { subscribeAction } from '../providers/context/actions';
 import { subscriptionSelector } from '../providers/context/selectors';
+import { usePsContext } from './usePsContext';
 
 export const useSubscription = () => {
   const dispatch = useDispatch();
+  const { setSubscriptionMessage } = usePsContext();
   const { formStatus, formMessage } = useSelector(subscriptionSelector);
 
   const submitSubscription = useCallback(
@@ -16,6 +18,7 @@ export const useSubscription = () => {
   return {
     formStatus,
     formMessage,
-    submitSubscription
+    submitSubscription,
+    setSubscriptionMessage
   } as const;
 };

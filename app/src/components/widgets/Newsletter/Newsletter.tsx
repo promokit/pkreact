@@ -4,6 +4,7 @@ import { useSubscription } from '../../../hooks/useSubscription';
 import { useFormValidator } from '../../../hooks/useFormValidator';
 import { NotificationType, StatusType } from '../../../model/enums';
 
+import withTimer from '../../hocs/withTimer/withTimer';
 import Button from '../../forms/Button/Button';
 import TextInput from '../../forms/TextInput/TextInput';
 import WidgetWrapper from '../WidgetWrapper/WidgetWrapper';
@@ -11,9 +12,11 @@ import Notification from '../../notifications/Notification/Notification';
 
 import './styles.scss';
 
+const NotificationWithTimer = withTimer(Notification);
+
 const Newsletter = () => {
   const { validateForm } = useFormValidator();
-  const { submitSubscription, formMessage, formStatus } = useSubscription();
+  const { submitSubscription, formMessage, formStatus, setSubscriptionMessage } = useSubscription();
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   const emailInput = useInput({
@@ -49,9 +52,10 @@ const Newsletter = () => {
           />
         </form>
         {formMessage && (
-          <Notification
-            type={formStatus === StatusType.Error ? NotificationType.Error : NotificationType.Info}
+          <NotificationWithTimer
+            type={NotificationType.Error}
             message={formMessage}
+            setMessage={setSubscriptionMessage}
           />
         )}
       </>

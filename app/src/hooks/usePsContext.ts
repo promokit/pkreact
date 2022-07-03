@@ -1,7 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCartFormInterface, LoginFormInterface } from '../model/interfaces';
-import { setCartMessage, setCustomerMessage } from '../providers/context/reducers';
+import {
+  setCartMessageAction,
+  setCustomerMessage,
+  setSubscriptionMessageAction
+} from '../providers/context/reducers';
 import {
   contextCartSelector,
   messageSelector,
@@ -28,9 +32,9 @@ export const usePsContext = () => {
   const message = useSelector(messageSelector);
   const cartContext = useSelector(contextCartSelector);
   const userContext = useSelector(contextUserSelector);
+  const getLanguage = useSelector(contextLanguageSelector);
   const userStatus = useSelector(contextUserStatusSelector);
   const userMessage = useSelector(contextUserMessageSelector);
-  const getLanguage = useSelector(contextLanguageSelector);
 
   const getContext = useCallback(() => dispatch(fetchAction()), [dispatch]);
   const setLanguage = useCallback((iso: string) => dispatch(setLanguageAction(iso)), [dispatch]);
@@ -48,12 +52,16 @@ export const usePsContext = () => {
     (message: string) => dispatch(setCustomerMessage(message)),
     [dispatch]
   );
+  const setSubscriptionMessage = useCallback(
+    (message: string) => dispatch(setSubscriptionMessageAction(message)),
+    [dispatch]
+  );
   const setCart = useCallback(
     (cart: AddToCartFormInterface) => dispatch(setCartAction(cart)),
     [dispatch]
   );
-  const setMessage = useCallback(
-    (message: string) => dispatch(setCartMessage(message)),
+  const setCartMessage = useCallback(
+    (message: string) => dispatch(setCartMessageAction(message)),
     [dispatch]
   );
 
@@ -63,7 +71,6 @@ export const usePsContext = () => {
     setCart,
     setLogin,
     setLogout,
-    setMessage,
     getContext,
     setRegister,
     setLanguage,
@@ -73,6 +80,8 @@ export const usePsContext = () => {
     userContext,
     userMessage,
     cartContext,
-    setUserMessage
+    setCartMessage,
+    setUserMessage,
+    setSubscriptionMessage
   };
 };

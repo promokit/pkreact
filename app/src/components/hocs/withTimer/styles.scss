@@ -1,0 +1,30 @@
+.notification-timeout {
+  & .alert {
+    position: relative;
+    animation-duration: inherit;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: rgba(0, 0, 0, 0.15);
+      transform-origin: 0;
+    }
+    &:after {
+      transform: scaleX(0);
+      animation-name: slidein;
+      animation-duration: inherit;
+    }
+  }
+}
+@keyframes slidein {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

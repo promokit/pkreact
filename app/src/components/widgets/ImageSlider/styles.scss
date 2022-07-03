@@ -1,0 +1,17 @@
+.widget-image-slider {
+  & h3 {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1.25em;
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 0;
+  }
+  & .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    transform: scale(0.8);
+  }
+}

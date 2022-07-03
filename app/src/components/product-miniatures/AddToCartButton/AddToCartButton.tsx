@@ -6,6 +6,7 @@ import { AddToCartAction, NotificationType, StatusType } from '../../../model/en
 import Button from '../../forms/Button/Button';
 import AddToCartInput from '../AddToCartInput/AddToCartInput';
 import Notification from '../../notifications/Notification/Notification';
+import withTimer from '../../hocs/withTimer/withTimer';
 
 import './styles.scss';
 
@@ -16,6 +17,8 @@ interface ComponentInterface {
   disabled: boolean;
 }
 
+const NotificationWithTimer = withTimer(Notification);
+
 const AddToCartButton = ({
   formData,
   onQtyChangeHandler,
@@ -24,16 +27,11 @@ const AddToCartButton = ({
 }: ComponentInterface) => {
   const {
     cartContext: { status, message },
-    setMessage,
+    setCartMessage,
     setCart
   } = usePsContext();
 
   const [qty, setQty] = useState<number>(1);
-  const delay = 5000; // ms
-
-  useEffect(() => {
-    setTimeout(() => setMessage(''), delay);
-  }, [message, setMessage]);
 
   useEffect(() => {
     onQtyChangeHandler(qty);
@@ -53,7 +51,14 @@ const AddToCartButton = ({
       {status === StatusType.Error && (
         <Notification type={NotificationType.Error} message="Unable to Add to Cart" />
       )}
-      {message && <Notification type={NotificationType.Info} message={message} />}
+      {/* {message && <Notification type={NotificationType.Info} message={message} />} */}
+      {message && (
+        <NotificationWithTimer
+          type={NotificationType.Info}
+          message={message}
+          setMessage={setCartMessage}
+        />
+      )}
     </div>
   );
 };

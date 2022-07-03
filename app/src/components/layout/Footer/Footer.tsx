@@ -18,7 +18,7 @@ const Footer = () => (
               <Link to={`${APP_URL}/cms-page/2`}>Legal Notice</Link>
             </li>
             <li>
-              <Link to={`${APP_URL}/cms-page/3`}>Terms and condit</Link>
+              <Link to={`${APP_URL}/cms-page/3`}>Terms and condition</Link>
             </li>
             <li>
               <Link to={`${APP_URL}/cms-page/4`}>About us</Link>
@@ -28,12 +28,6 @@ const Footer = () => (
             </li>
             <li>
               <Link to={`${APP_URL}/contact-us`}>Kontakt z nami</Link>
-            </li>
-            <li>
-              <Link to={`${APP_URL}/cms-page/7`}>Mapa strony</Link>
-            </li>
-            <li>
-              <Link to={`${APP_URL}/cms-page/8`}>Sklepy</Link>
             </li>
           </ul>
         </div>

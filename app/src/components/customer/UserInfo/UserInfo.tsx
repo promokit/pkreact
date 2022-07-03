@@ -71,9 +71,9 @@ const UserInfo = () => {
           </a>
         </li>
       </ul>
-      <h3>My Settings</h3>
-      <Details title="Languages" content={<LanguagesList />} />
-      <Details title="Currencies" content={<CurrenciesList />} />
+      {/* <h3>My Settings</h3> */}
+      {/* <Details title="Languages" content={<LanguagesList />} /> */}
+      {/* <Details title="Currencies" content={<CurrenciesList />} /> */}
       <Button title="Sign Out" status={userStatus} clickHandler={submitHandler} />
     </div>
   );

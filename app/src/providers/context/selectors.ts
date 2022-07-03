@@ -28,6 +28,7 @@ export const contextUserStatusSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.customer.status
 );
+
 export const contextUserMessageSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.customer.message
@@ -51,4 +52,9 @@ export const messageSelector = createDraftSafeSelector(
 export const subscriptionSelector = createDraftSafeSelector(
   contextSelector,
   (state: Ctx) => state.subscription
+);
+
+export const subscriptionMessageSelector = createDraftSafeSelector(
+  contextSelector,
+  (state: Ctx) => state.subscription.formMessage
 );
