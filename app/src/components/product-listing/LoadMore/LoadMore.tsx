@@ -1,5 +1,4 @@
 import { MouseEvent } from 'react';
-import { useCategoryPage } from '../../../hooks/useCategoryPage';
 import { CategoryPageInterface } from '../../../model/interfaces';
 
 import Button from '../../forms/Button/Button';
@@ -7,12 +6,16 @@ import Button from '../../forms/Button/Button';
 import './styles.scss';
 
 interface ComponentInterface {
+  setPage: (num: number) => void;
   pagination: CategoryPageInterface['pagination'];
   disabled: boolean;
 }
 
-const LoadMore = ({ pagination: { current_page, pages_count }, disabled }: ComponentInterface) => {
-  const { setPage } = useCategoryPage();
+const LoadMore = ({
+  pagination: { current_page, pages_count },
+  disabled,
+  setPage
+}: ComponentInterface) => {
   const loadMore = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPage(current_page + 1);

@@ -10,9 +10,10 @@ const Contact = lazy(() => import('../pages/Contact/Contact'));
 const Product = lazy(() => import('../pages/Product/Product'));
 const Category = lazy(() => import('../pages/Category/Category'));
 const Error404 = lazy(() => import('../pages/Error404/Error404'));
+const NewProducts = lazy(() => import('../pages/NewProducts/NewProducts'));
 
 const {
-  subdirs: { product, category, manufacturer, cmspage, contact }
+  subdirs: { product, category, manufacturer, cmspage, contact, newproducts }
 } = appConfig;
 
 const routesCollection: RouteObject[] = [
@@ -61,6 +62,14 @@ const routesCollection: RouteObject[] = [
     element: (
       <Suspense fallback={null}>
         <Contact />
+      </Suspense>
+    )
+  },
+  {
+    path: `${APP_URL}/${newproducts}`,
+    element: (
+      <Suspense fallback={null}>
+        <NewProducts />
       </Suspense>
     )
   },

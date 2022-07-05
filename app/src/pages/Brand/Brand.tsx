@@ -15,7 +15,6 @@ const Brand = () => {
   const { id } = useParams();
   const { pathname } = useLocation();
   const { status, brand, productListingPage, setPage, fetchBrandPage } = useBrandPage();
-  const isLoading = status === StatusType.Loading;
   const brandId = Number(id);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ const Brand = () => {
       <>
         <BrandDetails />
         <BrandProducts />
-        {isLoading && <ComponentLoader />}
-        <BrandLoadMore disabled={isLoading} />
+        {status === StatusType.Loading && <ComponentLoader />}
+        <BrandLoadMore />
       </>
     </PageWrapper>
   );

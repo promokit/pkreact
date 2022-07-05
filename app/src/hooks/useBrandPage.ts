@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkAppDispatch } from '../providers/store';
 import {
-  statusSelector,
   brandSelector,
+  statusSelector,
+  paginationSelector,
   productListingPageSelector
 } from '../providers/pages/brand/selectors';
 import {
@@ -15,8 +16,9 @@ import {
 export const useBrandPage = () => {
   const dispatch = useDispatch<ThunkAppDispatch>();
 
-  const status = useSelector(statusSelector);
   const brand = useSelector(brandSelector);
+  const status = useSelector(statusSelector);
+  const pagination = useSelector(paginationSelector);
   const productListingPage = useSelector(productListingPageSelector);
 
   const fetchBrandPage = useCallback(
@@ -32,6 +34,7 @@ export const useBrandPage = () => {
     brand,
     status,
     setPage,
+    pagination,
     fetchBrandPage,
     productListingPage
   } as const;

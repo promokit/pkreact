@@ -5,6 +5,7 @@ import brandPageReducer from './brand/reducers';
 import contactPageReducer from './contact/reducers';
 import productPageReducer from './product/reducers';
 import categoryPageReducer from './category/reducers';
+import newProductsPageReducer from './new-products/reducers';
 
 const pagesReducer = combineReducers({
   cms: cmsPageReducer,
@@ -12,7 +13,8 @@ const pagesReducer = combineReducers({
   brand: brandPageReducer,
   contact: contactPageReducer,
   product: productPageReducer,
-  category: categoryPageReducer
+  category: categoryPageReducer,
+  newproducts: newProductsPageReducer
 });
 
 export default pagesReducer;

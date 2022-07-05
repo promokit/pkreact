@@ -1,15 +1,12 @@
-import { useSelector } from 'react-redux';
-import { categorySelector } from '../../../../providers/pages/category/selectors';
+import { StatusType } from '../../../../model/enums';
+import { useCategoryPage } from '../../../../hooks/useCategoryPage';
 
 import LoadMore from '../../../product-listing/LoadMore/LoadMore';
 
-interface ComponentInterface {
-  disabled: boolean;
-}
-
-const CategoryLoadMore = ({ disabled }: ComponentInterface) => {
-  const { pagination } = useSelector(categorySelector);
-  return <LoadMore pagination={pagination} disabled={disabled} />;
+const CategoryLoadMore = () => {
+  const { setPage, pagination, status } = useCategoryPage();
+  const isLoading = status === StatusType.Loading;
+  return <LoadMore pagination={pagination} disabled={isLoading} setPage={setPage} />;
 };
 
 export default CategoryLoadMore;

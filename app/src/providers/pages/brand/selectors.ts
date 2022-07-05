@@ -14,6 +14,11 @@ export const statusSelector = createDraftSafeSelector(
   (state: BrandPageInterface) => state.status
 );
 
+export const paginationSelector = createDraftSafeSelector(
+  brandSelector,
+  (state: BrandPageInterface) => state.pagination
+);
+
 export const productListingPageSelector = createDraftSafeSelector(
   brandSelector,
   (state: BrandPageInterface) => state.productListingPage

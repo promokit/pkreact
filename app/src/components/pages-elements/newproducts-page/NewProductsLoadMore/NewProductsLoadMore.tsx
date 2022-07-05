@@ -1,12 +1,12 @@
-import { useBrandPage } from '../../../../hooks/useBrandPage';
 import { StatusType } from '../../../../model/enums';
+import { useNewProductsPage } from '../../../../hooks/useNewProductsPage';
 
 import LoadMore from '../../../product-listing/LoadMore/LoadMore';
 
-const BrandLoadMore = () => {
-  const { setPage, pagination, status } = useBrandPage();
+const NewProductsLoadMore = () => {
+  const { setPage, pagination, status } = useNewProductsPage();
   const isLoading = status === StatusType.Loading;
   return <LoadMore pagination={pagination} disabled={isLoading} setPage={setPage} />;
 };
 
-export default BrandLoadMore;
+export default NewProductsLoadMore;

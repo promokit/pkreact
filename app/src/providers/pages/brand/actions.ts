@@ -9,7 +9,7 @@ export interface ActionInterface {
   productListingPage: number;
 }
 
-export const setProductListingPage = createAction<number>('categorypage/setpage');
+export const setProductListingPage = createAction<number>('brandpage/setpage');
 
 export const fetchBrandPageAction = createAsyncThunk(
   `brandpage/fetch`,

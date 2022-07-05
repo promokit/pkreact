@@ -1,12 +1,18 @@
-import { ActionReducerMapBuilder, createReducer } from '@reduxjs/toolkit';
+import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { fetchContactPageAction, submitContactFormAction } from './actions';
 import { ContactPageInterface } from '../../../model/interfaces';
 import { StatusType } from '../../../model/enums';
 import { initialState } from './state';
 
-const contactpageReducer = createReducer(
+const contactPageSlice = createSlice({
+  name: 'contactPage',
   initialState,
-  (builder: ActionReducerMapBuilder<ContactPageInterface>) =>
+  reducers: {
+    resetContactFormMessageAction(state: ContactPageInterface) {
+      state.contact.formMessage = initialState.contact.formMessage;
+    }
+  },
+  extraReducers: (builder: ActionReducerMapBuilder<ContactPageInterface>) =>
     builder
       .addCase(fetchContactPageAction.pending, (state) => {
         state.status = StatusType.Loading;
@@ -26,6 +32,8 @@ const contactpageReducer = createReducer(
       .addCase(submitContactFormAction.rejected, (state) => {
         state.contact.formStatus = StatusType.Error;
       })
-);
+});
 
-export default contactpageReducer;
+export const { resetContactFormMessageAction } = contactPageSlice.actions;
+
+export default contactPageSlice.reducer;

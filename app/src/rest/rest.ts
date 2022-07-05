@@ -1,4 +1,4 @@
-import { APP_DIR, APP_CONFIG } from '../constants/constants';
+import { PS_ROOT_URL, APP_CONFIG } from '../constants/constants';
 import {
   RestResponse,
   CartInterface,
@@ -16,7 +16,8 @@ import {
   CategoryPageInterface,
   AddToCartFormInterface,
   SearchResultsInterface,
-  ContextCustomerInterface
+  ContextCustomerInterface,
+  NewProductsPageInterface
 } from '../model/interfaces';
 
 enum Methods {
@@ -40,7 +41,7 @@ const psFetch = async <T>(query: string, body: string = ''): Promise<T> => {
     options.method = Methods.POST;
   }
 
-  const response = await fetch(`${APP_DIR}${restSlug}/${query}`, options);
+  const response = await fetch(`${PS_ROOT_URL}${restSlug}/${query}`, options);
 
   return await response.json();
 };
@@ -81,6 +82,13 @@ export const getRestProductPage = async (
 ): Promise<RestResponse<ProductPageInterface>> => {
   const query: string = `productdetail?product_id=${id}`;
   return await psFetch<RestResponse<ProductPageInterface>>(query);
+};
+
+export const getRestNewProductsPage = async (
+  page: number
+): Promise<RestResponse<NewProductsPageInterface>> => {
+  const query: string = `newproducts?page=${page}&resultsPerPage=${productsPerPage}`;
+  return await psFetch<RestResponse<NewProductsPageInterface>>(query);
 };
 
 export const getRestHeader = async (): Promise<RestResponse<HeaderInterface>> => {

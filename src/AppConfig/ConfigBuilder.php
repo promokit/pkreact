@@ -43,11 +43,20 @@ class ConfigBuilder
 
   public function getAppSubDirs(): array {
     return [
+      'cart' => 'cart',
+      'search' => 'search',
+      'stores' => 'stores',
+      'sitemap' => 'sitemap',
       'product' => 'product',
-      'category' => 'category',
-      'manufacturer' => 'manufacturer',
       'cmspage' => 'cms-page',
-      'contact' => 'contact-us'
+      'category' => 'category',
+      'contact' => 'contact-us',
+      'newaddress' => 'new-address',
+      'pricesdrop' => 'prices-drop',
+      'bestsellers' => 'bestsellers',
+      'newproducts' => 'new-products',
+      'manufacturer' => 'manufacturer',
+      'passwordrecovery' => 'password-recovery',
     ];
   }
 }

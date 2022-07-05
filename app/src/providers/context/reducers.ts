@@ -21,7 +21,6 @@ const contextSlice = createSlice({
       state.cart = action.payload;
     },
     setCartMessageAction(state: ContextDetailsInterface, action) {
-      console.log(action.payload);
       state.cart.message = action.payload;
     },
     setLoadedState(state: ContextDetailsInterface, action) {

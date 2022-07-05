@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { APP_DIR } from '../../../constants/constants';
+import { PS_ROOT_URL } from '../../../constants/constants';
 import { usePsContext } from '../../../hooks/usePsContext';
 import { languagesSelector } from '../../../providers/header/selector';
 import { contextLanguageSelector } from '../../../providers/context/selectors';
@@ -32,7 +32,7 @@ const LanguagesList = () => {
         >
           <strong className="flex flex-center">
             <img
-              src={`${APP_DIR}img/flags/${iso_code}.jpg`}
+              src={`${PS_ROOT_URL}img/flags/${iso_code}.jpg`}
               width="16"
               height="11"
               alt={iso_code}

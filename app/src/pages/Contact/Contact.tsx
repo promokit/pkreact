@@ -10,13 +10,24 @@ import TextInput from '../../components/forms/TextInput/TextInput';
 import PageTitle from '../../components/atoms/PageTitle/PageTitle';
 import PageWrapper from '../../components/pages-elements/PageWrapper/PageWrapper';
 import Notification from '../../components/notifications/Notification/Notification';
+import withTimer from '../../components/hocs/withTimer/withTimer';
 
 import './styles.scss';
 
+const NotificationWithTimer = withTimer(Notification);
+
 const Contact = () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const { fetchContactPage, submitContactForm, status, contacts, token, formMessage, formStatus } =
-    useContact();
+  const {
+    fetchContactPage,
+    submitContactForm,
+    status,
+    contacts,
+    token,
+    formMessage,
+    formStatus,
+    resetContactFormMessage
+  } = useContact();
   const { validateForm } = useFormValidator();
 
   const submitHandler = () => {
@@ -64,10 +75,18 @@ const Contact = () => {
           />
         </form>
         {formMessage.success.length > 0 && (
-          <Notification type={NotificationType.Info} message={formMessage.success} />
+          <NotificationWithTimer
+            type={NotificationType.Info}
+            message={formMessage.success}
+            setMessage={resetContactFormMessage}
+          />
         )}
         {formMessage.errors.length > 0 && (
-          <Notification type={NotificationType.Error} message={formMessage.errors} />
+          <NotificationWithTimer
+            type={NotificationType.Error}
+            message={formMessage.errors}
+            setMessage={resetContactFormMessage}
+          />
         )}
       </>
     </PageWrapper>

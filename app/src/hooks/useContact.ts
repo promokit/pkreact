@@ -1,6 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  ContactFormInterface,
+  ContactPageContactsInterface,
+  SelectInterface
+} from '../model/interfaces';
+import {
   contactPageSelector,
   contactPageStatusSelector,
   contactsSelector,
@@ -12,11 +17,7 @@ import {
   fetchContactPageAction,
   submitContactFormAction
 } from '../providers/pages/contact/actions';
-import {
-  ContactFormInterface,
-  ContactPageContactsInterface,
-  SelectInterface
-} from '../model/interfaces';
+import { resetContactFormMessageAction } from '../providers/pages/contact/reducers';
 
 const selectAdapter = (contactsList: ContactPageContactsInterface[]): SelectInterface[] => {
   if (!contactsList.length) {
@@ -48,6 +49,11 @@ export const useContact = () => {
     [dispatch]
   );
 
+  const resetContactFormMessage = useCallback(
+    (_: string) => dispatch(resetContactFormMessageAction()),
+    [dispatch]
+  );
+
   return {
     token,
     status,
@@ -56,6 +62,7 @@ export const useContact = () => {
     formMessage,
     contactPage,
     fetchContactPage,
-    submitContactForm
+    submitContactForm,
+    resetContactFormMessage
   } as const;
 };

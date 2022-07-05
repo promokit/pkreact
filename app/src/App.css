@@ -1,4 +1,16 @@
 :root {
+  --desktop-font-size: 1rem/1.5;
+  --mobile-font-size: 1rem/1.4;
+  --text-color: #2d2d2d;
+  --link-color: #555;
+  --link-color-alt: #222;
+  --primary-color: lightsteelblue;
+  --secondary-color: aliceblue;
+  --tertiary-color: whitesmoke;
+  --header-background: #fff;
+  --header-color: #333;
+  --footer-background: #fff;
+  --footer-color: #333;
   --swiper-navigation-color: #333;
   --swiper-navigation-size: 30px;
   --swiper-pagination-bullet-inactive-opacity: 0.7;
@@ -14,7 +26,87 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
+  font-size: 14px;
+  color: var(--text-color);
+  max-width: 75ch;
+}
+body,
+input {
+  font: var(--desktop-font-size) -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+dl,
+img,
+figure {
+  margin: 0 0 2rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 200%;
+}
+h2 {
+  font-size: 150%;
+}
+h3 {
+  font-size: 120%;
+}
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+h5,
+h6 {
+  text-transform: uppercase;
+}
+
+header h1 {
+  border-bottom: 1px solid;
+}
+
+a,
+a:visited {
+  color: var(--link-color);
+}
+a:hover,
+a:focus {
+  color: var(--link-color-alt);
+}
+
+input {
+  appearance: none;
+  border: 1px solid var(--text-color);
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+}
+input:focus,
+input:active {
+  background-color: var(--secondary-color);
+  border-color: var(--link-color);
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 #root {
   display: flex;
@@ -37,9 +129,8 @@ main {
 }
 .page-width {
   width: 400px;
-  max-width: 90%;
+  max-width: 86%;
   margin: 0 auto;
-  height: 100%;
 }
 .w100 {
   width: 100%;
@@ -75,8 +166,6 @@ main {
 }
 .img {
   width: 100%;
-  height: auto;
-  display: block;
   margin: 0;
 }
 .clear-button {
@@ -92,4 +181,28 @@ main {
 }
 .smooth200 {
   transition: all 0.3s ease-in-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #191919;
+  }
+  input:focus,
+  input:active {
+    background-color: var(--text-color);
+    color: var(--secondary-color);
+  }
+  :root {
+    --header-background: #333;
+    --header-color: #eee;
+    --footer-background: #333;
+    --footer-color: #eee;
+    --text-color: #fff;
+    --link-color: orange;
+    --link-color-alt: yellow;
+    --primary-color: orange;
+    --secondary-color: black;
+    --tertiary-color: #2d2d2d;
+  }
 }

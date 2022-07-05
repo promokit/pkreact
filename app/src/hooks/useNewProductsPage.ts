@@ -2,27 +2,25 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkAppDispatch } from '../providers/store';
 import {
-  statusSelector,
-  categorySelector,
-  paginationSelector,
-  productListingPageSelector
-} from '../providers/pages/category/selectors';
-import {
   ActionInterface,
-  setProductListingPage,
-  fetchCategoryPageAction
-} from '../providers/pages/category/actions';
+  fetchNewProductsPageAction,
+  setProductListingPage
+} from '../providers/pages/new-products/actions';
+import {
+  paginationSelector,
+  productListingPageSelector,
+  statusSelector
+} from '../providers/pages/new-products/selectors';
 
-export const useCategoryPage = () => {
+export const useNewProductsPage = () => {
   const dispatch = useDispatch<ThunkAppDispatch>();
 
   const status = useSelector(statusSelector);
-  const category = useSelector(categorySelector);
   const pagination = useSelector(paginationSelector);
   const productListingPage = useSelector(productListingPageSelector);
 
-  const fetchCategoryPage = useCallback(
-    (arg: ActionInterface) => dispatch(fetchCategoryPageAction(arg)),
+  const fetchNewProductsPage = useCallback(
+    (arg: ActionInterface) => dispatch(fetchNewProductsPageAction(arg)),
     [dispatch]
   );
   const setPage = useCallback(
@@ -31,11 +29,10 @@ export const useCategoryPage = () => {
   );
 
   return {
-    status,
     setPage,
-    category,
+    status,
     pagination,
-    fetchCategoryPage,
-    productListingPage
+    productListingPage,
+    fetchNewProductsPage
   } as const;
 };

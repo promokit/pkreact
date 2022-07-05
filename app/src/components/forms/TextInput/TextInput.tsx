@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import './styles.scss';
 
 interface ComponentInterface {
@@ -41,4 +43,4 @@ const TextInput = ({ input, label = '', description = '' }: ComponentInterface) 
   );
 };
 
-export default TextInput;
+export default memo(TextInput);

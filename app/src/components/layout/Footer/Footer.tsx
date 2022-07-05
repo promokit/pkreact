@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { APP_URL } from '../../../constants/constants';
+import { PS_ROOT_URL, APP_URL, APP_ASSETS } from '../../../constants/constants';
 import FooterSticky from '../../footer-elements/FooterSticky/FooterSticky';
 
 import './styles.scss';
@@ -27,17 +27,32 @@ const Footer = () => (
               <Link to={`${APP_URL}/cms-page/5`}>Secure payment</Link>
             </li>
             <li>
-              <Link to={`${APP_URL}/contact-us`}>Kontakt z nami</Link>
+              <Link to={`${APP_URL}/contact-us`}>Contact us</Link>
+            </li>
+            <li>
+              <Link to={`${APP_URL}/new-products`}>New Products</Link>
             </li>
           </ul>
         </div>
       </div>
       <div className="footer-copyright">
         <div className="page-width">
-          © {new Date().getFullYear()}{' '}
-          <a href="https://promokit.eu" target="_blank" rel="noreferrer">
-            Promokit Co.
-          </a>
+          <div className="payment-methods-section">
+            <img
+              src={`${PS_ROOT_URL}${APP_ASSETS}images/payment-methods.webp`}
+              alt="Available Payment Methods"
+              className="img"
+              loading="lazy"
+              height="116"
+              width="980"
+            />
+          </div>
+          <div className="copyright-section">
+            © {new Date().getFullYear()}{' '}
+            <a href="https://promokit.eu" target="_blank" rel="noreferrer">
+              Promokit Co.
+            </a>
+          </div>
         </div>
       </div>
     </footer>

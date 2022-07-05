@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { getRestCategoryPage } from '../../../rest/rest';
 import { CategoryPageInterface, RestResponse } from '../../../model/interfaces';
+import { getRestCategoryPage } from '../../../rest/rest';
 import { concatenateProductList } from './utils';
 
 export interface ActionInterface {
@@ -20,14 +20,10 @@ export const fetchCategoryPageAction = createAsyncThunk(
       const { psdata, message, success }: RestResponse<CategoryPageInterface> =
         await getRestCategoryPage(categoryId, productListingPage);
 
-      if (!success) {
-        throw new Error(message);
-      }
-
+      if (!success) throw new Error(message);
       if (!category) return psdata;
 
       return concatenateProductList(category, psdata);
-      //return response.psdata;
     } catch (error) {
       return rejectWithValue(error);
     }

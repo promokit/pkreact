@@ -302,6 +302,7 @@ export interface PagesInterface {
   brand: BrandPageInterface;
   product: ProductPageInterface;
   category: CategoryPageInterface;
+  newproducts: NewProductsPageInterface;
 }
 
 export interface HomePageInterface {
@@ -374,34 +375,33 @@ interface Pagination {
   total_items: number;
 }
 
-export interface CategoryPageInterface {
-  id_category: number;
-  active: string;
-  description: string;
+interface ProductListingBase {
   facets: [];
-  images: CoverInterface;
-  label: string;
   pagination: Pagination;
+  productListingPage: number;
   products: Array<ProductInterface>;
   sort_orders?: [];
   sort_selected?: string;
   status: StatusType;
-  productListingPage: number;
 }
 
-export interface BrandPageInterface {
+export interface CategoryPageInterface extends ProductListingBase {
+  active: string;
+  description: string;
+  id_category: number;
+  images: CoverInterface;
+  label: string;
+}
+
+export interface BrandPageInterface extends ProductListingBase {
   id: number;
-  name: string;
   description: string;
   link_rewrite: string;
   logo: string;
-  products: Array<ProductInterface>;
-  facets: [];
-  sort_orders?: [];
-  pagination: Pagination;
-  status: StatusType;
-  productListingPage: number;
+  name: string;
 }
+
+export interface NewProductsPageInterface extends ProductListingBase {}
 
 export interface AddToCartFormInterface {
   qty: number;

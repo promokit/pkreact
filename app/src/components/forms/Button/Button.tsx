@@ -25,9 +25,9 @@ const Button = ({
   return (
     <button
       type={type}
-      className="button flex flex-grow flex-center"
-      onClick={clickHandler}
       disabled={disabled}
+      onClick={clickHandler}
+      className="button flex flex-grow flex-center align-center"
     >
       <span>{title}</span>
       {isLoading && <ComponentLoader />}

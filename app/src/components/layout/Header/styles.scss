@@ -1,10 +1,10 @@
 header {
-  background-color: #fff;
-  display: flex;
+  background-color: var(--header-background);
+  color: var(--header-color);
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  color: #333;
+  align-items: center;
+  display: flex;
   & .header-top {
     padding: 25px 0;
     & .header-top__items {

@@ -34,7 +34,7 @@ const Category = () => {
         <CategoryDetails />
         <CategoryProducts />
         {isLoading && <ComponentLoader />}
-        <CategoryLoadMore disabled={isLoading} />
+        <CategoryLoadMore />
       </>
     </PageWrapper>
   );

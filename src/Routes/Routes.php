@@ -40,7 +40,7 @@ class Routes
         'module' => $moduleName,
     ];
 
-    return [
+    $routes = [
         // Home 
         'module-'.$moduleName.'-home' => [
             'controller' => $moduleController,
@@ -95,7 +95,19 @@ class Routes
                 ],
             ],
             'params' => $item_params
-        ]
+        ],
     ];
+
+    // New Products
+    if (isset($dirs['new_products'])) {
+        $routes['module-'.$moduleName.'-'.$dirs['new_products']] = [
+            'controller' => $moduleController,
+            'rule' => $data['slug'].'/'.$dirs['new_products'],
+            'keywords' => [],
+            'params' => $item_params,
+        ];
+    }
+
+    return $routes;
   }
 }
